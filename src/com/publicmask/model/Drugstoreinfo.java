@@ -4,12 +4,12 @@ public class Drugstoreinfo {
 
 	private String StoreName;
 	private String address;
-	private int phoneNumber;
+	private String phoneNumber;
 	private int maskstate;
 	
 	public Drugstoreinfo() {}
 
-	public Drugstoreinfo(String storeName, String address, int phoneNumber, int maskstate) {
+	public Drugstoreinfo(String storeName, String address, String phoneNumber, int maskstate) {
 		StoreName = storeName;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
@@ -32,11 +32,11 @@ public class Drugstoreinfo {
 		this.address = address;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

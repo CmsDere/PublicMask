@@ -5,8 +5,14 @@ public class Maskinfo {
 	private String maskname;
 	private String maskuser;
 	private String masksize;
+	private int maskNum;
 	
 	public Maskinfo() {}
+	public Maskinfo(String maskname, int maskNum){
+		this.maskname = maskname;
+		this.maskNum = maskNum;
+	}	
+	
 	public Maskinfo(String maskname, String maskuser, String masksize) {
 		this.maskname = maskname;
 		this.maskuser = maskuser;
@@ -33,10 +39,15 @@ public class Maskinfo {
 	public void setMasksize(String masksize) {
 		this.masksize = masksize;
 	}
-	
+	public int getMaskNum() {
+		return maskNum;
+	}
+	public void setMaskNum(int maskNum) {
+		this.maskNum = maskNum;
+	}
 	@Override
 	public String toString() {
-		return "마스크정보= [마스크이름=" + maskname + ", 사용자=" + maskuser + ", 규격="+masksize+"]";
+		return "마스크 종류=" + maskname + ", 갯수=" + maskNum;
 	}
 	
 	

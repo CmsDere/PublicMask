@@ -3,10 +3,10 @@ package com.publicmask.model;
 public class Personinfo {
 
 	private String userName;
-	private int userNumber;
+	private String userNumber;
 	
 	public Personinfo() {}
-	public Personinfo(String userName, int userNumber) {
+	public Personinfo(String userName, String userNumber) {
 		this.userName = userName;
 		this.userNumber = userNumber;
 	}
@@ -16,10 +16,10 @@ public class Personinfo {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public int getUserNumber() {
+	public String getUserNumber() {
 		return userNumber;
 	}
-	public void setUserNumber(int userNumber) {
+	public void setUserNumber(String userNumber) {
 		this.userNumber = userNumber;
 	}
 	@Override
