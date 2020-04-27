@@ -17,20 +17,17 @@ public class MainView {
 		while(true) {
 			System.out.println("=============공적마스크 예약 시스템=============");
 			System.out.println("***약국 목록입니다***");
-			System.out.println("1.하나약국");
-			System.out.println("2.둘약국");
-			System.out.println("3.셋약국");
-			System.out.println("4.넷약국");
+			storeview();
 			System.out.println("------------------------------");
 			System.out.print("약국 선택: ");
 			int num = sc.nextInt();
 			
 			
 			switch(num) {
-			case 1: searchstore1(); break;
-			case 2:	searchstore1(); break;
-			case 3: searchstore1(); break;
-			case 4: searchstore1(); break;
+			case 1: searchstore(num); break;
+			case 2:	searchstore(num); break;
+			case 3: searchstore(num); break;
+			case 4: searchstore(num); break;
 			default:
 				System.out.println("잘못 입력하셨습니다.!!");
 
@@ -45,15 +42,18 @@ public class MainView {
 		
 	}
 	
+	public void storeview() {
+		mc.storeview();
+	}
 	
-	public void searchstore1() {
+	public void searchstore(int num) {
 	
-		mc.searchstore1();
+		mc.searchstore(num);
 		char answer=' ';
 		System.out.print("예약하시겠습니까? (Y/N) : ");
 		answer = sc.next().toUpperCase().charAt(0);
 		if(answer=='Y') {
-			System.out.println("**소님의 구매 가능 여부 확인**");
+			System.out.println("**손님의 구매 가능 여부 확인**");
 			usercheck();
 		}
 		

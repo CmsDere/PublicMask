@@ -1,19 +1,21 @@
 package com.publicmask.model;
 
+import java.util.ArrayList;
+
 public class Drugstoreinfo {
 
 	private String StoreName;
 	private String address;
 	private String phoneNumber;
-	private int maskstate;
+	private ArrayList maskinfo;
 	
 	public Drugstoreinfo() {}
 
-	public Drugstoreinfo(String storeName, String address, String phoneNumber, int maskstate) {
+	public Drugstoreinfo(String storeName, String address, String phoneNumber, ArrayList maskinfo) {
 		StoreName = storeName;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
-		this.maskstate = maskstate;
+		this.maskinfo = maskinfo;
 	}
 
 	public String getStoreName() {
@@ -39,20 +41,19 @@ public class Drugstoreinfo {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
-	public int getMaskstate() {
-		return maskstate;
-	}
-
-	public void setMaskstate(int maskstate) {
-		this.maskstate = maskstate;
-	}
-
 	
+
+	public ArrayList getMaskinfo() {
+		return maskinfo;
+	}
+
+	public void setMaskinfo(ArrayList maskinfo) {
+		this.maskinfo = maskinfo;
+	}
+
 	@Override
 	public String toString() {
-		return "약국정보= [약국이름=" + StoreName + ", 주소=" + address + ", 전화번호=" + phoneNumber
-				+ "]";
+		return "약국이름=" + StoreName + ", 주소=" + address + ", 전화번호=" + phoneNumber;
 	}
 	
 	
