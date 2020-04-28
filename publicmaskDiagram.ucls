@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="com.publicmask.view.LoginView" project="PublicMask" 
-    file="/PublicMask/src/com/publicmask/view/LoginView.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="com.publicmask.view.To_Reserve" project="PublicMask" 
+    file="/PublicMask/src/com/publicmask/view/To_Reserve.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="653" y="187"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

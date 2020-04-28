@@ -2,8 +2,8 @@ package com.publicmask.view;
 
 import javax.swing.JPanel;
 
-public class LoginView extends JPanel{
-	public LoginView() {
+public class To_Reserve extends JPanel{
+	public To_Reserve() {
 		
 	}
 }
