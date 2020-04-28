@@ -1,9 +1,10 @@
 package com.publicmask.view;
 
+import java.awt.Color;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ReserveResult extends JPanel{
-	public ReserveResult() {
-		this.setSize(1280, 720);
-	}
+public class ReserveResult {
+	
 }
