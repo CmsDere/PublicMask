@@ -25,6 +25,7 @@ public class Maskinfo {
 	public void setMaskNum(int maskNum) {
 		this.maskNum = maskNum;
 	}
+	
 	@Override
 	public String toString() {
 		return "마스크 종류=" + maskname + ", 갯수=" + maskNum;
