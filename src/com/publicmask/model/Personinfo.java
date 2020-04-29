@@ -1,5 +1,7 @@
 package com.publicmask.model;
 
+import java.util.Set;
+
 public class Personinfo {
 
 	private String userName;

@@ -2,13 +2,22 @@ package com.publicmask.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ReservationResult extends JPanel{
+	private MainFrame mf;
+	private Dialog choice;
+	
 	public ReservationResult() {
 		this.setLayout(new BorderLayout());
 		
@@ -17,7 +26,7 @@ public class ReservationResult extends JPanel{
 		
 		JPanel topicPanel = new JPanel();
 		JLabel topic = new JLabel("예약 내역");
-		topicPanel.setBackground(Color.CYAN);
+		topicPanel.setBackground(new Color(255, 0, 0));
 		topicPanel.setLocation(0, 0);
 		topic.setForeground(Color.WHITE);
 		topic.setFont(topic.getFont().deriveFont(50.0f));
@@ -42,6 +51,17 @@ public class ReservationResult extends JPanel{
 		result.setForeground(Color.BLACK);
 		result.setFont(result.getFont().deriveFont(50.0f));
 		nextButton.setFont(nextButton.getFont().deriveFont(50.0f));
+		nextButton.addActionListener(new GoToDialogButton());
+		
+		choice = new Dialog(mf, "안내");
+		choice.setBounds(300, 200, 300, 200);;
+		choice.setLayout(new GridLayout(1, 2));
+		JButton goToMain = new JButton("처음으로");
+		JButton exit = new JButton("종료");
+		choice.add(goToMain);
+		choice.add(exit);
+		goToMain.addActionListener(new GoToMainButton());
+		exit.addActionListener(new ProgramExitButton());
 		
 		topicPanel.add(topic);
 		
@@ -57,5 +77,26 @@ public class ReservationResult extends JPanel{
 		mainPanel.add(resultPanel, "South");
 		
 		this.add(mainPanel);
+	}
+	
+	private class GoToDialogButton implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			choice.setVisible(true);
+		}
+	}
+	
+	private class GoToMainButton implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			mf.ReservationResultToPublicMask();
+		}
+	}
+	
+	private class ProgramExitButton implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
 	}
 }
