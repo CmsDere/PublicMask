@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.publicmask.view.ReserveResult" project="PublicMask" 
-    file="/PublicMask/src/com/publicmask/view/ReserveResult.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="com.publicmask.view.ReservationResult" project="PublicMask" 
+    file="/PublicMask/src/com/publicmask/view/ReservationResult.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="738" y="397"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -129,24 +129,36 @@
   </class>  
   <association id="15">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="16" name="storeList"/>      
-      <multiplicity id="17" minimum="0" maximum="2147483647"/>    
+      <attribute id="16" name="storeList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="18">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="19" name="personList"/>      
-      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
+      <attribute id="19" name="personList">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="21">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="22" name="mc"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+      <attribute id="22" name="mc">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
