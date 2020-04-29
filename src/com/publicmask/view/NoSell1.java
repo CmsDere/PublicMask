@@ -5,17 +5,16 @@ import javax.swing.border.LineBorder;
 
 import java.awt.*;
 
-public class NoSell1 {
+public class NoSell1 extends JPanel{
 	
 	
 
-	public static void main(String[] args) {
+	public NoSell1() {
 
 
 		Font f1 = new Font("궁서",Font.BOLD,30);
-		
-		JFrame mf = new JFrame("예약 불가능");
-				
+
+		this.setLayout(new BorderLayout());
 		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -45,13 +44,9 @@ public class NoSell1 {
 		panel2.setBackground(Color.white);
 		
 		
-		mf.add(panel1,"Center");
-		mf.add(panel2,"South");
-		mf.pack();
-		
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.add(panel1,"Center");
+		this.add(panel2,"South");
+	
 	}
 
 }

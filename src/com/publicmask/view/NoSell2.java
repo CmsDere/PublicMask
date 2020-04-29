@@ -7,20 +7,20 @@ import javax.swing.border.LineBorder;
 
 import java.awt.*;
 
-public class NoSell2 {
+public class NoSell2 extends JPanel{
 	
 	
 
-	public static void main(String[] args) {
+	public NoSell2() {
 
 
 		Font f1 = new Font("궁서",Font.BOLD,30);
 		Font f2 = new Font("굴림",Font.BOLD,25);
 		
-		JFrame mf = new JFrame("예약 불가능");
+
+		this.setLayout(new BorderLayout());
 		
-		
-		
+
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		JPanel panel3 = new JPanel();   //중간 출력
@@ -84,13 +84,10 @@ public class NoSell2 {
 		panel3.setBackground(Color.white);
 		
 		
-		mf.add(panel1,"North");
-		mf.add(panel3,"Center");
-		mf.add(panel2,"South");
-		mf.pack();
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.add(panel1,"North");
+		this.add(panel3,"Center");
+		this.add(panel2,"South");
+			
 	}
 
 }

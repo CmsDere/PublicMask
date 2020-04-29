@@ -1,5 +1,6 @@
 package com.publicmask.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -11,15 +12,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Sell {
+public class Sell extends JPanel {
 
-	public static void main(String[] args) {
+	public Sell(){
 
 		Font f1 = new Font("궁서",Font.BOLD,50);
 		Font f2 = new Font("굴림",Font.BOLD,25);
 		
-		JFrame mf = new JFrame("예약진행");
-//		mf.setBounds(200, 200, 1024, 720);
+		
+		this.setLayout(new BorderLayout());
+		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		JPanel panel3 = new JPanel();
@@ -31,7 +33,6 @@ public class Sell {
 		label1.setHorizontalAlignment(JLabel.CENTER);
 		panel1.add(label1);
 		panel1.setBackground(Color.BLUE);
-//		panel1.setBorder(new LineBorder(Color.white, 50));
 		
 		
 		panel2.setLayout(new GridLayout(3,3));
@@ -68,29 +69,10 @@ public class Sell {
 		
 		
 		
-		mf.add(panel1,"North");
-		mf.add(panel2,"Center");
-		mf.add(panel3,"South");
-		mf.pack();
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(panel1,"North");
+		this.add(panel2,"Center");
+		this.add(panel3,"South");
 		
 	}
 
 }
-
-//나중에 텍스트 박스 안에 비어있으면 기본값을 지정하는 코드.
-//@Override
-//public void stateChanged(ChangeEvent e) {
-// if(((JCheckBox)e.getSource()).isSelected())
-// {
-//  textPeriod.setText("Random");
-//  textPeriod.setEnabled(false);
-// }else
-// {
-//  textPeriod.setText("");
-//  textPeriod.setEnabled(true);
-// }
-//}
-//});
-
