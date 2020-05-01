@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.publicmask.model.Drugstoreinfo;
-import com.publicmask.model.Maskinfo;
-import com.publicmask.model.Personinfo;
-
+import com.daehee.mask.model.Drugstoreinfo;
+import com.daehee.mask.model.Maskinfo;
+import com.daehee.mask.model.Personinfo;
 public class MainController {
 
 	private ArrayList<Drugstoreinfo> storeList = new ArrayList<>();
