@@ -28,18 +28,17 @@ import com.daehee.mask.model.Maskinfo;
 
 public class MainView {
 
+	//필드 변수 설정
 	MainController mc = new MainController();
 	Scanner sc = new Scanner(System.in);
 	
 	private JFrame mf = new JFrame();
 	private JPanel view;
 	private Font f1, f2,f3;
-	
-	
-
 	private int indexnum;
 	
 
+	//주된 화면
 	public void MainView() {
 		
 		view = mainPanel();
@@ -244,7 +243,7 @@ public class MainView {
 	}
 	
 	
-	//전역변수 => 이름값과 주민번호값을 가져온다.
+	//필드변수 => 이름값과 주민번호값을 가져온다.
 	String textstr1,textstr2;
 	//유저 정보를 입력하는 UI 이다.
 	public JPanel userinfoView() {
@@ -363,8 +362,9 @@ public class MainView {
 	
 	
 	
-	//전역번수 => 각각의 마스크 수량을 가져온다.
+	//필드번수 => 각각의 마스크 수량을 가져온다.
 	int num1,num2,num3;
+	//살 마스크 개수를 설정하는 UI
 	public JPanel Sell() {
 		
 		JPanel SellPanel = new JPanel();
@@ -450,7 +450,7 @@ public class MainView {
 	}
 	
 	
-	
+	//예약 불가능 메소드2
 	public JPanel NoSell2() {
 		
 		JPanel NoSell2Panel = new JPanel();
@@ -541,13 +541,13 @@ public class MainView {
 	}
 	
 	
-	
-	
+	//마스크 수량 체크하는 메소드
 	public void maskinfo(int num1, int num2, int num3) {
 		mc.maskinfo(num1, num2, num3);
 	
 	}
 	
+	//예약 내역 출력하는 UI
 	public JPanel reserveinfo() {
 		
 		JPanel reserveinfoPanel = new JPanel();
@@ -630,23 +630,7 @@ public class MainView {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-//====================================================================================================================
-//아래는 사용안함.
-	
 
-	
-
-	
-	
-	
-	
-	
 	
 	
 }

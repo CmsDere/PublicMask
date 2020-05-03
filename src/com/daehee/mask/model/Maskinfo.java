@@ -1,5 +1,6 @@
 package com.daehee.mask.model;
 
+//마스크 정보
 public class Maskinfo {
 
 	private String maskname;

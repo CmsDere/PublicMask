@@ -2,6 +2,7 @@ package com.daehee.mask.model;
 
 import java.util.ArrayList;
 
+//약국 정보
 public class Drugstoreinfo {
 
 	private String StoreName;
