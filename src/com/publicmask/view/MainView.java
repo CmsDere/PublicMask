@@ -170,66 +170,46 @@ public class MainView {
 		JPanel storeinforViewPanel = new JPanel();
 		storeinforViewPanel.setLayout(new BorderLayout());
 		
-		//north
-		JPanel panel1 = new JPanel();
-		panel1.setBackground(Color.blue);
-		JLabel label1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 약국 프로필");
-		label1.setForeground(Color.WHITE);
-		label1.setFont(f1);
-		panel1.add(label1);
+		Font storef1 = new Font("돋음",Font.BOLD,30);
+		Font storef2 = new Font("돋음",Font.BOLD,25);
+		Font storef3 = new Font("돋음",Font.BOLD,20);
+		
+		JPanel Panel1  = new JPanel();	//타이틀
+		JPanel Panel2 = new JPanel();	//약국
+		JPanel Panel3 = new JPanel();	//마스크
+		JPanel Panel3_main = new JPanel();	//마스크
+		JPanel Panel3_mask = new JPanel();	//마스크
+		JPanel Panel3_btn = new JPanel();	//마스크
+		
+		Panel1.setLayout(new GridLayout(2,1));
+//		Panel1.setPreferredSize(new Dimension(500, 50));
+		Panel1.setBackground(Color.white);
+		Panel2.setLayout(new GridLayout(2,1));
+		Panel2.setBackground(Color.white);
+//		Panel2.setPreferredSize(new Dimension(500, 70));
+		Panel3_main.setLayout(new GridLayout(2,1));
+		Panel3_main.setBackground(Color.white);
+		Panel3_mask.setLayout(new GridLayout(3,2));
+		Panel3_mask.setBackground(Color.white);
+		Panel3_btn.setBackground(Color.white);
+		
+		Panel2.setBorder(BorderFactory.createLineBorder(Color.black,2));
+		Panel3_mask.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		
 		
-		//center
-		JPanel panel2 = new JPanel();
-		panel2.setBackground(Color.WHITE);
-		panel2.setLayout(new GridLayout(2,1));
-		JLabel label2 = new JLabel("		● "+mc.getStoreList().get(indexnum).getAddress().toString());
-		JLabel label3 = new JLabel("		● "+mc.getStoreList().get(indexnum).getPhoneNumber().toString());
-		label2.setFont(f2);
-		label3.setFont(f2);
-		label2.setHorizontalAlignment(JLabel.LEFT);
-		label3.setHorizontalAlignment(JLabel.LEFT);
-		panel2.add(label2);
-		panel2.add(label3);
+		JLabel titleLabel1 = new JLabel("약국정보 ");
+		JLabel nameLabel= new JLabel();	//약국정보 라벨 이름
+		JLabel adressLabel = new JLabel();	//약국정보 라벨 주소
+		JLabel pNumLabel = new JLabel();	//약국정보 라벨	전번
+		JLabel KF94Label = new JLabel("KF94");	
+		JLabel KF94Label_num = new JLabel();	
+		JLabel KF80Label = new JLabel("KF80");	
+		JLabel KF80Label_num = new JLabel();	
+		JLabel dentalLabel = new JLabel("일반마스크");	
+		JLabel dentalLabel_num = new JLabel();
 		
-		
-		
-		//south
-		JPanel panel3 = new JPanel();
-		panel3.setBackground(Color.getHSBColor(100, 100, 100));
-		panel3.setLayout(new GridLayout(3,2));
-		JLabel label4 = new JLabel(" ● KF94			");
-		JLabel label5 = new JLabel(" "+((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"개");
-		JLabel label6 = new JLabel(" ● KF80		");
-		JLabel label7 = new JLabel(" "+((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개");
-		JLabel label8 = new JLabel(" ● 일반마스크		");
-		JLabel label9 = new JLabel(" "+((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"개");
-		label4.setFont(f3);
-		label5.setFont(f3);
-		label6.setFont(f3);
-		label7.setFont(f3);
-		label8.setFont(f3);
-		label9.setFont(f3);
-		panel3.add(label4);
-		panel3.add(label5);
-		panel3.add(label6);
-		panel3.add(label7);
-		panel3.add(label8);
-		panel3.add(label9);
-				
-				
-		JPanel panel4 = new JPanel();
-		panel4.setLayout(new BorderLayout());
-		panel4.add(panel1,"North");
-		panel4.add(panel2,"Center");
-		panel4.add(panel3,"South");
-		
-		
-		JPanel panel5 = new JPanel();
-		panel5.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		JButton button = new JButton("예약진행");
-		panel5.add(button);
-		button.addActionListener(new ActionListener() {
+		JButton btn = new JButton("예약 진행");
+		btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -241,13 +221,72 @@ public class MainView {
 				
 			}
 		});
-				
-				
-				
-				
-		storeinforViewPanel.add(panel4,"Center");
-		storeinforViewPanel.add(panel5,"South");
+		
+		titleLabel1.setOpaque(true);
+		titleLabel1.setBackground(Color.blue);
+		titleLabel1.setForeground(Color.white);
+		titleLabel1.setHorizontalAlignment(JLabel.CENTER);
+		titleLabel1.setFont(storef1);
+		nameLabel.setHorizontalAlignment(JLabel.CENTER);
+		nameLabel.setFont(storef3);
+		adressLabel.setHorizontalAlignment(JLabel.CENTER);
+		adressLabel.setFont(storef3);
+		pNumLabel.setHorizontalAlignment(JLabel.CENTER);
+		pNumLabel.setFont(storef3);
+		KF94Label.setHorizontalAlignment(JLabel.CENTER);
+		KF94Label.setFont(storef3);
+		KF94Label_num.setHorizontalAlignment(JLabel.CENTER);
+		KF94Label_num.setFont(storef3);
+		KF80Label.setHorizontalAlignment(JLabel.CENTER);
+		KF80Label.setFont(storef3);
+		KF80Label_num.setHorizontalAlignment(JLabel.CENTER);
+		KF80Label_num.setFont(storef3);
+		dentalLabel.setHorizontalAlignment(JLabel.CENTER);
+		dentalLabel.setFont(storef3);
+		dentalLabel_num.setHorizontalAlignment(JLabel.CENTER);
+		dentalLabel_num.setFont(storef3);
+		
+		String name= mc.getStoreList().get(indexnum).getStoreName().toString();
+		String adress = mc.getStoreList().get(indexnum).getAddress().toString();
+		String pNumber = mc.getStoreList().get(indexnum).getPhoneNumber().toString();
+//		String pNumber =
+		
+		String KF94 = ((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"개";
+		String KF80 = ((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개";
+		String dental = ((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"개";
+		
+		nameLabel.setText(name);
+		
+		Panel1.add(titleLabel1);
+		Panel1.add(nameLabel);
+		
+		adressLabel.setText(adress);
+		pNumLabel.setText(pNumber);
+		
+		Panel2.add(adressLabel);
+		Panel2.add(pNumLabel);
+		
+		KF94Label_num.setText(KF94);
+		KF80Label_num.setText(KF80);
+		dentalLabel_num.setText(dental);
 	
+		Panel3_mask.add(KF94Label);
+		Panel3_mask.add(KF94Label_num);
+		Panel3_mask.add(KF80Label);
+		Panel3_mask.add(KF80Label_num);
+		Panel3_mask.add(dentalLabel);
+		Panel3_mask.add(dentalLabel_num);
+		
+		Panel3_btn.add(btn);
+		Panel3_btn.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		
+		Panel3_main.add(Panel3_mask,"North");
+		Panel3_main.add(Panel3_btn,BorderLayout.EAST);
+		
+		storeinforViewPanel.add(Panel1,"North");
+		storeinforViewPanel.add(Panel2,"Center");
+		storeinforViewPanel.add(Panel3_main,"South");
+		
 		
 		return storeinforViewPanel;
 	}
