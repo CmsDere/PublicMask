@@ -13,7 +13,7 @@ public class Drugstoreinfo {
 	public Drugstoreinfo() {}
 
 	public Drugstoreinfo(String storeName, String address, String phoneNumber, ArrayList maskinfo) {
-		StoreName = storeName;
+		this.StoreName = storeName;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.maskinfo = maskinfo;
@@ -24,7 +24,7 @@ public class Drugstoreinfo {
 	}
 
 	public void setStoreName(String storeName) {
-		StoreName = storeName;
+		this.StoreName = storeName;
 	}
 
 	public String getAddress() {
