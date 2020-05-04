@@ -16,7 +16,9 @@ import com.publicmask.model.Drugstoreinfo;
 
 public class View_DrugStoreInfo extends JPanel {
 	private Drugstoreinfo drugstoreInfo;
+
 	private MainController Info = new MainController();
+
 	
 	Font f1 = new Font("돋음",Font.BOLD,30);
     Font f2 = new Font("돋음",Font.BOLD,25);
@@ -95,11 +97,13 @@ public class View_DrugStoreInfo extends JPanel {
 		
 		
 		
+
 		String name=  drugstoreInfo.getStoreName();
 		String adress = drugstoreInfo.getAddress();
 		String pNumber = drugstoreInfo.getPhoneNumber();
 //		String pNumber =Integer.toString(Info.SelectDrugstoreList().get(0).getpNumber());
 		
+
 		String KF94 = Integer.toString(Info.maskinfo().get(0).getKF94());
 		String KF80 = Integer.toString(Info.viewMask().get(0).getKF80());
 		String dental = Integer.toString(Info.viewMask().get(0).getDentalmask());
