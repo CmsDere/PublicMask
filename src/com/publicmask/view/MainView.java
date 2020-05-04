@@ -311,42 +311,50 @@ public class MainView {
 		
 		JPanel panel2 = new JPanel();
 		panel2.setBackground(Color.WHITE);
-		panel2.setLayout(new GridLayout(2,2));
+//		panel2.setLayout(new GridLayout(2,2));
 		panel2.setSize(1280,420);		
 		
 		JPanel panel3 = new JPanel();
 		panel3.setBackground(Color.LIGHT_GRAY);
 		panel3.setSize(1280,150);
 		
-		JTextField id = new JTextField(30);
-		JPasswordField ps = new JPasswordField(30);
-		ps.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String textstr = ps.getText();
-
-				if(textstr.length()==6) {
-					ps.setText(textstr);
-				}else{
-					ps.setText("입력방법이 틀립니다.");
-				}
-			}
-		});
+		JTextField id = new JTextField(14);
+		JTextField num = new JTextField(14);
+		JLabel label = new JLabel("-");
+		JPasswordField ps = new JPasswordField(14);
+		Dialog warnning = new Dialog(mf, "경고");
+		JLabel msg = new JLabel("입력방법이 틀립니다.");
+		JButton exitButton = new JButton("확인");
+		warnning.setBounds(300, 200, 150, 200);;
+		warnning.setLayout(new GridLayout(2,1));
+		warnning.add(msg);
+		warnning.add(exitButton);
+		
 		JButton btn = new JButton("예약하기");
-		btn.addActionListener(new ActionListener() {
-			
+		btn.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				textstr1=id.getText();
-				textstr2=ps.getText();
-				System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
-				usercheck(textstr1, textstr2);
-				
-				
+				textstr2=num.getText() + "-" + ps.getText();
+				if (textstr2.length() == 6) {
+					System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
+					usercheck(textstr1, textstr2);
+				}
+				else {
+					warnning.setVisible(true);
+					num.setText("");
+					ps.setText("");
+				}
 			}
 		});
 		
+		exitButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				warnning.dispose();
+			}
+		});
 		
 		
 		JLabel lb1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약시스템에 접속하셨습니다. ");
@@ -359,6 +367,8 @@ public class MainView {
 		panel2.add(new JLabel("이름"));
 		panel2.add(id);
 		panel2.add(new JLabel("주민번호"));
+		panel2.add(num);
+		panel2.add(label);
 		panel2.add(ps);
 		panel3.add(btn);
 		
@@ -668,8 +678,6 @@ public class MainView {
 		
 		return reserveinfoPanel;
 	}
-	
-	
 
 	
 	
