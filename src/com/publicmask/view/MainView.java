@@ -47,6 +47,10 @@ public class MainView {
 	private Font f1, f2,f3;
 	private int indexnum;
 	
+	//필드변수 => 이름값과 주민번호값을 가져온다.
+	private String textstr1,textstr2;
+	private int strcount = 0;
+	
 
 	//주된 화면
 	public void MainView() {
@@ -303,9 +307,7 @@ public class MainView {
 	
 	
 
-	//필드변수 => 이름값과 주민번호값을 가져온다.
-	private String textstr1,textstr2;
-	private int strcount=0;
+	
 	//유저 정보를 입력하는 UI 이다.
 	public JPanel userinfoView() {
 			
@@ -320,13 +322,41 @@ public class MainView {
 		
 		JPanel panel2 = new JPanel();
 		panel2.setBackground(Color.WHITE);
-		panel2.setLayout(new GridLayout(2,2));
+//		panel2.setLayout(new GridLayout(2,2));
 		panel2.setSize(1280,420);		
 		
 		JPanel panel3 = new JPanel();
 		panel3.setBackground(Color.LIGHT_GRAY);
 		panel3.setSize(1280,150);
 		
+		JTextField id = new JTextField(14);
+		JTextField num = new JTextField(14);
+		JLabel label = new JLabel("-");
+		JPasswordField ps = new JPasswordField(14);
+		Dialog warnning = new Dialog(mf, "경고");
+		JLabel msg = new JLabel("입력방법이 틀립니다.");
+		JButton exitButton = new JButton("확인");
+		warnning.setBounds(300, 200, 150, 200);;
+		warnning.setLayout(new GridLayout(2,1));
+		warnning.add(msg);
+		warnning.add(exitButton);
+		
+		JButton btn = new JButton("예약하기");
+		btn.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textstr1=id.getText();
+				textstr2=num.getText() + "-" + ps.getText();
+				if (textstr2.length() == 6) {
+					System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
+					usercheck(textstr1, textstr2);
+				}
+				else {
+					warnning.setVisible(true);
+					num.setText("");
+					ps.setText("");
+				}
+				
 		JTextField id = new JTextField(14);		
 		
 		JPanel panel4 = new JPanel();
@@ -368,6 +398,11 @@ public class MainView {
 			}
 		});
 		
+		exitButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				warnning.dispose();
 		
 		
 		JButton btn = new JButton("예약하기");
@@ -385,7 +420,6 @@ public class MainView {
 		});
 		
 		
-		
 		JLabel lb1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약시스템에 접속하셨습니다. ");
 		lb1.setLocation(290,10);
 		lb1.setSize(700,150);
@@ -396,6 +430,9 @@ public class MainView {
 		panel2.add(new JLabel("이름"));
 		panel2.add(id);
 		panel2.add(new JLabel("주민번호"));
+		panel2.add(num);
+		panel2.add(label);
+		panel2.add(ps);
 		panel2.add(panel4);
 		panel3.add(btn);
 		
@@ -776,8 +813,6 @@ public class MainView {
 		
 		return reserveinfoPanel;
 	}
-	
-	
 
 	
 	
