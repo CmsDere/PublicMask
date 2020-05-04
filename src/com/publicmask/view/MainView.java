@@ -292,23 +292,23 @@ public class MainView {
 	}
 	
 	
-<<<<<<< Updated upstream
+// <<<<<<< Updated upstream
 	//필드변수 => 이름값과 주민번호값을 가져온다.
 	String textstr1,textstr2;
 	//유저 정보를 입력하는 UI 이다.
 	public JPanel userinfoView() {
 			
 		JPanel userinfoViewPanel = new JPanel();
-=======
+// =======
 		//mc.searchstore(num);
 		char answer=' ';
 		System.out.print("예약하시겠습니까? (Y/N) : ");
 		answer = sc.next().toUpperCase().charAt(0);
 		if(answer=='Y') {
 			System.out.println("**손님의 구매 가능 여부 확인**");
-			usercheck();
+			//usercheck();
 		}
->>>>>>> Stashed changes
+// >>>>>>> Stashed changes
 		
 		userinfoViewPanel.setLayout(new BorderLayout());
 		

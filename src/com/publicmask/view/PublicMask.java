@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,7 +18,12 @@ import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.publicmask.controller.MainController;
+
 public class PublicMask extends JPanel{
+	private MainController mainController;
+	private MainFrame mainFrame;
+	
 	public PublicMask() {
 		this.setLayout(new BorderLayout());
 		
@@ -78,6 +85,7 @@ public class PublicMask extends JPanel{
 				selected.setFont(new Font("serif" , Font.BOLD, 15));
 			}
 		});
+		stbutton.addActionListener(new nextButtonEvent());
 				
 		stpanel.add(ctlabel1);
 		stpanel.add(selected);
@@ -86,5 +94,14 @@ public class PublicMask extends JPanel{
 		this.add(toppanel,"North");
 		this.add(ctpanel ,"Center");
 		this.add(stpanel,"South");
+	}
+	
+	private class nextButtonEvent implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			mainFrame.replace(new View_DrugStoreInfo());
+		}
+		
 	}
 }

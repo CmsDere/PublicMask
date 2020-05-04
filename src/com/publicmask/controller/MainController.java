@@ -12,6 +12,7 @@ public class MainController {
 
 	private ArrayList<Drugstoreinfo> storeList = new ArrayList<>();
 	private ArrayList<Personinfo> personList = new ArrayList<>();
+	
 	Scanner sc = new Scanner(System.in);
 	private int count=0;
 	private int select=0;
@@ -27,7 +28,7 @@ public class MainController {
 			maskList.add(new Maskinfo("KF80",80));
 			maskList.add(new Maskinfo("일반마스크",40));
 			storeList.add(new Drugstoreinfo("하나약국","서울시 서초구 양재1동","02-1234-1211",maskList));
-			maskList = new ArrayList<>();
+			maskList = new ArrayList<Maskinfo>();
 			maskList.add(new Maskinfo("KF94",70));
 			maskList.add(new Maskinfo("KF80",100));
 			maskList.add(new Maskinfo("일반마스크",30));
