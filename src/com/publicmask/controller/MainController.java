@@ -1,17 +1,22 @@
 package com.publicmask.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Scanner;
 
 import com.publicmask.model.Drugstoreinfo;
 import com.publicmask.model.Maskinfo;
 import com.publicmask.model.Personinfo;
+import com.publicmask.view.MainView;
 
 public class MainController {
 
 	private ArrayList<Drugstoreinfo> storeList = new ArrayList<>();
 	private ArrayList<Personinfo> personList = new ArrayList<>();
+	private MainView mv;
 	
 	Scanner sc = new Scanner(System.in);
 	private int count=0;
@@ -86,12 +91,22 @@ public class MainController {
 	
 	}
 	
-	
-	
+	public void dataSave(String name, String password, String store, String num1, String num2, String num3) {
+		Properties prop = new Properties();
+		prop.setProperty("name", name);
+		prop.setProperty("password", password);
+		prop.setProperty("Drugstore Name", store);
+		prop.setProperty("KF94", num1);
+		prop.setProperty("KF80", num2);
+		prop.setProperty("Common", num3);
+		
+		try {
+			prop.storeToXML(new FileOutputStream("data.xml", true), "Reservation System");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-
-	
-	
 }
 
 

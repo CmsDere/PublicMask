@@ -452,7 +452,26 @@ public class MainView {
 	
 	
 	//필드번수 => 각각의 마스크 수량을 가져온다.
-	int num1,num2,num3;
+	private int num1,num2,num3;
+	
+	public int getNum1() {
+		return num1;
+	}
+	public void setNum1(int num1) {
+		this.num1 = num1;
+	}
+	public int getNum2() {
+		return num2;
+	}
+	public void setNum2(int num2) {
+		this.num2 = num2;
+	}
+	public int getNum3() {
+		return num3;
+	}
+	public void setNum3(int num3) {
+		this.num3 = num3;
+	}
 	//살 마스크 개수를 설정하는 UI
 	public JPanel Sell() {
 		
@@ -773,7 +792,7 @@ public class MainView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				choice.setVisible(true);
-				
+				mc.dataSave(textstr1, textstr2, mc.getStoreList().get(indexnum).getStoreName().toString(), Integer.toString(num1), Integer.toString(num2), Integer.toString(num3));
 			}
 		});
 		choice = new Dialog(mf, "안내");
@@ -791,6 +810,7 @@ public class MainView {
 				mf.pack();
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				choice.dispose();
 			}
 		});
 		exit.addActionListener(new ActionListener() {
