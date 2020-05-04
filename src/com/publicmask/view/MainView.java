@@ -769,7 +769,6 @@ public class MainView {
 		panel1.setLayout(new BorderLayout());
 		
 		panel2.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		panel3.setLayout(new GridLayout(9,1));
 		
 		JLabel label1 = new JLabel("예약이 불가능 합니다.!");
 		label1.setForeground(Color.white);
