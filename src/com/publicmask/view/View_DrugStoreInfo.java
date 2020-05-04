@@ -15,12 +15,16 @@ import com.publicmask.controller.MainController;
 import com.publicmask.model.Drugstoreinfo;
 
 public class View_DrugStoreInfo extends JPanel {
-	private Drugstoreinfo DrugstoreInfo = new Drugstoreinfo();
+	private Drugstoreinfo drugstoreInfo;
 	private MainController Info = new MainController();
 	
-	  Font f1 = new Font("돋음",Font.BOLD,30);
-      Font f2 = new Font("돋음",Font.BOLD,25);
-      Font f3 = new Font("돋음",Font.BOLD,20);
+	Font f1 = new Font("돋음",Font.BOLD,30);
+    Font f2 = new Font("돋음",Font.BOLD,25);
+    Font f3 = new Font("돋음",Font.BOLD,20);
+    
+//    public Drugstoreinfo getDrugstoreinfo() {
+//    	return drugstoreInfo;
+//    }
 	
 	public View_DrugStoreInfo() {
 		this.setSize(1280, 720);
@@ -91,12 +95,12 @@ public class View_DrugStoreInfo extends JPanel {
 		
 		
 		
-		String name=  Info.SelectDrugstoreList().get(0).getName();
-		String adress = Info.SelectDrugstoreList().get(0).getAdress();
-		String pNumber =Info.SelectDrugstoreList().get(0).getpNumber();
+		String name=  drugstoreInfo.getStoreName();
+		String adress = drugstoreInfo.getAddress();
+		String pNumber = drugstoreInfo.getPhoneNumber();
 //		String pNumber =Integer.toString(Info.SelectDrugstoreList().get(0).getpNumber());
 		
-		String KF94 = Integer.toString(Info.viewMask().get(0).getKF94());
+		String KF94 = Integer.toString(Info.maskinfo().get(0).getKF94());
 		String KF80 = Integer.toString(Info.viewMask().get(0).getKF80());
 		String dental = Integer.toString(Info.viewMask().get(0).getDentalmask());
 	
