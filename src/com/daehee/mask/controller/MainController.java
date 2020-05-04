@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.daehee.mask.model.Maskinfo;
+import com.daehee.mask.model.Personinfo;
 import com.publicmask.model.Drugstoreinfo;
-import com.publicmask.model.Maskinfo;
-import com.publicmask.model.Personinfo;
 
 public class MainController {
 

@@ -89,7 +89,7 @@ public class ReservationResult extends JPanel{
 	private class GoToMainButton implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			mf.replace(new PublicMask());
 		}
 	}
 	
