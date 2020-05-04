@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -558,7 +560,6 @@ public class MainView {
 	public JPanel NoSell2() {
 		
 		JPanel NoSell2Panel = new JPanel();
-		
 		NoSell2Panel.setLayout(new BorderLayout());
 		
 		
@@ -571,7 +572,7 @@ public class MainView {
 		panel1.setLayout(new BorderLayout());
 		
 		panel2.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		panel3.setLayout(new GridLayout(9,1));
+
 		
 		JLabel label1 = new JLabel("예약이 불가능 합니다.!");
 		label1.setForeground(Color.white);
@@ -586,36 +587,13 @@ public class MainView {
 		panel1.add(label2,"Center");
 		panel1.setBorder(new LineBorder(Color.white, 30));
 		
-		JLabel label10 = new JLabel("              ");
-		JLabel label3 = new JLabel("* 출생 년도 끝자리 *");
-		label3.setFont(f2);
-		JLabel label11 = new JLabel("              ");
-		JLabel label4 = new JLabel("월요일 - 1, 6");
-		JLabel label5 = new JLabel("화요일 - 2, 7");
-		JLabel label6 = new JLabel("수요일 - 3, 8");
-		JLabel label7 = new JLabel("목요일 - 4, 9");
-		JLabel label8 = new JLabel("금요일 - 5, 0");
-		JLabel label9 = new JLabel("토요일, 일요일은 누구든 구매 가능합니다.");
+
 		
+		Image icon = new ImageIcon("image/NoSellImage.PNG").getImage().getScaledInstance(400, 400, 0);	
+		JLabel label3 = new JLabel(new ImageIcon(icon));
 		label3.setHorizontalAlignment(JLabel.CENTER);
-		label4.setHorizontalAlignment(JLabel.CENTER);
-		label5.setHorizontalAlignment(JLabel.CENTER);
-		label6.setHorizontalAlignment(JLabel.CENTER);
-		label7.setHorizontalAlignment(JLabel.CENTER);
-		label8.setHorizontalAlignment(JLabel.CENTER);
-		label9.setHorizontalAlignment(JLabel.CENTER);
-		
-		panel3.add(label10);
 		panel3.add(label3);
-		panel3.add(label11);
-		panel3.add(label4);
-		panel3.add(label5);
-		panel3.add(label6);
-		panel3.add(label7);
-		panel3.add(label8);
-		panel3.add(label9);
-		
-		
+
 		
 		JButton button = new JButton("확인");
 		panel2.add(button);
