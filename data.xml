@@ -31,3 +31,25 @@
 <entry key="KF94">3</entry>
 <entry key="KF80">2</entry>
 </properties>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Reservation System</comment>
+<entry key="Drugstore Name">둘약국</entry>
+<entry key="Common">2</entry>
+<entry key="password">91020202032312</entry>
+<entry key="name">이대희</entry>
+<entry key="KF94">7</entry>
+<entry key="KF80">23</entry>
+</properties>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Reservation System</comment>
+<entry key="Drugstore Name">둘약국</entry>
+<entry key="Common">1</entry>
+<entry key="password">9102022323123</entry>
+<entry key="name">이러야러</entry>
+<entry key="KF94">1</entry>
+<entry key="KF80">1</entry>
+</properties>

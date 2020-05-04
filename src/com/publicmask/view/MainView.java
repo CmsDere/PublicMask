@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -232,6 +234,18 @@ public class MainView {
 				
 			}
 		});
+		JButton btn2 = new JButton("이전으로");
+		btn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				replace(mainPanel());
+				mf.pack();
+				mf.setVisible(true);
+				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+			}
+		});
 		
 		titleLabel1.setOpaque(true);
 		titleLabel1.setBackground(Color.blue);
@@ -288,6 +302,7 @@ public class MainView {
 		Panel3_mask.add(dentalLabel);
 		Panel3_mask.add(dentalLabel_num);
 		
+		Panel3_btn.add(btn2);
 		Panel3_btn.add(btn);
 		Panel3_btn.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
@@ -499,112 +514,132 @@ public class MainView {
 		JLabel label3 = new JLabel(" 1500원          ");
 		label3.setFont(f2);
 		JTextField text1 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"개 남아있습니다.",10);
-		text1.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
+		if(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()==0) {
+			text1.setEditable(false);
+			text1.setText("0");
+			num1=0;
+		}else {
+			text1.addMouseListener(new MouseListener() {
 				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				text1.setText("");
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-		});
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text1.setText("");
+					
+				}
+			});
+		}
+		
 		JLabel label4 = new JLabel(" KF80          ");
 		label4.setFont(f2);
 		JLabel label5 = new JLabel(" 1000원          ");
 		label5.setFont(f2);
 		JTextField text2 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개 남아있습니다.",10);
-		text2.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
+		if(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()==0) {
+			text2.setEditable(false);
+			text2.setText("0");
+			num2=0;
+		}else {
+			text2.addMouseListener(new MouseListener() {
 				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				text2.setText("");
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-		});
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text2.setText("");
+					
+				}
+			});
+		}
 		JLabel label6 = new JLabel(" 일반마스크            ");
 		label6.setFont(f2);
 		JLabel label7 = new JLabel("  500원 		");
 		label7.setFont(f2);
 		JTextField text3 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"개 남아있습니다.",10);
-		text3.addMouseListener(new MouseListener() {
+		if(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()==0) {
 			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
+			text3.setEditable(false);
+			text3.setText("0");
+			num3=0;
+		}else {
+			text3.addMouseListener(new MouseListener() {
 				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				text3.setText("");
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
 				
-			}
-		});
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text3.setText("");
+					
+				}
+			});
+		}
 		panel2.add(label2);
 		panel2.add(label3);
 		panel2.add(text1);
@@ -626,15 +661,79 @@ public class MainView {
 				num1=Integer.parseInt(text1.getText());
 				num2=Integer.parseInt(text2.getText());
 				num3=Integer.parseInt(text3.getText());
-				
-				System.out.println(num1+", "+num2+", "+num3);
-				maskinfo(num1,num2,num3);
-				
-				replace(reserveinfo());
-				mf.pack();
-				mf.setVisible(true);
-				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
+				if(num1==0 && num2==0 && num3==0) {
+					replace(mainPanel());
+					mf.pack();
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}else if(num1>((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()){
+					JFrame warningf = new JFrame();
+					Dialog warning = new Dialog(warningf,"안내");
+					warning.setBounds(300, 200, 500, 200);;
+					warning.setLayout(new GridLayout(2, 1));
+					JLabel warninglabel1 = new JLabel("원하시는 KF90 수량이 부족합니다.");
+					warninglabel1.setFont(f3);
+					warninglabel1.setHorizontalAlignment(JLabel.CENTER);
+					JButton checkmemo = new JButton("확인");
+					warning.setVisible(true);
+					checkmemo.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							warning.dispose();
+						}
+					});
+					warning.add(warninglabel1);
+					warning.add(checkmemo);
+					
+					
+				}else if(num2>((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()){
+					JFrame warningf = new JFrame();
+					Dialog warning = new Dialog(warningf,"안내");
+					warning.setBounds(300, 200, 500, 200);;
+					warning.setLayout(new GridLayout(2, 1));
+					JLabel warninglabel1 = new JLabel("원하시는 KF80 수량이 부족합니다.");
+					warninglabel1.setFont(f3);
+					warninglabel1.setHorizontalAlignment(JLabel.CENTER);
+					warning.setVisible(true);
+					JButton checkmemo = new JButton("확인");
+					checkmemo.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							warning.dispose();
+						}
+					});
+					warning.add(warninglabel1);
+					warning.add(checkmemo);
+				}else if(num3>((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()){
+					JFrame warningf = new JFrame();
+					Dialog warning = new Dialog(warningf,"안내");
+					warning.setBounds(300, 200, 500, 200);;
+					warning.setLayout(new GridLayout(2, 1));
+					JLabel warninglabel1 = new JLabel("원하시는 일반마스크 수량이 부족합니다.");
+					warninglabel1.setFont(f3);
+					warninglabel1.setHorizontalAlignment(JLabel.CENTER);
+					warning.setVisible(true);
+					JButton checkmemo = new JButton("확인");
+					checkmemo.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							warning.dispose();
+						}
+					});
+					warning.add(warninglabel1);
+					warning.add(checkmemo);
+				}else {
+					System.out.println(num1+", "+num2+", "+num3);
+					maskinfo(indexnum,num1,num2,num3);
+					
+					replace(reserveinfo());
+					mf.pack();
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 				
 			}
 		});
@@ -685,36 +784,11 @@ public class MainView {
 		panel1.add(label2,"Center");
 		panel1.setBorder(new LineBorder(Color.white, 30));
 		
-		JLabel label10 = new JLabel("              ");
-		JLabel label3 = new JLabel("* 출생 년도 끝자리 *");
-		label3.setFont(f2);
-		JLabel label11 = new JLabel("              ");
-		JLabel label4 = new JLabel("월요일 - 1, 6");
-		JLabel label5 = new JLabel("화요일 - 2, 7");
-		JLabel label6 = new JLabel("수요일 - 3, 8");
-		JLabel label7 = new JLabel("목요일 - 4, 9");
-		JLabel label8 = new JLabel("금요일 - 5, 0");
-		JLabel label9 = new JLabel("토요일, 일요일은 누구든 구매 가능합니다.");
-		
+		Image icon = new ImageIcon("image/NoSellImage.PNG").getImage().getScaledInstance(400, 400, 0);	
+		JLabel label3 = new JLabel(new ImageIcon(icon));
 		label3.setHorizontalAlignment(JLabel.CENTER);
-		label4.setHorizontalAlignment(JLabel.CENTER);
-		label5.setHorizontalAlignment(JLabel.CENTER);
-		label6.setHorizontalAlignment(JLabel.CENTER);
-		label7.setHorizontalAlignment(JLabel.CENTER);
-		label8.setHorizontalAlignment(JLabel.CENTER);
-		label9.setHorizontalAlignment(JLabel.CENTER);
-		
-		panel3.add(label10);
 		panel3.add(label3);
-		panel3.add(label11);
-		panel3.add(label4);
-		panel3.add(label5);
-		panel3.add(label6);
-		panel3.add(label7);
-		panel3.add(label8);
-		panel3.add(label9);
-		
-		
+
 		
 		JButton button = new JButton("확인");
 		panel2.add(button);
@@ -745,8 +819,8 @@ public class MainView {
 	
 	
 	//마스크 수량 체크하는 메소드
-	public void maskinfo(int num1, int num2, int num3) {
-		mc.maskinfo(num1, num2, num3);
+	public void maskinfo(int indexnum, int num1, int num2, int num3) {
+		mc.maskinfo(indexnum, num1, num2, num3);
 	
 	}
 	

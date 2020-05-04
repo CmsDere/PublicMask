@@ -83,8 +83,8 @@ public class MainController {
 	
 	
 	//마스크 수량 체크 메소드
-	public void maskinfo(int num1, int num2, int num3) {
-		
+	public void maskinfo(int indexnum, int num1, int num2, int num3) {
+		select = indexnum;
 		((Maskinfo)storeList.get(select).getMaskinfo().get(0)).setMaskNum(((Maskinfo)storeList.get(select).getMaskinfo().get(0)).getMaskNum()-num1);
 		((Maskinfo)storeList.get(select).getMaskinfo().get(1)).setMaskNum(((Maskinfo)storeList.get(select).getMaskinfo().get(1)).getMaskNum()-num2);
 		((Maskinfo)storeList.get(select).getMaskinfo().get(2)).setMaskNum(((Maskinfo)storeList.get(select).getMaskinfo().get(2)).getMaskNum()-num3);
