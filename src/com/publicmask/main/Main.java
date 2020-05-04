@@ -5,9 +5,9 @@ import com.publicmask.view.MainView;
 
 public class Main {
     public static void main(String[] args){
-//    	new MainFrame();
+    	new MainFrame();
     	
-    	MainView mv = new MainView();
-		mv.MainView();
+//    	MainView mv = new MainView();
+//		mv.MainView();
     }
 }

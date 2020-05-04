@@ -9,7 +9,7 @@ public class MainFrame extends JFrame{
 	public MainFrame() {
 		this.setTitle("공적 마스크 예약 시스템");
 		
-		panel = this.ReservationPanel();
+		panel = new PublicMask();
 		this.add(panel);
 		
 		this.pack();
@@ -17,20 +17,11 @@ public class MainFrame extends JFrame{
 		this.setVisible(true);
 	}
 	
-	public JPanel ReservationPanel() {
-		return new Reservation();
-	}
-	
-	public JPanel ReservationResultPanel() {
-		return new ReservationResult();
-	}
-	
-	public JPanel PublicMaskPanel() {
-		return new PublicMask();
-	}
-	
 	public void replace(JPanel panel) {
-		
+		this.remove(panel);
+		this.panel = panel;
+		this.add(panel);
+		this.repaint();
 	}
 	
 }
