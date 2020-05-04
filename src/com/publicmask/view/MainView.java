@@ -2,6 +2,7 @@ package com.publicmask.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -579,82 +580,88 @@ public class MainView {
 	}
 	
 	//예약 내역 출력하는 UI
+	private static Dialog choice;
 	public JPanel reserveinfo() {
 		
 		JPanel reserveinfoPanel = new JPanel();
-		
 		reserveinfoPanel.setLayout(new BorderLayout());
+		
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BorderLayout());
 
-		JPanel panel1 = new JPanel();
-		JLabel label1 = new JLabel("**** 예약 내역 ****");
-		label1.setHorizontalAlignment(JLabel.CENTER);
-		label1.setFont(f1);
-		panel1.add(label1);
+		JPanel topicPanel = new JPanel();
+		JLabel topic = new JLabel("예약 내역");
+		topicPanel.setBackground(new Color(255, 0, 0));
+		topicPanel.setLocation(0, 0);
+		topic.setForeground(Color.WHITE);
+		topic.setFont(topic.getFont().deriveFont(50.0f));
 		
-		
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayout(3,3,50,15));
-		JLabel label2 = new JLabel(" ● KF94			");
-		JLabel label3 = new JLabel("수량 : ");
-		JLabel label4 = new JLabel(num1+"개");
-		JLabel label5 = new JLabel(" ● KF80		");
-		JLabel label6 = new JLabel("수량 : ");
-		JLabel label7 = new JLabel(num2+"개");
-		JLabel label8 = new JLabel(" ● 일반마스크		");
-		JLabel label9 = new JLabel("수량 : ");
-		JLabel label10 = new JLabel(num3+"개");
-		panel2.add(label2);
-		panel2.add(label3);
-		panel2.add(label4);
-		panel2.add(label5);
-		panel2.add(label6);
-		panel2.add(label7);
-		panel2.add(label8);
-		panel2.add(label9);
-		panel2.add(label10);
-		
-		
+		JPanel contentPanel = new JPanel();
+		JLabel kf94Mask = new JLabel("KF94                  수량 "+num1+"개");
+		JLabel kf80Mask = new JLabel("KF80                  수량 "+num2+"개");
+		JLabel commonMask = new JLabel("일반 마스크       수량 "+num3+"개");
+		contentPanel.setBackground(Color.BLUE);
+		contentPanel.setLayout(new BorderLayout());
+		kf94Mask.setForeground(Color.WHITE);
+		kf94Mask.setFont(kf94Mask.getFont().deriveFont(50.0f));
+		kf80Mask.setForeground(Color.WHITE);
+		kf80Mask.setFont(kf80Mask.getFont().deriveFont(50.0f));
+		commonMask.setForeground(Color.WHITE);
+		commonMask.setFont(commonMask.getFont().deriveFont(50.0f));
 	
-		
-		JPanel panel3 = new JPanel();
-		panel3.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JLabel label11 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약 완료!");
-		panel3.add(label11);
-		
-		
-		JPanel panel4 = new JPanel();
-		panel4.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		JButton button = new JButton("확인");
-		panel4.add(button);
-		button.addActionListener(new ActionListener() {
+		JPanel resultPanel = new JPanel();
+		JLabel result = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약 완료!");
+		JButton nextButton = new JButton("확인");
+		resultPanel.setBackground(Color.WHITE);
+		result.setForeground(Color.BLACK);
+		result.setFont(result.getFont().deriveFont(50.0f));
+		nextButton.setFont(nextButton.getFont().deriveFont(50.0f));
+		nextButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				choice.setVisible(true);
+				
+			}
+		});
+		choice = new Dialog(mf, "안내");
+		choice.setBounds(300, 200, 300, 200);;
+		choice.setLayout(new GridLayout(1, 2));
+		JButton goToMain = new JButton("처음으로");
+		JButton exit = new JButton("종료");
+		choice.add(goToMain);
+		choice.add(exit);
+		goToMain.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				replace(mainPanel());
 				mf.pack();
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
-				
 			}
 		});
+		exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);				
+			}
+		});
+		topicPanel.add(topic);
 		
+		contentPanel.add(kf94Mask, "North");
+		contentPanel.add(kf80Mask, "Center");
+		contentPanel.add(commonMask, "South");
 		
+		resultPanel.add(result);
+		resultPanel.add(nextButton);
 		
-		JPanel panel5 = new JPanel();
-		panel5.setLayout(new BorderLayout());
-		JLabel label12 = new JLabel("  ");
-		panel5.add(label12,"North");
-		panel5.add(panel3,"North");
-		panel5.add(panel4,"Center");
-	
+		mainPanel.add(topicPanel, "North");
+		mainPanel.add(contentPanel, "Center");
+		mainPanel.add(resultPanel, "South");
 		
-		
-		reserveinfoPanel.add(panel1,"North");
-		reserveinfoPanel.add(panel2,"Center");
-		reserveinfoPanel.add(panel5,"South");
-
+		reserveinfoPanel.add(mainPanel);
 		
 		
 		return reserveinfoPanel;
