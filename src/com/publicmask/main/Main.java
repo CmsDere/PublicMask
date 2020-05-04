@@ -1,6 +1,5 @@
 package com.publicmask.main;
 
-import com.publicmask.view.MainFrame;
 import com.publicmask.view.MainView;
 
 public class Main {
