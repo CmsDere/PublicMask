@@ -1,7 +1,6 @@
 package com.publicmask.model;
 
-import java.util.Set;
-
+//입력된 유저정보
 public class Personinfo {
 
 	private String userName;

@@ -2,6 +2,7 @@ package com.publicmask.model;
 
 import java.util.ArrayList;
 
+//약국 정보
 public class Drugstoreinfo {
 
 	private String StoreName;
@@ -53,7 +54,7 @@ public class Drugstoreinfo {
 
 	@Override
 	public String toString() {
-		return "약국이름=" + StoreName + ", 주소=" + address + ", 전화번호=" + phoneNumber;
+		return StoreName + ", 주소=" + address + ", 전화번호=" + phoneNumber;
 	}
 	
 	
