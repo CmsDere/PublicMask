@@ -600,8 +600,7 @@ public class MainView {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				choice.setVisible(true);
-				
+				choice.setVisible(true);		
 			}
 		});
 		choice = new Dialog(mf, "안내");
@@ -619,6 +618,7 @@ public class MainView {
 				mf.pack();
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				choice.dispose();
 			}
 		});
 		exit.addActionListener(new ActionListener() {
