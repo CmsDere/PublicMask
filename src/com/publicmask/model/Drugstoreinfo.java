@@ -2,7 +2,6 @@ package com.publicmask.model;
 
 import java.util.ArrayList;
 
-//약국 정보
 public class Drugstoreinfo {
 
 	private String StoreName;
@@ -13,7 +12,7 @@ public class Drugstoreinfo {
 	public Drugstoreinfo() {}
 
 	public Drugstoreinfo(String storeName, String address, String phoneNumber, ArrayList maskinfo) {
-		this.StoreName = storeName;
+		StoreName = storeName;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.maskinfo = maskinfo;
@@ -24,7 +23,7 @@ public class Drugstoreinfo {
 	}
 
 	public void setStoreName(String storeName) {
-		this.StoreName = storeName;
+		StoreName = storeName;
 	}
 
 	public String getAddress() {
@@ -54,7 +53,7 @@ public class Drugstoreinfo {
 
 	@Override
 	public String toString() {
-		return StoreName + ", 주소=" + address + ", 전화번호=" + phoneNumber;
+		return StoreName + ", " + address.split(" ")[2];
 	}
 	
 	

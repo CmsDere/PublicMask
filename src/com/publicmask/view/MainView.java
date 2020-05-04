@@ -7,15 +7,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -29,6 +29,8 @@ import javax.swing.event.ListSelectionListener;
 
 import com.publicmask.controller.MainController;
 import com.publicmask.model.Maskinfo;
+
+import javafx.scene.input.KeyEvent;
 
 public class MainView {
 
@@ -298,7 +300,8 @@ public class MainView {
 	
 
 	//필드변수 => 이름값과 주민번호값을 가져온다.
-	String textstr1,textstr2;
+	private String textstr1,textstr2;
+	private int strcount=0;
 	//유저 정보를 입력하는 UI 이다.
 	public JPanel userinfoView() {
 			
@@ -320,28 +323,56 @@ public class MainView {
 		panel3.setBackground(Color.LIGHT_GRAY);
 		panel3.setSize(1280,150);
 		
-		JTextField id = new JTextField(30);
-		JPasswordField ps = new JPasswordField(30);
-		ps.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String textstr = ps.getText();
-
-				if(textstr.length()==6) {
-					ps.setText(textstr);
-				}else{
-					ps.setText("입력방법이 틀립니다.");
+		JTextField id = new JTextField(14);		
+		
+		JPanel panel4 = new JPanel();
+		JTextField ps1 = new JTextField(14);		
+		JPasswordField ps2 = new JPasswordField(14);
+		panel4.add(ps1);
+		panel4.add(new JLabel("-"));
+		panel4.add(ps2);
+		
+		ps1.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JFormattedTextField)ke.getSource()).getText().length() > 7 ) {
+					ke.consume();
 				}
 			}
 		});
+		
+		ps1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				strcount +=1;
+				if(strcount ==6) {
+					ps2.requestFocus();
+				}
+			}
+		});
+		ps2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if(e.getSource() == ps1) {
+					ps2.requestFocus();
+				}
+				
+				
+			}
+		});
+		
+		
+		
 		JButton btn = new JButton("예약하기");
 		btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				textstr1=id.getText();
-				textstr2=ps.getText();
+				textstr2=ps1.getText()+ps2.getText();
 				System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
 				usercheck(textstr1, textstr2);
 				
@@ -361,7 +392,7 @@ public class MainView {
 		panel2.add(new JLabel("이름"));
 		panel2.add(id);
 		panel2.add(new JLabel("주민번호"));
-		panel2.add(ps);
+		panel2.add(panel4);
 		panel3.add(btn);
 		
 		userinfoViewPanel.add(panel1, BorderLayout.NORTH);
@@ -490,6 +521,7 @@ public class MainView {
 	public JPanel NoSell2() {
 		
 		JPanel NoSell2Panel = new JPanel();
+		
 		NoSell2Panel.setLayout(new BorderLayout());
 		
 		
@@ -502,7 +534,7 @@ public class MainView {
 		panel1.setLayout(new BorderLayout());
 		
 		panel2.setLayout(new FlowLayout(FlowLayout.RIGHT));
-
+		panel3.setLayout(new GridLayout(9,1));
 		
 		JLabel label1 = new JLabel("예약이 불가능 합니다.!");
 		label1.setForeground(Color.white);
@@ -517,13 +549,36 @@ public class MainView {
 		panel1.add(label2,"Center");
 		panel1.setBorder(new LineBorder(Color.white, 30));
 		
-
+		JLabel label10 = new JLabel("              ");
+		JLabel label3 = new JLabel("* 출생 년도 끝자리 *");
+		label3.setFont(f2);
+		JLabel label11 = new JLabel("              ");
+		JLabel label4 = new JLabel("월요일 - 1, 6");
+		JLabel label5 = new JLabel("화요일 - 2, 7");
+		JLabel label6 = new JLabel("수요일 - 3, 8");
+		JLabel label7 = new JLabel("목요일 - 4, 9");
+		JLabel label8 = new JLabel("금요일 - 5, 0");
+		JLabel label9 = new JLabel("토요일, 일요일은 누구든 구매 가능합니다.");
 		
-		Image icon = new ImageIcon("image/NoSellImage.PNG").getImage().getScaledInstance(400, 400, 0);	
-		JLabel label3 = new JLabel(new ImageIcon(icon));
 		label3.setHorizontalAlignment(JLabel.CENTER);
+		label4.setHorizontalAlignment(JLabel.CENTER);
+		label5.setHorizontalAlignment(JLabel.CENTER);
+		label6.setHorizontalAlignment(JLabel.CENTER);
+		label7.setHorizontalAlignment(JLabel.CENTER);
+		label8.setHorizontalAlignment(JLabel.CENTER);
+		label9.setHorizontalAlignment(JLabel.CENTER);
+		
+		panel3.add(label10);
 		panel3.add(label3);
-
+		panel3.add(label11);
+		panel3.add(label4);
+		panel3.add(label5);
+		panel3.add(label6);
+		panel3.add(label7);
+		panel3.add(label8);
+		panel3.add(label9);
+		
+		
 		
 		JButton button = new JButton("확인");
 		panel2.add(button);
@@ -600,7 +655,8 @@ public class MainView {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				choice.setVisible(true);		
+				choice.setVisible(true);
+				
 			}
 		});
 		choice = new Dialog(mf, "안내");
@@ -618,7 +674,6 @@ public class MainView {
 				mf.pack();
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				choice.dispose();
 			}
 		});
 		exit.addActionListener(new ActionListener() {
