@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -292,88 +293,61 @@ public class MainView {
 	}
 	
 	
-// <<<<<<< Updated upstream
+
 	//필드변수 => 이름값과 주민번호값을 가져온다.
 	String textstr1,textstr2;
 	//유저 정보를 입력하는 UI 이다.
 	public JPanel userinfoView() {
 			
 		JPanel userinfoViewPanel = new JPanel();
-// =======
-		//mc.searchstore(num);
+		mc.searchstore(num);
 		char answer=' ';
 		System.out.print("예약하시겠습니까? (Y/N) : ");
 		answer = sc.next().toUpperCase().charAt(0);
 		if(answer=='Y') {
 			System.out.println("**손님의 구매 가능 여부 확인**");
-			//usercheck();
+			usercheck();
 		}
-// >>>>>>> Stashed changes
 		
+		JPanel userinfoViewPanel = new JPanel();		
 		userinfoViewPanel.setLayout(new BorderLayout());
+		userinfoViewPanel.setBackground(Color.WHITE);
 		
-		//메인 프레임의 North 부분
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(Color.blue);
-		JLabel label1 = new JLabel("노랑약국의 예약진행");
-		label1.setFont(f1);
-		label1.setForeground(Color.white);
-		panel1.add(label1);
+		panel1.setBackground(new Color(82, 204, 250));
+		panel1.setSize(1280,150);		
 		
-		
-		//메인 프레임의 Center sub 1
 		JPanel panel2 = new JPanel();
-		JLabel label2 = new JLabel("        이름:  ");
-		JTextField text1 = new JTextField(10);
+		panel2.setBackground(Color.WHITE);
+		panel2.setLayout(new GridLayout(2,2));
+		panel2.setSize(1280,420);		
 		
-		
-		label2.setFont(f2);
-		panel2.add(label2);
-		panel2.add(text1);
-		
-		//메인 프레임의 Center sub 2
 		JPanel panel3 = new JPanel();
-		JLabel label3 = new JLabel("주민번호:  ");
-		JTextField text2 = new JTextField(10);
+		panel3.setBackground(Color.LIGHT_GRAY);
+		panel3.setSize(1280,150);
 		
-		text2.addActionListener(new ActionListener() {
+		JTextField id = new JTextField(30);
+		JPasswordField ps = new JPasswordField(30);
+		ps.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String textstr = text2.getText();
+				String textstr = ps.getText();
 
 				if(textstr.length()==6) {
-					text2.setText(textstr);
+					ps.setText(textstr);
 				}else{
-					text2.setText("입력방법이 틀립니다.");
+					ps.setText("입력방법이 틀립니다.");
 				}
 			}
 		});
-
-		
-		label3.setFont(f2);
-		panel3.add(label3);
-		panel3.add(text2);
-		
-		
-		//메인 프레임의 Center
-		//panel4에 panel2, panel3이 들어간다.
-		JPanel panel4 = new JPanel();
-		panel4.setLayout(new GridLayout(2,1));
-		panel4.add(panel2);
-		panel4.add(panel3);
-		
-				
-		//메인 프레임의 South
-		JPanel panel5 = new JPanel();
-		panel5.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		JButton button = new JButton("  확인  ");
-		button.addActionListener(new ActionListener() {
+		JButton btn = new JButton("예약하기");
+		btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textstr1=text1.getText();
-				textstr2=text2.getText();
+				textstr1=id.getText();
+				textstr2=ps.getText();
 				System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
 				usercheck(textstr1, textstr2);
 				
@@ -381,18 +355,26 @@ public class MainView {
 			}
 		});
 		
-		panel5.add(button);
 		
 		
+		JLabel lb1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약시스템에 접속하셨습니다. ");
+		lb1.setLocation(290,10);
+		lb1.setSize(700,150);
+		lb1.setForeground(Color.WHITE);
+		lb1.setFont(lb1.getFont().deriveFont(30.0f));	
 		
+		panel1.add(lb1);
+		panel2.add(new JLabel("이름"));
+		panel2.add(id);
+		panel2.add(new JLabel("주민번호"));
+		panel2.add(ps);
+		panel3.add(btn);
 		
-		userinfoViewPanel.add(panel1,"North");
-		userinfoViewPanel.add(panel4,"Center");
-		userinfoViewPanel.add(panel5,"South");
+		userinfoViewPanel.add(panel1, BorderLayout.NORTH);
+		userinfoViewPanel.add(panel2, BorderLayout.CENTER);
+		userinfoViewPanel.add(panel3, BorderLayout.SOUTH);
 		
-		
-		
-		
+	
 		return userinfoViewPanel;
 	}
 	
