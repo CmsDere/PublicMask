@@ -11,6 +11,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -446,7 +448,7 @@ public class MainView {
 		JPanel panel3 = new JPanel();
 		
 		
-		JLabel label1 = new JLabel("노랑약국의 예약진행");
+		JLabel label1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약진행");
 		label1.setFont(f1);
 		label1.setForeground(Color.white);
 		label1.setHorizontalAlignment(JLabel.CENTER);
@@ -459,18 +461,113 @@ public class MainView {
 		label2.setFont(f2);
 		JLabel label3 = new JLabel(" 1500원          ");
 		label3.setFont(f2);
-		JTextField text1 = new JTextField("0",3);
+		JTextField text1 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"개 남아있습니다.",10);
+		text1.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				text1.setText("");
+				
+			}
+		});
 		JLabel label4 = new JLabel(" KF80          ");
 		label4.setFont(f2);
 		JLabel label5 = new JLabel(" 1000원          ");
 		label5.setFont(f2);
-		JTextField text2 = new JTextField("0",3);
+		JTextField text2 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개 남아있습니다.",10);
+		text2.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				text2.setText("");
+				
+			}
+		});
 		JLabel label6 = new JLabel(" 일반마스크            ");
 		label6.setFont(f2);
 		JLabel label7 = new JLabel("  500원 		");
 		label7.setFont(f2);
-		JTextField text3 = new JTextField("0",3);
-		
+		JTextField text3 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"개 남아있습니다.",10);
+		text3.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				text3.setText("");
+				
+			}
+		});
 		panel2.add(label2);
 		panel2.add(label3);
 		panel2.add(text1);
