@@ -1,5 +1,6 @@
 package com.daehee.mask.model;
 
+//입력된 유저정보
 public class Personinfo {
 
 	private String userName;
