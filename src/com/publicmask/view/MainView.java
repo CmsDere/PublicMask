@@ -135,7 +135,7 @@ public class MainView {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				selected.setText(list.getSelectedValue().toString());
+				selected.setText(list.getSelectedValue().toString().split(",")[0]);
 				selected.setPreferredSize(new Dimension(200,160));
 				selected.setFont(new Font("serif" , Font.BOLD, 15));
 				indexnum =list.getSelectedIndex();
@@ -301,16 +301,7 @@ public class MainView {
 	public JPanel userinfoView() {
 			
 		JPanel userinfoViewPanel = new JPanel();
-		mc.searchstore(num);
-		char answer=' ';
-		System.out.print("예약하시겠습니까? (Y/N) : ");
-		answer = sc.next().toUpperCase().charAt(0);
-		if(answer=='Y') {
-			System.out.println("**손님의 구매 가능 여부 확인**");
-			usercheck();
-		}
-		
-		JPanel userinfoViewPanel = new JPanel();		
+		userinfoViewPanel = new JPanel();		
 		userinfoViewPanel.setLayout(new BorderLayout());
 		userinfoViewPanel.setBackground(Color.WHITE);
 		
