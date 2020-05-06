@@ -71,6 +71,7 @@ public class MainView {
 		
 		mf.add(view);
 		mf.pack();
+		mf.setLocation(650, 300);
 		mf.setVisible(true);
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -818,7 +819,7 @@ button.addActionListener(new ActionListener() {
 				}else {
 					JFrame checkmf = new JFrame();
 					Dialog checknum = new Dialog(checkmf,"수량 확인");
-					checknum.setBounds(500, 500, 500, 500);
+					checknum.setBounds(700, 250, 500, 500);
 					checknum.setLayout(new BorderLayout());
 					
 					JPanel checkPanel1 = new JPanel();
