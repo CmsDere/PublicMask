@@ -1,5 +1,6 @@
 package com.publicmask.controller;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,28 +58,39 @@ public class MainController {
 	
 	//유저 데이터와 날짜 비교 메소드
 	private int usercount=0;
-	public boolean usercheck(String name, String num) {
+	public int usercheck(String name, String num) {
 		
-		boolean check ;
+		int check = 0 ;
 		personList.add(new Personinfo(name,num));
-		
+		Properties prop = new Properties();
+		try {
+			prop.loadFromXML(new FileInputStream("logs/data.xml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	
 		int today = new Date().getDay();
 		System.out.println("오늘 요일은 "+today);
 		
-		if(Integer.parseInt((personList.get(usercount).getUserNumber().substring(1, 2)))==today) {
-			check = true;
-			System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
+		if (prop.getProperty("name").equals(personList.get(usercount).getUserName()) && 
+				prop.getProperty("password").equals(personList.get(usercount).getUserNumber())) {
+			check = 0;
 			usercount++;
-			return check;
-		}else {
-			check = false;
-			System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
-			System.out.println("오늘은 구매 불가능합니다.");
-			usercount++;
-			return check;
 		}
-		
+		else {
+			if(Integer.parseInt((personList.get(usercount).getUserNumber().substring(1, 2)))==today) {
+				check = 1;
+				System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
+				usercount++;
+			}
+			else {
+				check = 2;
+				System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
+				System.out.println("오늘은 구매 불가능합니다.");
+				usercount++;
+			}
+		}
+		return check;
 	}
 	
 	
@@ -101,7 +113,7 @@ public class MainController {
 		prop.setProperty("Common", num3);
 		
 		try {
-			prop.storeToXML(new FileOutputStream("data.xml", true), "Reservation System");
+			prop.storeToXML(new FileOutputStream("logs/data.xml", true), "Reservation System");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -435,12 +435,12 @@ public class MainView {
 				else if (ps2.getText().length() < 7) {
 					msg.setText("주민번호 뒷자리가 7자리보다 짧습니다.");
 					warnning.setVisible(true);
-					ps1.setText("");
+					ps2.setText("");
 				}
 				else if (ps2.getText().length() > 7) {
 					msg.setText("주민번호 뒷자리가 7자리보다 깁니다.");
 					warnning.setVisible(true);
-					ps1.setText("");
+					ps2.setText("");
 				}
 				else if (id.getText().length() < 2) {
 					msg.setText("이름이 너무 짧습니다.");
@@ -451,6 +451,13 @@ public class MainView {
 					msg.setText("이름이 너무 깁니다.");
 					warnning.setVisible(true);
 					id.setText("");
+				}
+				else if (id.getText().equals("") || ps1.getText().equals("") || ps2.getText().equals("")) {
+					msg.setText("아무것도 적혀 있지 않습니다.");
+					warnning.setVisible(true);
+					id.setText("");
+					ps1.setText("");
+					ps2.setText("");
 				}
 				else {
 					System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
@@ -484,21 +491,28 @@ public class MainView {
 	//유저 예약 가능 여부 판단하는 메소드
 	public void usercheck(String name, String num) {
 
-		boolean check=mc.usercheck(name,num);
+		int check= mc.usercheck(name,num);
 		
-		if(check ==true) {
+		if (check == 0) {
+			System.out.println("예약 불가능1");
+			replace(NoSell1());
+			mf.pack();
+			mf.setVisible(true);
+			mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		else if(check == 1) {
+			System.out.println("예약을 진행합니다.");
 			replace(Sell());
 			mf.pack();
 			mf.setVisible(true);
 			mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			
-		}else {
+		}
+		else if (check == 2) {
+			System.out.println("예약 불가능2");	
 			replace(NoSell2());
 			mf.pack();
 			mf.setVisible(true);
 			mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
 		}
 
 	}
@@ -526,6 +540,7 @@ public class MainView {
 	public void setNum3(int num3) {
 		this.num3 = num3;
 	}
+	
 	//살 마스크 개수를 설정하는 UI
 	public JPanel Sell() {
 		
@@ -915,6 +930,77 @@ button.addActionListener(new ActionListener() {
 		return SellPanel;
 	}
 	
+	// 예약 불가능 메소드1
+	public JPanel NoSell1() {
+		Font f1 = new Font("궁서",Font.BOLD,30);
+		
+		JPanel NoSell1Panel = new JPanel();
+		NoSell1Panel.setLayout(new BorderLayout());
+		
+		JPanel panel1 = new JPanel();
+		JPanel panel2 = new JPanel();
+		
+		
+		panel1.setBackground(Color.blue);
+		panel1.setLayout(new BorderLayout());
+		panel1.setBorder(new LineBorder(Color.white, 50));
+		
+
+		JLabel label1 = new JLabel("예약 불가능!!");
+		label1.setForeground(Color.white);
+		label1.setFont(f1);
+		JLabel label2 = new JLabel("마스크 예약 내역이 존재합니다.");
+		label2.setForeground(Color.white);
+		label2.setFont(f1);
+		label2.setHorizontalAlignment(JLabel.CENTER);
+		
+		panel1.add(label1,"North");
+		panel1.add(label2,"Center");
+		
+		Dialog accept = new Dialog(mf, "안내");
+		accept.setBounds(300, 200, 300, 200);;
+		accept.setLayout(new GridLayout(1, 2));
+		JButton goToMain = new JButton("처음으로");
+		JButton exit = new JButton("종료");
+		accept.add(goToMain);
+		accept.add(exit);
+		goToMain.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				replace(mainPanel());
+				mf.pack();
+				mf.setVisible(true);
+				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				accept.dispose();
+			}
+		});
+		exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);				
+			}
+		});
+		
+		JButton button = new JButton("확인");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				accept.setVisible(true);
+			}
+		});
+		
+		panel2.add(button);
+		panel2.setBackground(Color.white);
+		
+		
+		NoSell1Panel.add(panel1,"Center");
+		NoSell1Panel.add(panel2,"South");
+		
+		return NoSell1Panel;
+	}
 	
 	//예약 불가능 메소드2
 	public JPanel NoSell2() {
