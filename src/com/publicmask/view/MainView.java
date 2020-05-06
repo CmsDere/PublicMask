@@ -11,11 +11,15 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -56,7 +60,15 @@ public class MainView {
 	public MainView() {
 		
 		view = mainPanel();
-	
+		
+		mf.setTitle("공적마스크 예약 시스템");
+		try {
+			mf.setIconImage(ImageIO.read(new File("image/mask2.PNG")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		mf.add(view);
 		mf.pack();
 		mf.setVisible(true);
@@ -189,26 +201,26 @@ public class MainView {
 		Font storef3 = new Font("돋음",Font.BOLD,20);
 		
 		JPanel Panel1  = new JPanel();	//타이틀
-		JPanel Panel2 = new JPanel();	//약국
+		JPanel Panel2_info = new JPanel();	//약국 정보(약국정보 + 마스크 수량)
+		JPanel Panel2_drug = new JPanel();	//약국정보
 		JPanel Panel3 = new JPanel();	//마스크
-		JPanel Panel3_main = new JPanel();	//마스크
-		JPanel Panel3_mask = new JPanel();	//마스크
-		JPanel Panel3_btn = new JPanel();	//마스크
+		JPanel Panel2_mask = new JPanel();	//마스크 수량
+		JPanel Panel3_btn = new JPanel();	//버튼
+		
 		
 		Panel1.setLayout(new GridLayout(2,1));
-//		Panel1.setPreferredSize(new Dimension(500, 50));
+		Panel1.setPreferredSize(new Dimension(525, 120));	//패널 사이즈 설정으로 그 전화면과 사이즈 통일
 		Panel1.setBackground(Color.white);
-		Panel2.setLayout(new GridLayout(2,1));
-		Panel2.setBackground(Color.white);
+		Panel2_info.setLayout(new GridLayout(2,1));
+		Panel2_drug.setLayout(new GridLayout(2,1));
+		Panel2_drug.setBackground(Color.white);
 //		Panel2.setPreferredSize(new Dimension(500, 70));
-		Panel3_main.setLayout(new GridLayout(2,1));
-		Panel3_main.setBackground(Color.white);
-		Panel3_mask.setLayout(new GridLayout(3,2));
-		Panel3_mask.setBackground(Color.white);
+		Panel2_mask.setLayout(new GridLayout(3,2));
+		Panel2_mask.setBackground(Color.white);
 		Panel3_btn.setBackground(Color.white);
 		
-		Panel2.setBorder(BorderFactory.createLineBorder(Color.black,2));
-		Panel3_mask.setBorder(BorderFactory.createLineBorder(Color.black,2));
+		Panel2_drug.setBorder(BorderFactory.createLineBorder(Color.black,2));
+		Panel2_mask.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		
 		JLabel titleLabel1 = new JLabel("약국정보 ");
 		JLabel nameLabel= new JLabel();	//약국정보 라벨 이름
@@ -248,10 +260,12 @@ public class MainView {
 		});
 		
 		titleLabel1.setOpaque(true);
-		titleLabel1.setBackground(Color.blue);
 		titleLabel1.setForeground(Color.white);
 		titleLabel1.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel1.setFont(storef1);
+		titleLabel1.setBackground(new Color(82,204,250));	//배경색
+		titleLabel1.setFont(new Font("맑은 고딕",Font.BOLD, 11));//글씨체
+		titleLabel1.setFont(titleLabel1.getFont().deriveFont(50.0f));//글씨크기
 		nameLabel.setHorizontalAlignment(JLabel.CENTER);
 		nameLabel.setFont(storef3);
 		adressLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -274,7 +288,6 @@ public class MainView {
 		String name= mc.getStoreList().get(indexnum).getStoreName().toString();
 		String adress = mc.getStoreList().get(indexnum).getAddress().toString();
 		String pNumber = mc.getStoreList().get(indexnum).getPhoneNumber().toString();
-//		String pNumber =
 		
 		String KF94 = ((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"개";
 		String KF80 = ((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개";
@@ -288,31 +301,31 @@ public class MainView {
 		adressLabel.setText(adress);
 		pNumLabel.setText(pNumber);
 		
-		Panel2.add(adressLabel);
-		Panel2.add(pNumLabel);
+		Panel2_drug.add(adressLabel);
+		Panel2_drug.add(pNumLabel);
 		
 		KF94Label_num.setText(KF94);
 		KF80Label_num.setText(KF80);
 		dentalLabel_num.setText(dental);
 	
-		Panel3_mask.add(KF94Label);
-		Panel3_mask.add(KF94Label_num);
-		Panel3_mask.add(KF80Label);
-		Panel3_mask.add(KF80Label_num);
-		Panel3_mask.add(dentalLabel);
-		Panel3_mask.add(dentalLabel_num);
+		Panel2_mask.add(KF94Label);
+		Panel2_mask.add(KF94Label_num);
+		Panel2_mask.add(KF80Label);
+		Panel2_mask.add(KF80Label_num);
+		Panel2_mask.add(dentalLabel);
+		Panel2_mask.add(dentalLabel_num);
+		
+		Panel2_info.add(Panel2_drug,"North");
+		Panel2_info.add(Panel2_mask,"South");
 		
 		Panel3_btn.add(btn2);
 		Panel3_btn.add(btn);
 		Panel3_btn.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		Panel3_main.add(Panel3_mask,"North");
-		Panel3_main.add(Panel3_btn,BorderLayout.EAST);
 		
 		storeinforViewPanel.add(Panel1,"North");
-		storeinforViewPanel.add(Panel2,"Center");
-		storeinforViewPanel.add(Panel3_main,"South");
-		
+		storeinforViewPanel.add(Panel2_info,"Center");
+		storeinforViewPanel.add(Panel3_btn,"South");
 		
 		return storeinforViewPanel;
 	}
@@ -540,12 +553,48 @@ public class MainView {
 		label2.setFont(f2);
 		JLabel label3 = new JLabel(" 1500원          ");
 		label3.setFont(f2);
+		JLabel label4 = new JLabel(" KF80          ");
+		label4.setFont(f2);
+		JLabel label5 = new JLabel(" 1000원          ");
+		label5.setFont(f2);
+		JLabel label6 = new JLabel(" 일반마스크            ");
+		label6.setFont(f2);
+		JLabel label7 = new JLabel("  500원 		");
+		label7.setFont(f2);
 		JTextField text1 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"개 남아있습니다.",10);
+		JTextField text2 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개 남아있습니다.",10);
+		JTextField text3 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"개 남아있습니다.",10);
+		
+		//TextField에 관한 Key Event
 		if(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()==0) {
 			text1.setEditable(false);
 			text1.setText("0");
 			num1=0;
 		}else {
+			text1.setFocusTraversalKeysEnabled(false);
+			text1.addKeyListener(new KeyListener() {
+				
+				@Override
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyReleased(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyPressed(java.awt.event.KeyEvent e) {
+					if(e.getKeyCode()==e.VK_TAB) {
+						text2.requestFocus();
+						text2.setText("");
+					}
+					
+				}
+			});
 			text1.addMouseListener(new MouseListener() {
 				
 				@Override
@@ -556,8 +605,7 @@ public class MainView {
 				
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
+					text1.setText("");
 				}
 				
 				@Override
@@ -580,22 +628,40 @@ public class MainView {
 			});
 		}
 		
-		JLabel label4 = new JLabel(" KF80          ");
-		label4.setFont(f2);
-		JLabel label5 = new JLabel(" 1000원          ");
-		label5.setFont(f2);
-		JTextField text2 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개 남아있습니다.",10);
 		if(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()==0) {
 			text2.setEditable(false);
 			text2.setText("0");
 			num2=0;
 		}else {
+			text2.setFocusTraversalKeysEnabled(false);
+			text2.addKeyListener(new KeyListener() {
+				
+				@Override
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyReleased(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyPressed(java.awt.event.KeyEvent e) {
+					if(e.getKeyCode()==e.VK_TAB) {
+						text3.requestFocus();
+						text3.setText("");
+					}
+					
+				}
+			});
 			text2.addMouseListener(new MouseListener() {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
+					text2.setText("");
 				}
 				
 				@Override
@@ -623,11 +689,7 @@ public class MainView {
 				}
 			});
 		}
-		JLabel label6 = new JLabel(" 일반마스크            ");
-		label6.setFont(f2);
-		JLabel label7 = new JLabel("  500원 		");
-		label7.setFont(f2);
-		JTextField text3 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"개 남아있습니다.",10);
+		
 		if(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()==0) {
 			
 			text3.setEditable(false);
@@ -638,7 +700,7 @@ public class MainView {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
+					text3.setText("");
 					
 				}
 				
@@ -667,6 +729,7 @@ public class MainView {
 				}
 			});
 		}
+		
 		panel2.add(label2);
 		panel2.add(label3);
 		panel2.add(text1);
