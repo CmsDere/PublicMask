@@ -117,13 +117,13 @@ public class MainView {
 		
 		list.setFont(list.getFont().deriveFont(20.0f));//메뉴안글씨크기29.0f
 		list.setBorder(BorderFactory.createLineBorder(Color.black,2));//테두리
-		list.setPreferredSize(new Dimension(100,200));// 가로세로 사이즈100,280
+//		list.setPreferredSize(new Dimension(100,200));// 가로세로 사이즈100,280
 		list.setBackground(Color.WHITE);
 		ctpanel.add(list);
 		
 		//스크롤 Center
 		JScrollPane scroller = new JScrollPane(list);
-		scroller.setPreferredSize(new Dimension(160,90));//스크롤 사이즈210,80
+//		scroller.setPreferredSize(new Dimension(160,90));//스크롤 사이즈210,80
 //		scroller.setPreferredSize(new Dimension(500,350));
 		
 		ctpanel.add(scroller);
@@ -345,8 +345,9 @@ public class MainView {
 		Dialog warnning = new Dialog(mf, "경고");
 		JLabel msg = new JLabel("입력방법이 틀립니다.");
 		JButton exitButton = new JButton("확인");
-		warnning.setBounds(300, 200, 150, 200);;
+		warnning.setBounds(300, 200, 400, 200);;
 		warnning.setLayout(new GridLayout(2,1));
+		msg.setHorizontalAlignment(JLabel.CENTER);
 		warnning.add(msg);
 		warnning.add(exitButton);
 				
@@ -406,14 +407,40 @@ public class MainView {
 			public void actionPerformed(ActionEvent e) {
 				textstr1=id.getText();
 				textstr2=ps1.getText()+ps2.getText();
-				if (ps1.getText().length() == 6) {
-					System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
-					usercheck(textstr1, textstr2);
-				}
-				else {
+				
+				if (ps1.getText().length() < 6) {
+					msg.setText("주민번호 앞자리가 6자리보다 짧습니다.");
 					warnning.setVisible(true);
 					ps1.setText("");
-					ps2.setText("");
+				}
+				else if (ps1.getText().length() > 6) {
+					msg.setText("주민번호 앞자리가 6자리보다 깁니다.");
+					warnning.setVisible(true);
+					ps1.setText("");
+				}
+				else if (ps2.getText().length() < 7) {
+					msg.setText("주민번호 뒷자리가 7자리보다 짧습니다.");
+					warnning.setVisible(true);
+					ps1.setText("");
+				}
+				else if (ps2.getText().length() > 7) {
+					msg.setText("주민번호 뒷자리가 7자리보다 깁니다.");
+					warnning.setVisible(true);
+					ps1.setText("");
+				}
+				else if (id.getText().length() < 2) {
+					msg.setText("이름이 너무 짧습니다.");
+					warnning.setVisible(true);
+					id.setText("");
+				}
+				else if (id.getText().length() > 10) {
+					msg.setText("이름이 너무 깁니다.");
+					warnning.setVisible(true);
+					id.setText("");
+				}
+				else {
+					System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
+					usercheck(textstr1, textstr2);
 				}
 			}
 		});

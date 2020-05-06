@@ -16,13 +16,8 @@ import com.publicmask.model.Drugstoreinfo;
 
 public class View_DrugStoreInfo extends JPanel {
 	private Drugstoreinfo drugstoreInfo;
-<<<<<<< HEAD
 	private MainController Info;
-=======
 
-	private MainController Info = new MainController();
-
->>>>>>> 64ad98d20663c5291033ea52b7c0e06216033207
 	
 	  Font f1 = new Font("돋음",Font.BOLD,30);
       Font f2 = new Font("돋음",Font.BOLD,25);
@@ -95,36 +90,26 @@ public class View_DrugStoreInfo extends JPanel {
 		dentalLabel_num.setHorizontalAlignment(JLabel.CENTER);
 		dentalLabel_num.setFont(f3);
 		
-		
-		
-<<<<<<< HEAD
-		String name = drugstoreInfo.getStoreName();
-=======
-
-		String name=  drugstoreInfo.getStoreName();
->>>>>>> 64ad98d20663c5291033ea52b7c0e06216033207
-		String adress = drugstoreInfo.getAddress();
-		String pNumber = drugstoreInfo.getPhoneNumber();
-//		String pNumber =Integer.toString(Info.SelectDrugstoreList().get(0).getpNumber());
-		
-<<<<<<< HEAD
-//		String KF94 = Integer.toString(drugstoreInfo.getMaskinfo().get(0));
+//		String name = drugstoreInfo.getStoreName();
+//		String name=  drugstoreInfo.getStoreName();
+//		String adress = drugstoreInfo.getAddress();
+//		String pNumber = drugstoreInfo.getPhoneNumber();
+////		String pNumber =Integer.toString(Info.SelectDrugstoreList().get(0).getpNumber());
+////		String KF94 = Integer.toString(drugstoreInfo.getMaskinfo().get(0));
+////		String KF80 = Integer.toString(Info.viewMask().get(0).getKF80());
+////		String dental = Integer.toString(Info.viewMask().get(0).getDentalmask());
+//
+//		String KF94 = Integer.toString(Info.maskinfo().get(0).getKF94());
 //		String KF80 = Integer.toString(Info.viewMask().get(0).getKF80());
 //		String dental = Integer.toString(Info.viewMask().get(0).getDentalmask());
-=======
-
-		String KF94 = Integer.toString(Info.maskinfo().get(0).getKF94());
-		String KF80 = Integer.toString(Info.viewMask().get(0).getKF80());
-		String dental = Integer.toString(Info.viewMask().get(0).getDentalmask());
->>>>>>> 64ad98d20663c5291033ea52b7c0e06216033207
 	
-		nameLabel.setText(name);
-		
-		Panel1.add(titleLabel1);
-		Panel1.add(nameLabel);
-		
-		adressLabel.setText(adress);
-		pNumLabel.setText(pNumber);
+//		nameLabel.setText(name);
+//		
+//		Panel1.add(titleLabel1);
+//		Panel1.add(nameLabel);
+//		
+//		adressLabel.setText(adress);
+//		pNumLabel.setText(pNumber);
 		
 		Panel2.add(adressLabel);
 		Panel2.add(pNumLabel);
