@@ -486,7 +486,6 @@ public class MainView {
 		boolean check=mc.usercheck(name,num);
 		
 		if(check ==true) {
-			System.out.println("예약을 진행합니다.");
 			replace(Sell());
 			mf.pack();
 			mf.setVisible(true);
@@ -494,7 +493,6 @@ public class MainView {
 			
 			
 		}else {
-			System.out.println("예약 불가능2");
 			replace(NoSell2());
 			mf.pack();
 			mf.setVisible(true);
@@ -745,11 +743,11 @@ public class MainView {
 		
 		panel3.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton button = new JButton("확인");
-		button.addActionListener(new ActionListener() {
+button.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				num1=Integer.parseInt(text1.getText());
 				num2=Integer.parseInt(text2.getText());
 				num3=Integer.parseInt(text3.getText());
@@ -818,13 +816,86 @@ public class MainView {
 					warning.add(warninglabel1);
 					warning.add(checkmemo);
 				}else {
-					System.out.println(num1+", "+num2+", "+num3);
-					maskinfo(indexnum,num1,num2,num3);
+					JFrame checkmf = new JFrame();
+					Dialog checknum = new Dialog(checkmf,"수량 확인");
+					checknum.setBounds(500, 500, 500, 500);
+					checknum.setLayout(new BorderLayout());
 					
-					replace(reserveinfo());
-					mf.pack();
-					mf.setVisible(true);
-					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					JPanel checkPanel1 = new JPanel();
+					JLabel checkLabel1 = new JLabel("입력하신 수량이 맞습니까?");
+					checkLabel1.setFont(new Font("맑은 고딕",Font.BOLD, 11));
+					checkLabel1.setFont(checkLabel1.getFont().deriveFont(30.0f));
+					checkPanel1.setBackground(Color.white);
+					checkPanel1.add(checkLabel1);
+					
+					Font f2 = new Font("굴림",Font.BOLD,25);
+					
+					JPanel checkPanel2 = new JPanel(new GridLayout(3,2));
+					JLabel checkLabel2 = new JLabel("       KF94");
+					checkLabel2.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel3 = new JLabel(num1+"개          ");
+					checkLabel3.setHorizontalAlignment(JLabel.RIGHT);
+					JLabel checkLabel4 = new JLabel("       KF80");
+					checkLabel4.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel5 = new JLabel(num2+"개          ");
+					checkLabel5.setHorizontalAlignment(JLabel.RIGHT);
+					JLabel checkLabel6 = new JLabel("       일반마스크");
+					checkLabel6.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel7 = new JLabel(num3+"개          ");
+					checkLabel7.setHorizontalAlignment(JLabel.RIGHT);
+					checkLabel2.setFont(f2);
+					checkLabel3.setFont(f2);
+					checkLabel4.setFont(f2);
+					checkLabel5.setFont(f2);
+					checkLabel6.setFont(f2);
+					checkLabel7.setFont(f2);
+					checkPanel2.add(checkLabel2);
+					checkPanel2.add(checkLabel3);
+					checkPanel2.add(checkLabel4);
+					checkPanel2.add(checkLabel5);
+					checkPanel2.add(checkLabel6);
+					checkPanel2.add(checkLabel7);
+					checkPanel2.setBackground(Color.white);
+					
+					
+					JPanel checkPanel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+					JButton checkButton1 = new JButton("네");
+					JButton checkButton2 = new JButton("아니요");
+					checkButton1.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							maskinfo(indexnum,num1,num2,num3);
+							
+							replace(reserveinfo());
+							mf.pack();
+							mf.setVisible(true);
+							mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							checknum.dispose();
+							
+						}
+					});
+					checkButton2.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							replace(Sell());
+							mf.pack();
+							mf.setVisible(true);
+							mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							checknum.dispose();
+						}
+					});
+					checkPanel3.add(checkButton1);
+					checkPanel3.add(checkButton2);
+					checkPanel3.setBackground(Color.white);
+					
+					
+					checknum.add(checkPanel1,"North");
+					checknum.add(checkPanel2,"Center");
+					checknum.add(checkPanel3,"South");
+					checknum.setVisible(true);
+					
 				}
 				
 			}
@@ -934,27 +1005,27 @@ public class MainView {
 		
 		JPanel contentPanel = new JPanel();
 		contentPanel.setLayout(new GridLayout(3,2));
-		JLabel kf94Mask = new JLabel  ("KF94");
-		JLabel kf94MaskNum = new JLabel("수량  "+num1+"개");
-		JLabel kf80Mask = new JLabel  ("KF80");
-		JLabel kf80MaskNum = new JLabel("수량  "+num2+"개");
-		JLabel commonMask = new JLabel("일반 마스크");
-		JLabel commonMaskNum = new JLabel("수량  "+num3+"개");
+		JLabel kf94Mask = new JLabel  ("          KF94");
+		JLabel kf94MaskNum = new JLabel("수량  "+num1+"개          ");
+		JLabel kf80Mask = new JLabel  ("          KF80");
+		JLabel kf80MaskNum = new JLabel("수량  "+num2+"개          ");
+		JLabel commonMask = new JLabel("          일반 마스크");
+		JLabel commonMaskNum = new JLabel("수량  "+num3+"개          ");
 		
 		
 		contentPanel.setBackground(Color.WHITE);
 		kf94Mask.setFont(kf94Mask.getFont().deriveFont(35.0f));
 		kf94Mask.setHorizontalAlignment(JLabel.LEFT);
 		kf94MaskNum.setFont(kf94Mask.getFont().deriveFont(35.0f));
-		kf94MaskNum.setHorizontalAlignment(JLabel.CENTER);
+		kf94MaskNum.setHorizontalAlignment(JLabel.RIGHT);
 		kf80Mask.setFont(kf80Mask.getFont().deriveFont(35.0f));
 		kf80Mask.setHorizontalAlignment(JLabel.LEFT);
 		kf80MaskNum.setFont(kf80Mask.getFont().deriveFont(35.0f));
-		kf80MaskNum.setHorizontalAlignment(JLabel.CENTER);
+		kf80MaskNum.setHorizontalAlignment(JLabel.RIGHT);
 		commonMask.setFont(commonMask.getFont().deriveFont(35.0f));
 		commonMask.setHorizontalAlignment(JLabel.LEFT);
 		commonMaskNum.setFont(commonMask.getFont().deriveFont(35.0f));
-		commonMaskNum.setHorizontalAlignment(JLabel.CENTER);
+		commonMaskNum.setHorizontalAlignment(JLabel.RIGHT);
 		
 		
 		
