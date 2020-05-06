@@ -13,9 +13,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -56,7 +59,15 @@ public class MainView {
 	public MainView() {
 		
 		view = mainPanel();
-	
+		
+		mf.setTitle("공적마스크 예약 시스템");
+		try {
+			mf.setIconImage(ImageIO.read(new File("image/mask2.PNG")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		mf.add(view);
 		mf.pack();
 		mf.setVisible(true);
