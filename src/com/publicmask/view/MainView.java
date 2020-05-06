@@ -204,18 +204,20 @@ public class MainView {
 		JPanel Panel1  = new JPanel();	//타이틀
 		JPanel Panel2_info = new JPanel();	//약국 정보(약국정보 + 마스크 수량)
 		JPanel Panel2_drug = new JPanel();	//약국정보
-		JPanel Panel3 = new JPanel();	//마스크
+		JPanel Panel2_mask_t = new JPanel();
 		JPanel Panel2_mask = new JPanel();	//마스크 수량
 		JPanel Panel3_btn = new JPanel();	//버튼
 		
 		
-		Panel1.setLayout(new GridLayout(2,1));
-		Panel1.setPreferredSize(new Dimension(525, 120));	//패널 사이즈 설정으로 그 전화면과 사이즈 통일
-		Panel1.setBackground(Color.white);
-		Panel2_info.setLayout(new GridLayout(2,1));
-		Panel2_drug.setLayout(new GridLayout(2,1));
+		
+		Panel1.setPreferredSize(new Dimension(525, 70));	//패널 사이즈 설정으로 그 전화면과 사이즈 통일
+		Panel1.setBackground(new Color(82,204,250));
+		Panel2_info.setLayout(new GridLayout(3,1));
+		Panel2_drug.setLayout(new GridLayout(2,2));
 		Panel2_drug.setBackground(Color.white);
 //		Panel2.setPreferredSize(new Dimension(500, 70));
+		Panel2_mask_t.setLayout(new GridLayout(2,1));
+		Panel2_mask_t.setBackground(Color.white);
 		Panel2_mask.setLayout(new GridLayout(3,2));
 		Panel2_mask.setBackground(Color.white);
 		Panel3_btn.setBackground(Color.white);
@@ -223,10 +225,14 @@ public class MainView {
 		Panel2_drug.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		Panel2_mask.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		
-		JLabel titleLabel1 = new JLabel("약국정보");
+		JLabel titleLabel1 = new JLabel();
+		JLabel nameLabel_t = new JLabel("주소");
+		JLabel adressLabel_t = new JLabel("전화번호");
 		JLabel nameLabel= new JLabel();	//약국정보 라벨 이름
 		JLabel adressLabel = new JLabel();	//약국정보 라벨 주소
 		JLabel pNumLabel = new JLabel();	//약국정보 라벨	전번
+		JLabel maskLabel = new JLabel("마스크 현황");
+		JLabel maskLabel2 = new JLabel(" ");
 		JLabel KF94Label = new JLabel("KF94");	
 		JLabel KF94Label_num = new JLabel();	
 		JLabel KF80Label = new JLabel("KF80");	
@@ -267,10 +273,17 @@ public class MainView {
 		titleLabel1.setBackground(new Color(82,204,250));	//배경색
 		titleLabel1.setFont(new Font("맑은 고딕",Font.BOLD, 11));//글씨체
 		titleLabel1.setFont(titleLabel1.getFont().deriveFont(50.0f));//글씨크기
+		nameLabel_t.setFont(storef3);
+		nameLabel_t.setHorizontalAlignment(JLabel.CENTER);
+		adressLabel_t.setFont(storef3);
+		adressLabel_t.setHorizontalAlignment(JLabel.CENTER);
 		nameLabel.setHorizontalAlignment(JLabel.CENTER);
 		nameLabel.setFont(storef3);
 		adressLabel.setHorizontalAlignment(JLabel.CENTER);
 		adressLabel.setFont(storef3);
+		maskLabel.setFont(storef2);
+		maskLabel.setHorizontalAlignment(JLabel.CENTER);
+		maskLabel.setForeground(Color.blue);//글씨색깔
 		pNumLabel.setHorizontalAlignment(JLabel.CENTER);
 		pNumLabel.setFont(storef3);
 		KF94Label.setHorizontalAlignment(JLabel.CENTER);
@@ -286,7 +299,7 @@ public class MainView {
 		dentalLabel_num.setHorizontalAlignment(JLabel.CENTER);
 		dentalLabel_num.setFont(storef3);
 		
-		String name= mc.getStoreList().get(indexnum).getStoreName().toString();
+		String name= mc.getStoreList().get(indexnum).getStoreName().toString()+"의 정보";
 		String adress = mc.getStoreList().get(indexnum).getAddress().toString();
 		String pNumber = mc.getStoreList().get(indexnum).getPhoneNumber().toString();
 		
@@ -294,16 +307,19 @@ public class MainView {
 		String KF80 = ((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개";
 		String dental = ((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"개";
 		
-		nameLabel.setText(name);
-		
+		titleLabel1.setText(name);
 		Panel1.add(titleLabel1);
-		Panel1.add(nameLabel);
 		
 		adressLabel.setText(adress);
 		pNumLabel.setText(pNumber);
 		
+		Panel2_drug.add(nameLabel_t);
 		Panel2_drug.add(adressLabel);
+		Panel2_drug.add(adressLabel_t);
 		Panel2_drug.add(pNumLabel);
+		
+		Panel2_mask_t.add(maskLabel2);
+		Panel2_mask_t.add(maskLabel,"South");
 		
 		KF94Label_num.setText(KF94);
 		KF80Label_num.setText(KF80);
@@ -317,6 +333,7 @@ public class MainView {
 		Panel2_mask.add(dentalLabel_num);
 		
 		Panel2_info.add(Panel2_drug,"North");
+		Panel2_info.add(Panel2_mask_t,"Center");
 		Panel2_info.add(Panel2_mask,"South");
 		
 		Panel3_btn.add(btn2);
