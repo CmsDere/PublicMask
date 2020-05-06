@@ -222,7 +222,7 @@ public class MainView {
 		Panel2_drug.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		Panel2_mask.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		
-		JLabel titleLabel1 = new JLabel("약국정보 ");
+		JLabel titleLabel1 = new JLabel("약국정보");
 		JLabel nameLabel= new JLabel();	//약국정보 라벨 이름
 		JLabel adressLabel = new JLabel();	//약국정보 라벨 주소
 		JLabel pNumLabel = new JLabel();	//약국정보 라벨	전번
@@ -514,25 +514,27 @@ public class MainView {
 		
 		
 		JLabel label1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약진행");
-		label1.setFont(f1);
+		label1.setFont(new Font("맑은 고딕",Font.BOLD, 11));
+		label1.setFont(label1.getFont().deriveFont(50.0f));
 		label1.setForeground(Color.white);
 		label1.setHorizontalAlignment(JLabel.CENTER);
 		panel1.add(label1);
-		panel1.setBackground(Color.BLUE);
+		panel1.setBackground(new Color(82, 204, 250));
 		
 		
 		panel2.setLayout(new GridLayout(3,3));
+		panel2.setBackground(Color.white);
 		JLabel label2 = new JLabel(" KF94          ");
 		label2.setFont(f2);
-		JLabel label3 = new JLabel(" 1500원          ");
+		JLabel label3 = new JLabel(" 1500원   ");
 		label3.setFont(f2);
 		JLabel label4 = new JLabel(" KF80          ");
 		label4.setFont(f2);
-		JLabel label5 = new JLabel(" 1000원          ");
+		JLabel label5 = new JLabel(" 1000원   ");
 		label5.setFont(f2);
 		JLabel label6 = new JLabel(" 일반마스크            ");
 		label6.setFont(f2);
-		JLabel label7 = new JLabel("  500원 		");
+		JLabel label7 = new JLabel("  500원 	");
 		label7.setFont(f2);
 		JTextField text1 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"개 남아있습니다.",10);
 		JTextField text2 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"개 남아있습니다.",10);
@@ -819,7 +821,6 @@ public class MainView {
 	public JPanel NoSell2() {
 		
 		JPanel NoSell2Panel = new JPanel();
-		
 		NoSell2Panel.setLayout(new BorderLayout());
 		
 		
@@ -828,7 +829,7 @@ public class MainView {
 		JPanel panel3 = new JPanel();   //중간 출력
 		
 		
-		panel1.setBackground(Color.blue);
+		panel1.setBackground(new Color(82,204,250));
 		panel1.setLayout(new BorderLayout());
 		
 		panel2.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -898,29 +899,44 @@ public class MainView {
 
 		JPanel topicPanel = new JPanel();
 		JLabel topic = new JLabel("예약 내역");
-		topicPanel.setBackground(new Color(255, 0, 0));
+		topicPanel.setBackground(new Color(82,204,250));
 		topicPanel.setLocation(0, 0);
 		topic.setForeground(Color.WHITE);
+		topic.setFont(new Font("맑은 고딕",Font.BOLD, 11));
 		topic.setFont(topic.getFont().deriveFont(50.0f));
 		
 		JPanel contentPanel = new JPanel();
-		JLabel kf94Mask = new JLabel("KF94                  수량 "+num1+"개");
-		JLabel kf80Mask = new JLabel("KF80                  수량 "+num2+"개");
-		JLabel commonMask = new JLabel("일반 마스크       수량 "+num3+"개");
-		contentPanel.setBackground(Color.BLUE);
-		contentPanel.setLayout(new BorderLayout());
-		kf94Mask.setForeground(Color.WHITE);
-		kf94Mask.setFont(kf94Mask.getFont().deriveFont(50.0f));
-		kf80Mask.setForeground(Color.WHITE);
-		kf80Mask.setFont(kf80Mask.getFont().deriveFont(50.0f));
-		commonMask.setForeground(Color.WHITE);
-		commonMask.setFont(commonMask.getFont().deriveFont(50.0f));
-	
+		contentPanel.setLayout(new GridLayout(3,2));
+		JLabel kf94Mask = new JLabel  ("KF94");
+		JLabel kf94MaskNum = new JLabel("수량  "+num1+"개");
+		JLabel kf80Mask = new JLabel  ("KF80");
+		JLabel kf80MaskNum = new JLabel("수량  "+num2+"개");
+		JLabel commonMask = new JLabel("일반 마스크");
+		JLabel commonMaskNum = new JLabel("수량  "+num3+"개");
+		
+		
+		contentPanel.setBackground(Color.WHITE);
+		kf94Mask.setFont(kf94Mask.getFont().deriveFont(35.0f));
+		kf94Mask.setHorizontalAlignment(JLabel.LEFT);
+		kf94MaskNum.setFont(kf94Mask.getFont().deriveFont(35.0f));
+		kf94MaskNum.setHorizontalAlignment(JLabel.CENTER);
+		kf80Mask.setFont(kf80Mask.getFont().deriveFont(35.0f));
+		kf80Mask.setHorizontalAlignment(JLabel.LEFT);
+		kf80MaskNum.setFont(kf80Mask.getFont().deriveFont(35.0f));
+		kf80MaskNum.setHorizontalAlignment(JLabel.CENTER);
+		commonMask.setFont(commonMask.getFont().deriveFont(35.0f));
+		commonMask.setHorizontalAlignment(JLabel.LEFT);
+		commonMaskNum.setFont(commonMask.getFont().deriveFont(35.0f));
+		commonMaskNum.setHorizontalAlignment(JLabel.CENTER);
+		
+		
+		
 		JPanel resultPanel = new JPanel();
 		JLabel result = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 예약 완료!");
 		JButton nextButton = new JButton("확인");
 		resultPanel.setBackground(Color.WHITE);
 		result.setForeground(Color.BLACK);
+		result.setFont(new Font("맑은 고딕" , Font.PLAIN, 40 ));
 		result.setFont(result.getFont().deriveFont(50.0f));
 		nextButton.setFont(nextButton.getFont().deriveFont(50.0f));
 		nextButton.addActionListener(new ActionListener() {
@@ -958,9 +974,13 @@ public class MainView {
 		});
 		topicPanel.add(topic);
 		
-		contentPanel.add(kf94Mask, "North");
-		contentPanel.add(kf80Mask, "Center");
-		contentPanel.add(commonMask, "South");
+		contentPanel.add(kf94Mask);
+		contentPanel.add(kf94MaskNum);
+		contentPanel.add(kf80Mask);
+		contentPanel.add(kf80MaskNum);
+		contentPanel.add(commonMask);
+		contentPanel.add(commonMaskNum);
+		contentPanel.setBorder(BorderFactory.createLineBorder(Color.black,2));
 		
 		resultPanel.add(result);
 		resultPanel.add(nextButton);
