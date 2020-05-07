@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -61,7 +62,7 @@ public class MainView {
 	//주된 화면
 	public MainView() {
 		
-		view = mainPanel();
+		view = ModeChoosePanel();
 		
 		mf.setTitle("공적마스크 예약 시스템");
 		try {
@@ -72,7 +73,7 @@ public class MainView {
 		}
 		
 		mf.add(view);
-		mf.pack();
+		mf.setSize(1200, 500);
 		mf.setLocation(650, 300);
 		mf.setVisible(true);
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,6 +97,796 @@ public class MainView {
 		mf.repaint();
 		
 	}
+	
+	//모드를 선택하는 패널
+		public JPanel ModeChoosePanel() {
+			
+			JPanel modeChoosePanel = new JPanel();
+			modeChoosePanel.setLayout(new BorderLayout());
+			
+			modeChoosePanel.setLayout(new BorderLayout());
+			modeChoosePanel.setBounds(650, 300, 1200, 500);
+			
+			
+			JPanel panel1 = new JPanel();
+			JLabel label1 = new JLabel("***공적마스크 예약시스템에 오신걸 환영합니다***");
+			label1.setFont(new Font("맑은 고딕",Font.BOLD, 11));
+			label1.setFont(label1.getFont().deriveFont(50.0f));
+			label1.setForeground(Color.WHITE);
+			panel1.setBackground(new Color(82, 204, 250));
+			panel1.add(label1);
+
+			
+			JPanel panel2 = new JPanel(new GridLayout(1,2));
+			JButton button1 = new JButton("고객 모드");
+			button1.setFont(new Font("맑은 고딕",Font.BOLD, 11));
+			button1.setFont(button1.getFont().deriveFont(30.0f));
+			JButton button2 = new JButton("관리자 모드");
+			button2.setFont(new Font("맑은 고딕",Font.BOLD, 11));
+			button2.setFont(button2.getFont().deriveFont(30.0f));
+			JLabel label2 = new JLabel(" ");
+			
+			button1.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					replace(mainPanel());
+					mf.pack();
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+				}
+			});
+			button2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					replace(LoginPanel());
+					mf.pack();
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+				}
+			});
+			
+			
+			panel2.add(button1);
+			panel2.add(button2);
+			
+			modeChoosePanel.add(panel1,"North");
+			modeChoosePanel.add(panel2,"Center");
+			
+			return modeChoosePanel;
+		}
+		
+		public JPanel LoginPanel() {
+
+			JPanel loginPanel = new JPanel();
+			loginPanel.setLayout(new BorderLayout());
+			
+			
+			Image icon = new ImageIcon("image/약국이미지.PNG").getImage().getScaledInstance(400, 300, 0);
+			JPanel panel1 = new JPanel();
+			JLabel label1 = new JLabel(new ImageIcon(icon));
+			label1.setHorizontalAlignment(JLabel.CENTER);
+			panel1.add(label1);
+		
+			
+			JPanel panel2 = new JPanel(new GridLayout(4,2));
+			JLabel label2 = new JLabel("  ");
+			JLabel label3 = new JLabel("            ID :");
+			label3.setFont(new Font("맑은 고딕",Font.BOLD,13));
+			label3.setFont(label3.getFont().deriveFont(20.0f));
+			label3.setHorizontalAlignment(JLabel.CENTER);
+			JTextField text1 = new JTextField(10);
+
+			JLabel label4 = new JLabel("  Password :");
+			label4.setFont(new Font("맑은 고딕",Font.BOLD,13));
+			label4.setFont(label3.getFont().deriveFont(20.0f));
+			label4.setHorizontalAlignment(JLabel.CENTER);
+			JPasswordField text2 = new JPasswordField(10);
+			
+			
+			panel2.add(new JLabel(" "));
+			panel2.add(new JLabel(" "));
+			panel2.add(label3);
+			panel2.add(text1);
+			panel2.add(label4);
+			panel2.add(text2);
+			panel2.add(new JLabel(" "));
+			panel2.add(new JLabel(" "));
+			
+			
+			
+			JPanel panel3 = new JPanel(new FlowLayout());
+			JButton button1 = new JButton("이전으로");
+			JButton button2 = new JButton("로그인");
+			button1.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					replace(ModeChoosePanel());
+					mf.setSize(1200, 500);
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
+			});
+			button2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					boolean check = mc.adminCheck(text1.getText(), text2.getText());
+					
+					if(check==true) {
+						replace(adminMainViewPanel());
+						mf.setSize(500, 500);
+						mf.setVisible(true);
+						mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						
+					}else {
+						JFrame warningf = new JFrame();
+						Dialog warning = new Dialog(warningf,"로그인 안내");
+						warning.setBounds(300, 200, 500, 200);;
+						warning.setLayout(new GridLayout(2, 1));
+						JLabel warninglabel1 = new JLabel("입력하신 ID, Password가 잘못되었습니다.");
+						warninglabel1.setFont(f3);
+						warninglabel1.setHorizontalAlignment(JLabel.CENTER);
+						JPanel panel1 = new JPanel(null);
+//						panel1.setLayout(new FlowLayout(FlowLayout.CENTER));
+						JButton checkmemo = new JButton("확인");
+						checkmemo.setBounds(200, 25, 70, 35);
+						panel1.add(checkmemo);
+						warning.setVisible(true);
+						checkmemo.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								text1.setText("");
+								text2.setText("");
+								warning.dispose();
+							}
+						});
+						warning.add(warninglabel1);
+						warning.add(panel1);
+					}
+				}
+			});
+			
+			panel3.add(button1);
+			panel3.add(new Label("                "));
+			panel3.add(button2);
+			
+			
+			loginPanel.add(panel1,"North");
+			loginPanel.add(panel2,"Center");
+			loginPanel.add(panel3,"South");
+			
+			
+			return loginPanel;
+		}
+		
+		public JPanel adminMainViewPanel() {
+			
+			JPanel adminMainViewPanel = new JPanel();
+					adminMainViewPanel.setLayout(new GridLayout(4,1));
+			adminMainViewPanel.setSize(500, 500);
+			
+			JPanel panel1 = new JPanel();
+			panel1.setLayout(new BorderLayout());
+			JLabel label1 = new JLabel("***관리자 페이지에 오신걸 환영합니다.***");
+			label1.setHorizontalAlignment(JLabel.CENTER);
+			panel1.add(label1,"Center");
+			
+			
+			JButton button1 = new JButton("약국수정");
+			button1.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					replace(adminStorelistViewPanel());
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				
+				}
+			});
+			JButton button2 = new JButton("구매자 리스트");
+			button2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					// 아직 비어있다!!!!!!!!!!!!!!!!!!!!!!
+					
+				}
+			});
+			
+			JButton button3 = new JButton("되돌아가기");
+			button3.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					replace(LoginPanel());
+					mf.pack();
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
+			});
+			
+			
+			adminMainViewPanel.add(panel1);
+			adminMainViewPanel.add(button1);
+			adminMainViewPanel.add(button2);
+			adminMainViewPanel.add(button3);
+
+			return adminMainViewPanel;
+		}
+		
+		public JPanel adminStorelistViewPanel() {
+			
+			JPanel adminStorelistViewPanel = new JPanel();
+			
+			adminStorelistViewPanel.setLayout(new BorderLayout());
+			adminStorelistViewPanel.setSize(500, 500);
+			
+			JPanel panel1 = new JPanel();
+			JLabel label1 = new JLabel("수정할 약국 선택");
+			label1.setFont(new Font("맑은 고딕" , Font.PLAIN, 40 ));//글씨체
+			label1.setFont(label1.getFont().deriveFont(55.0f));//글씨크기60.0f
+			panel1.add(label1);
+			
+			
+			JPanel panel2 = new JPanel();
+			ArrayList pharmacy = storeview();
+			JList list = new JList(pharmacy.toArray());
+			list.setFont(list.getFont().deriveFont(20.0f));
+			list.setBorder(BorderFactory.createLineBorder(Color.black,2));
+			list.setPreferredSize(new Dimension(100,200));
+			list.setBackground(Color.WHITE);
+			panel2.add(list);
+			
+			
+			JScrollPane scroller = new JScrollPane(list);
+			scroller.setPreferredSize(new Dimension(300,250));		
+			panel2.add(scroller);
+			
+
+			JLabel label2 = new JLabel(" 선택한 약국: ");
+			label2.setFont(new Font("맑은 고딕" , Font.BOLD, 17 ));
+			
+			JTextField selected = new JTextField(9);
+			selected.setEditable(false);
+				
+			//선택완료 버튼 South
+			JPanel panel3 = new JPanel();
+			JButton stbutton = new JButton("선택 완료");
+			stbutton.setPreferredSize(new Dimension(120,30));
+			stbutton.setFont(stbutton.getFont().deriveFont(19.0f));
+			panel3.setBackground(Color.WHITE);
+			stbutton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					replace(adminChangeStoreinfo());
+					mf.setVisible(true);
+					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+				}
+			});
+					
+			//약국 선택시 선택한 약국:에 표시 
+			list.addListSelectionListener(new ListSelectionListener() {
+
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					selected.setText(list.getSelectedValue().toString().split(",")[0]);
+					selected.setPreferredSize(new Dimension(200,160));
+					selected.setFont(new Font("serif" , Font.BOLD, 15));
+					indexnum =list.getSelectedIndex();
+				}
+			});
+			
+			panel3.add(label2);
+			panel3.add(selected);
+			panel3.add(stbutton);
+			
+			
+			adminStorelistViewPanel.add(panel1,"North");
+			adminStorelistViewPanel.add(panel2,"Center");
+			adminStorelistViewPanel.add(panel3,"South");
+			
+			
+			
+			
+			
+			return adminStorelistViewPanel;
+		}
+		
+		public JPanel adminChangeStoreinfo() {
+			
+			JPanel adminChangeStorinfoPanel = new JPanel();
+			
+			adminChangeStorinfoPanel.setLayout(new BorderLayout());
+			adminChangeStorinfoPanel.setSize(500, 500);
+			
+			JPanel panel1 = new JPanel();
+			JLabel label1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 프로필");
+			panel1.add(label1);
+			
+			
+			JPanel panel5 = new JPanel(new GridLayout(2,1));
+			JPanel panel2 = new JPanel(new GridLayout(0,2));
+			JLabel label2 = new JLabel("1. 주소: ");
+			JTextField text1 = new JTextField(mc.getStoreList().get(indexnum).getAddress().toString());
+			JLabel label3 = new JLabel("2. 전화번호:");
+			JTextField text2 = new JTextField(mc.getStoreList().get(indexnum).getPhoneNumber().toString());
+			JLabel label4 = new JLabel("3. 마스크 현황");
+			
+			panel2.add(label2);
+			panel2.add(text1);
+			panel2.add(label3);
+			panel2.add(text2);
+			panel2.add(label4);
+			
+			JPanel panel3 = new JPanel();
+			panel3.setLayout(new GridLayout(3,2));
+			JLabel label5 = new JLabel(" KF94 : ");
+			JTextField text3 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"");
+			JLabel label6 = new JLabel(" KF80 : ");
+			JTextField text4 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"");
+			JLabel label7 = new JLabel(" 일반마스크 : ");
+			JTextField text5 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"");
+			
+			
+			text1.setFocusTraversalKeysEnabled(false);
+			text1.addKeyListener(new KeyListener() {
+				
+				@Override
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyReleased(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyPressed(java.awt.event.KeyEvent e) {
+					if(e.getKeyCode()==e.VK_TAB) {
+						text2.requestFocus();
+						text2.setText("");
+					}
+					
+				}
+			});
+			text1.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					text1.setText("");
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text1.setText("");
+					
+				}
+			});
+			
+			text2.setFocusTraversalKeysEnabled(false);
+			text2.addKeyListener(new KeyListener() {
+				
+				@Override
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyReleased(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyPressed(java.awt.event.KeyEvent e) {
+					if(e.getKeyCode()==e.VK_TAB) {
+						text3.requestFocus();
+						text3.setText("");
+					}
+					
+				}
+			});
+			text2.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					text2.setText("");
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text2.setText("");
+					
+				}
+			});
+			text3.setFocusTraversalKeysEnabled(false);
+			text3.addKeyListener(new KeyListener() {
+				
+				@Override
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyReleased(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyPressed(java.awt.event.KeyEvent e) {
+					if(e.getKeyCode()==e.VK_TAB) {
+						text4.requestFocus();
+						text4.setText("");
+					}
+					
+				}
+			});
+			text3.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					text3.setText("");
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text3.setText("");
+					
+				}
+			});
+			text4.setFocusTraversalKeysEnabled(false);
+			text4.addKeyListener(new KeyListener() {
+				
+				@Override
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyReleased(java.awt.event.KeyEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void keyPressed(java.awt.event.KeyEvent e) {
+					if(e.getKeyCode()==e.VK_TAB) {
+						text5.requestFocus();
+						text5.setText("");
+					}
+					
+				}
+			});
+			text4.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					text4.setText("");
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text4.setText("");
+					
+				}
+			});
+			text5.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					text5.setText("");
+					
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					text5.setText("");
+					
+				}
+			});
+			
+			panel3.add(label5);
+			panel3.add(text3);
+			panel3.add(label6);
+			panel3.add(text4);
+			panel3.add(label7);
+			panel3.add(text5);
+			
+			panel5.add(panel2);
+			panel5.add(panel3);
+			
+			
+			
+			JPanel panel4 = new JPanel();
+			panel4.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			JButton button1 = new JButton("수정");
+			button1.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					String address;
+					String phoneNumber;
+					int num1,num2,num3;
+					
+					if(text1.getText().equals(null) || text1.getText().equals(mc.getStoreList().get(indexnum).getAddress().toString())) {
+						address = mc.getStoreList().get(indexnum).getAddress().toString();
+					}else {
+						address = text1.getText();
+					}
+					if(text2.getText().equals(null) || text2.getText().equals(mc.getStoreList().get(indexnum).getPhoneNumber().toString())) {
+						phoneNumber= mc.getStoreList().get(indexnum).getPhoneNumber().toString();
+					}else {
+						phoneNumber = text2.getText();
+					}
+					if(text3.getText().equals(null) || text3.getText().equals((((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+""))) {
+						num1=((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum();
+					}else {
+						num1 = Integer.parseInt(text3.getText());
+					}
+					if(text4.getText().equals(null) || text3.getText().equals((((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+""))) {
+						num2=((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum();
+					}else {
+						num2 = Integer.parseInt(text4.getText());
+					}
+					if(text5.getText().equals(null) || text3.getText().equals((((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+""))) {
+						num3=((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum();
+					}else {
+						num3 = Integer.parseInt(text5.getText());
+					}
+					
+					JFrame checkinfomf = new JFrame();
+					Dialog checkinfo = new Dialog(checkinfomf,"수정할 정보 확인");
+					checkinfo.setBounds(700, 250, 700, 500);
+					
+					JPanel checkpanel1 = new JPanel();
+					JLabel checkLabel1 = new JLabel("입력하신 정보가 맞습니까?");
+					checkLabel1.setFont(new Font("맑은 고딕",Font.BOLD, 11));
+					checkLabel1.setFont(checkLabel1.getFont().deriveFont(30.0f));
+					checkpanel1.setBackground(Color.white);
+					checkpanel1.add(checkLabel1);
+					
+					Font f2 = new Font("굴림",Font.BOLD,25);
+					
+					JPanel checkpanel2 = new JPanel(new GridLayout(5,2));
+					
+					JLabel checkLabel2 = new JLabel("       주소: ");
+					checkLabel2.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel3 = new JLabel(address+"     ");
+					checkLabel3.setHorizontalAlignment(JLabel.RIGHT);
+					JLabel checkLabel4 = new JLabel("       전화번호: ");
+					checkLabel4.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel5 = new JLabel(phoneNumber+"     ");
+					checkLabel5.setHorizontalAlignment(JLabel.RIGHT);
+					JLabel checkLabel6 = new JLabel("       KF94");
+					checkLabel6.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel7 = new JLabel(num1+"개          ");
+					checkLabel7.setHorizontalAlignment(JLabel.RIGHT);
+					JLabel checkLabel8 = new JLabel("       KF80");
+					checkLabel8.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel9 = new JLabel(num2+"개          ");
+					checkLabel9.setHorizontalAlignment(JLabel.RIGHT);
+					JLabel checkLabel10 = new JLabel("       일반마스크");
+					checkLabel10.setHorizontalAlignment(JLabel.LEFT);
+					JLabel checkLabel11 = new JLabel(num3+"개          ");
+					checkLabel11.setHorizontalAlignment(JLabel.RIGHT);
+					checkLabel2.setFont(f2);
+					checkLabel3.setFont(f2);
+					checkLabel4.setFont(f2);
+					checkLabel5.setFont(f2);
+					checkLabel6.setFont(f2);
+					checkLabel7.setFont(f2);
+					checkLabel8.setFont(f2);
+					checkLabel9.setFont(f2);
+					checkLabel10.setFont(f2);
+					checkLabel11.setFont(f2);
+					checkpanel2.add(checkLabel2);
+					checkpanel2.add(checkLabel3);
+					checkpanel2.add(checkLabel4);
+					checkpanel2.add(checkLabel5);
+					checkpanel2.add(checkLabel6);
+					checkpanel2.add(checkLabel7);
+					checkpanel2.add(checkLabel8);
+					checkpanel2.add(checkLabel9);
+					checkpanel2.add(checkLabel10);
+					checkpanel2.add(checkLabel11);
+					checkpanel2.setBackground(Color.white);
+					
+					
+					JPanel checkpanel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+					JButton checkButton1 = new JButton("네");
+					JButton checkButton2 = new JButton("아니요");
+					checkButton1.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+
+							mc.getStoreList().get(indexnum).setAddress(address);
+							mc.getStoreList().get(indexnum).setPhoneNumber(phoneNumber);
+							((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);;
+							((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);;
+							((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);;
+							
+							JFrame modifymf = new JFrame();
+							Dialog modifyComplete = new Dialog(modifymf,"약국 정보 수정 완료");
+							modifyComplete.setLayout(new GridLayout(3,1));
+							modifyComplete.setBounds(700, 250, 300, 300);
+							modifyComplete.add(new JPanel(null));
+							
+							JPanel panel1 = new JPanel();
+							JLabel label1 = new JLabel("수정이 완료되었습니다.");
+							label1.setFont(new Font("HY헤드라인",Font.BOLD,14));
+							label1.setFont(label1.getFont().deriveFont(20.0f));
+							panel1.add(label1);
+							
+							JPanel panel2 = new JPanel();
+							JButton button1 = new JButton("확인");
+							panel2.add(button1);
+							
+							button1.addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									replace(adminMainViewPanel());
+									mf.setSize(500, 500);
+									mf.setVisible(true);
+									mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+									checkinfo.dispose();
+									modifyComplete.dispose();
+								}
+							});
+							
+							modifyComplete.add(panel1);
+							modifyComplete.add(panel2);
+							
+							modifyComplete.setVisible(true);
+							
+						}
+					});
+					checkButton2.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							replace(adminChangeStoreinfo());
+							mf.setSize(500, 500);
+							mf.setVisible(true);
+							mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							checkinfo.dispose();
+						}
+					});
+					
+					checkpanel3.add(checkButton1);
+					checkpanel3.add(checkButton2);
+					checkpanel3.setBackground(Color.white);
+					
+					checkinfo.add(checkpanel1,"North");
+					checkinfo.add(checkpanel2,"Center");
+					checkinfo.add(checkpanel3,"South");
+					
+					checkinfo.setVisible(true);
+
+					
+				}
+			});
+			panel4.add(button1);
+			
+			
+			adminChangeStorinfoPanel.add(panel1,"North");
+			adminChangeStorinfoPanel.add(panel5,"Center");
+			adminChangeStorinfoPanel.add(panel4,"South");
+			
+			
+			
+			return adminChangeStorinfoPanel;
+		}
+	
 	
 	//처음 목록 보여주는 UI
 	public JPanel mainPanel() {

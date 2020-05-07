@@ -10,21 +10,27 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.publicmask.model.AdminUserinfo;
 import com.publicmask.model.Drugstoreinfo;
 import com.publicmask.model.Maskinfo;
 import com.publicmask.model.Personinfo;
 import com.publicmask.view.MainView;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class MainController {
 
 	private ArrayList<Drugstoreinfo> storeList = new ArrayList<>();
 	private ArrayList<Personinfo> personList = new ArrayList<>();
 	private MainView mv;
+	private ArrayList<AdminUserinfo> adminList = new ArrayList<>();
 	
 	Scanner sc = new Scanner(System.in);
 	private int count=0;
 	private int select=0;
+	
+	
+	public MainController() {
+		adminList.add(new AdminUserinfo("user1", "qwer123"));
+	}
 	
 	
 	//약국 목록 추가(수동)
@@ -131,6 +137,22 @@ public class MainController {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public boolean adminCheck(String ID, String password) {
+		
+		boolean check=false;
+		
+		for(int i=0; i<adminList.size();i++) {
+			if(ID.equals(adminList.get(i).getUserID()) && password.equals(adminList.get(i).getUserPassword())) {
+				System.out.println("로그인 되었습니다.");
+				check=true;
+				return check;
+			}			
+		}
+		
+		
+		return check;
 	}
 
 }
