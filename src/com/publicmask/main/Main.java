@@ -7,5 +7,6 @@ public class Main {
 //    	new MainFrame();
     	
     	new MainView();
+    	
     }
 }

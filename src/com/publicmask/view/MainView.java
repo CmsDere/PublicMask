@@ -15,8 +15,10 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -931,6 +933,7 @@ button.addActionListener(new ActionListener() {
 	
 	// 예약 불가능 메소드1
 	public JPanel NoSell1() {
+		
 		Font f1 = new Font("궁서",Font.BOLD,30);
 		
 		JPanel NoSell1Panel = new JPanel();

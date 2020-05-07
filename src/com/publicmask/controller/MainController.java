@@ -1,17 +1,20 @@
 package com.publicmask.controller;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Properties;
 import java.util.Scanner;
 
 import com.publicmask.model.Drugstoreinfo;
 import com.publicmask.model.Maskinfo;
 import com.publicmask.model.Personinfo;
 import com.publicmask.view.MainView;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class MainController {
 
@@ -55,40 +58,43 @@ public class MainController {
 		this.storeList = storeList;
 	}
 	
-	
 	//유저 데이터와 날짜 비교 메소드
 	private int usercount=0;
 	public int usercheck(String name, String num) {
 		
-		int check = 0 ;
-		personList.add(new Personinfo(name,num));
-		Properties prop = new Properties();
-		try {
-			prop.loadFromXML(new FileInputStream("logs/data.xml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	
+		int check = 1 ;
 		int today = new Date().getDay();
 		System.out.println("오늘 요일은 "+today);
-		
-		if (prop.getProperty("name").equals(personList.get(usercount).getUserName()) && 
-				prop.getProperty("password").equals(personList.get(usercount).getUserNumber())) {
-			check = 0;
-			usercount++;
-		}
-		else {
-			if(Integer.parseInt((personList.get(usercount).getUserNumber().substring(1, 2)))==today) {
-				check = 1;
-				System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
-				usercount++;
+		personList.add(new Personinfo(name,num));
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("logs/data.txt"));
+			String string;
+			while ((string = br.readLine()) != null) {
+				String[] strArr = string.split(", ");
+				System.out.println(strArr[0] + ", " + strArr[1]);
+				if (strArr[0].equals(personList.get(usercount).getUserName())
+						&& strArr[1].equals(personList.get(usercount).getUserNumber())) {
+					check = 0;
+					usercount++;
+				}
+				else {
+					if(Integer.parseInt((personList.get(usercount).getUserNumber().substring(1, 2)))==today) {
+						check = 1;
+						System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
+						usercount++;
+					}
+					else {
+						check = 2;
+						System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
+						System.out.println("오늘은 구매 불가능합니다.");
+						usercount++;
+					}
+				}
 			}
-			else {
-				check = 2;
-				System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
-				System.out.println("오늘은 구매 불가능합니다.");
-				usercount++;
-			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return check;
 	}
@@ -103,42 +109,26 @@ public class MainController {
 	
 	}
 	
+	// 예약 정보를 텍스트파일로 저장
 	public void dataSave(String name, String password, String store, String num1, String num2, String num3) {
-		Properties prop = new Properties();
-		prop.setProperty("name", name);
-		prop.setProperty("password", password);
-		prop.setProperty("Drugstore Name", store);
-		prop.setProperty("KF94", num1);
-		prop.setProperty("KF80", num2);
-		prop.setProperty("Common", num3);
-		
+		String log = name + ", " + password + ", " + store + ", " + num1 + ", " + num2 + ", " + num3 + "\r\n";
+		File file = new File("logs/data.txt");
+		FileWriter writer = null;
 		try {
-			prop.storeToXML(new FileOutputStream("logs/data.xml", true), "Reservation System");
-		} catch (IOException e) {
+			writer = new FileWriter(file, true);
+			writer.write(log);
+			writer.flush();
+		}
+		catch (IOException e) {
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
