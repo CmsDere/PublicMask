@@ -76,18 +76,19 @@ public class MainController {
 						&& strArr[1].equals(personList.get(usercount).getUserNumber())) {
 					check = 0;
 					usercount++;
+					return check;
 				}
 				else {
 					if(Integer.parseInt((personList.get(usercount).getUserNumber().substring(1, 2)))==today) {
 						check = 1;
 						System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
-						usercount++;
+						
 					}
 					else {
 						check = 2;
 						System.out.println("유저의 생년월일:"+personList.get(usercount).getUserNumber().substring(1, 2));
 						System.out.println("오늘은 구매 불가능합니다.");
-						usercount++;
+						
 					}
 				}
 			}
@@ -96,6 +97,7 @@ public class MainController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		usercount++;
 		return check;
 	}
 	
