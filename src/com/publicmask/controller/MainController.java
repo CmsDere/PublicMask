@@ -194,11 +194,12 @@ public class MainController {
 	               String[] strArr = string.split(", ");
 	               viewPersonData(strArr);
 	            }
-	         } catch (IOException e) {
+	         } 
+	         catch (IOException e) {
 	            e.printStackTrace();
-	         }
-	         
-	      } catch (FileNotFoundException e) {
+	         }  
+	      } 
+	      catch (FileNotFoundException e) {
 	         e.printStackTrace();
 	      }
 
