@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,6 +35,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -189,6 +192,46 @@ public class MainView {
 			label4.setHorizontalAlignment(JLabel.CENTER);
 			JPasswordField text2 = new JPasswordField(10);
 			
+			text2.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+boolean 		check = mc.adminCheck(text1.getText(), text2.getText());
+					
+					if(check==true) {
+						replace(adminMainViewPanel());
+						mf.setSize(500, 500);
+						mf.setVisible(true);
+						mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						
+					}else {
+						JFrame warningf = new JFrame();
+						Dialog warning = new Dialog(warningf,"로그인 안내");
+						warning.setBounds(300, 200, 500, 200);;
+						warning.setLayout(new GridLayout(2, 1));
+						JLabel warninglabel1 = new JLabel("입력하신 ID, Password가 잘못되었습니다.");
+						warninglabel1.setFont(f3);
+						warninglabel1.setHorizontalAlignment(JLabel.CENTER);
+						JPanel panel1 = new JPanel(null);
+//						panel1.setLayout(new FlowLayout(FlowLayout.CENTER));
+						JButton checkmemo = new JButton("확인");
+						checkmemo.setBounds(200, 25, 70, 35);
+						panel1.add(checkmemo);
+						warning.setVisible(true);
+						checkmemo.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								text1.setText("");
+								text2.setText("");
+								warning.dispose();
+							}
+						});
+						warning.add(warninglabel1);
+						warning.add(panel1);
+					}
+				}
+			});
 			
 			panel2.add(new JLabel(" "));
 			panel2.add(new JLabel(" "));
@@ -348,27 +391,27 @@ public class MainView {
 		JTable table = new JTable(model);
 
 		// 행 받아오기
-		Object[] personName = mc.getpersonList().toArray();
-		Object[] personNum = mc.getpersonList().toArray();
-
-		for (int i = 0; i < mc.getpersonList().size(); i++) {
-			personName[i] = mc.getpersonList().get(i).getUserName();
-			personNum[i] = mc.getpersonList().get(i).getUserNumber();
-
-		}
-
-		for (int i = 0; i < mc.getpersonList().size(); i++) {
-			String[] contents = new String[2];
-
-			contents[0] = (String) personName[i];
-			contents[1] = (String) personNum[i];
-
-			model.addRow(contents);
-
-			contents[0] = null;
-			contents[1] = null;
-
-		}
+//		Object[] personName = mc.getpersonList().toArray();
+//		Object[] personNum = mc.getpersonList().toArray();
+//
+//		for (int i = 0; i < mc.getpersonList().size(); i++) {
+//			personName[i] = mc.getpersonList().get(i).getUserName();
+//			personNum[i] = mc.getpersonList().get(i).getUserNumber();
+//
+//		}
+//
+//		for (int i = 0; i < mc.getpersonList().size(); i++) {
+//			String[] contents = new String[2];
+//
+//			contents[0] = (String) personName[i];
+//			contents[1] = (String) personNum[i];
+//
+//			model.addRow(contents);
+//
+//			contents[0] = null;
+//			contents[1] = null;
+//
+//		}
 
 		table.getTableHeader().setBackground(Color.white);
 		table.setPreferredScrollableViewportSize(new Dimension(525, 200)); // 테이블 크기
@@ -1308,7 +1351,50 @@ public class MainView {
 					ps2.requestFocus();
 				}
 				
+				textstr1=id.getText();
+				textstr2=ps1.getText()+ps2.getText();
 				
+				if (ps1.getText().length() < 6) {
+					msg.setText("주민번호 앞자리가 6자리보다 짧습니다.");
+					warnning.setVisible(true);
+					ps1.setText("");
+				}
+				else if (ps1.getText().length() > 6) {
+					msg.setText("주민번호 앞자리가 6자리보다 깁니다.");
+					warnning.setVisible(true);
+					ps1.setText("");
+				}
+				else if (ps2.getText().length() < 7) {
+					msg.setText("주민번호 뒷자리가 7자리보다 짧습니다.");
+					warnning.setVisible(true);
+					ps2.setText("");
+				}
+				else if (ps2.getText().length() > 7) {
+					msg.setText("주민번호 뒷자리가 7자리보다 깁니다.");
+					warnning.setVisible(true);
+					ps2.setText("");
+				}
+				else if (id.getText().length() < 2) {
+					msg.setText("이름이 너무 짧습니다.");
+					warnning.setVisible(true);
+					id.setText("");
+				}
+				else if (id.getText().length() > 10) {
+					msg.setText("이름이 너무 깁니다.");
+					warnning.setVisible(true);
+					id.setText("");
+				}
+				else if (id.getText().equals("") || ps1.getText().equals("") || ps2.getText().equals("")) {
+					msg.setText("아무것도 적혀 있지 않습니다.");
+					warnning.setVisible(true);
+					id.setText("");
+					ps1.setText("");
+					ps2.setText("");
+				}
+				else {
+					System.out.println("이름: "+textstr1+", 주민번호: "+textstr2);
+					usercheck(textstr1, textstr2);
+				}
 			}
 		});
 		
