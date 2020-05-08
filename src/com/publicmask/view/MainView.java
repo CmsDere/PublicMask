@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +33,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -845,6 +842,8 @@ public class MainView {
 						;
 						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
 						;
+						
+						mc.storeDataSave(mc.getStoreList().get(indexnum).getStoreName(), address, phoneNumber, num1, num2, num3);
 
 						JFrame modifymf = new JFrame();
 						Dialog modifyComplete = new Dialog(modifymf, "약국 정보 수정 완료");
