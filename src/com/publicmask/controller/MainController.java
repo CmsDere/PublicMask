@@ -16,6 +16,8 @@ import com.publicmask.model.Maskinfo;
 import com.publicmask.model.Personinfo;
 import com.publicmask.view.MainView;
 
+import sun.util.logging.resources.logging;
+
 public class MainController {
 
 	private ArrayList<Drugstoreinfo> storeList = new ArrayList<>();
@@ -77,7 +79,7 @@ public class MainController {
 			String string;
 			while ((string = br.readLine()) != null) {
 				String[] strArr = string.split(", ");
-				System.out.println(strArr[0] + ", " + strArr[1]);
+			System.out.println(strArr[0] + ", " + strArr[1]);
 				if (strArr[0].equals(personList.get(usercount).getUserName())
 						&& strArr[1].equals(personList.get(usercount).getUserNumber())) {
 					check = 0;
@@ -119,7 +121,8 @@ public class MainController {
 	
 	// 예약 정보를 텍스트파일로 저장
 	public void dataSave(String name, String password, String store, String num1, String num2, String num3) {
-		String log = name + ", " + password + ", " + store + ", " + num1 + ", " + num2 + ", " + num3 + "\r\n";
+		String changeLine = System.getProperty("line.separator");
+		String log = name + ", " + password + ", " + store + ", " + num1 + ", " + num2 + ", " + num3 + changeLine;
 		File file = new File("logs/data.txt");
 		FileWriter writer = null;
 		try {
