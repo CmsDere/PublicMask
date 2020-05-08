@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import com.publicmask.model.AdminUserinfo;
+import com.publicmask.model.BuyerList;
 import com.publicmask.model.Drugstoreinfo;
 import com.publicmask.model.Maskinfo;
 import com.publicmask.model.Personinfo;
@@ -24,6 +25,7 @@ public class MainController {
 	private ArrayList<Personinfo> personList = new ArrayList<>();
 	private MainView mv;
 	private ArrayList<AdminUserinfo> adminList = new ArrayList<>();
+	private ArrayList<BuyerList> buyerList = new ArrayList<BuyerList>();
 	
 	Scanner sc = new Scanner(System.in);
 	private int count=0;
@@ -142,6 +144,30 @@ public class MainController {
 		}
 	}
 	
+	public void storeDataSave(String name, String address, String phone, String kf94, String kf80, String common) {
+		String changeLine = System.getProperty("line.separator");
+		String storeData = name + ", " + address + ", " + phone + ", " + kf94 + ", " + kf80 + ", " + common + changeLine;
+		File file = new File("logs/storeData.txt");
+		FileWriter writer = null;
+		
+		try {
+			writer = new FileWriter(file, true);
+			writer.write(storeData);
+			writer.flush();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public boolean adminCheck(String ID, String password) {
 		
 		boolean check=false;
@@ -157,5 +183,43 @@ public class MainController {
 		
 		return check;
 	}
+	
+	public ArrayList viewPerson() {
 
+	      try {
+	         BufferedReader in = new BufferedReader(new FileReader("logs/data.txt"));
+	         String string;
+	         try {
+	            while ((string = in.readLine()) != null) {
+	               String[] strArr = string.split(", ");
+	               viewPersonData(strArr);
+	            }
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	         
+	      } catch (FileNotFoundException e) {
+	         e.printStackTrace();
+	      }
+
+	      return buyerList;
+	}
+	   
+	   //buyerList에 값 넣는 메소드
+	   public void viewPersonData(String[] strArr) {
+	      BuyerList b = new BuyerList();
+	      b.setPname(strArr[0]);
+	      b.setPnum(strArr[1]);
+	      b.setStorename(strArr[2]);
+	      buyerList.add(b);
+	   }
+	   
+	   //getter&setter
+	   public ArrayList<BuyerList> getbuyerList() {
+	      return buyerList;
+	   }
+
+	   public void setbuyerList(ArrayList<BuyerList> buyerList) {
+	      this.buyerList = buyerList;
+	   }
 }

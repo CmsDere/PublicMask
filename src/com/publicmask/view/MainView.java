@@ -1026,7 +1026,154 @@ boolean 		check = mc.adminCheck(text1.getText(), text2.getText());
 			
 			return adminChangeStorinfoPanel;
 		}
-	
+		public ArrayList viewPerson() {
+		      return mc.viewPerson();
+		   }
+		            
+		   
+		   public JPanel BuyerListPanel() {
+		      viewPerson();
+
+		      JPanel ShowPersonPanel = new JPanel();
+		      ShowPersonPanel.setLayout(new BorderLayout());
+
+		      Font storef1 = new Font("돋음", Font.BOLD, 30);
+		      Font storef2 = new Font("돋음", Font.BOLD, 25);
+		      Font storef3 = new Font("돋음", Font.BOLD, 20);
+
+		      //열
+		      String header[] = { "이름", "주민등록번호","구매약국" };
+
+		      DefaultTableModel model = new DefaultTableModel(header, 0);
+		      JTable table = new JTable(model);
+		   
+
+		      // 행 받아오기
+		      Object[] buyerName = mc.getbuyerList().toArray();
+		      Object[] buyerNum = mc.getbuyerList().toArray();
+		      Object[] buyerStore = mc.getbuyerList().toArray();
+
+		      for (int i = 0; i < mc.getbuyerList().size(); i++) {
+		         buyerName[i]= mc.getbuyerList().get(i).getPname();
+		         buyerNum[i] = mc.getbuyerList().get(i).getPnum();
+		         buyerStore[i] = mc.getbuyerList().get(i).getStorename();
+		         
+
+		      }
+
+		      for (int i = 0; i < mc.getbuyerList().size(); i++) {
+		         
+		         String[] contents = new String[3];
+
+		         contents[0] = (String)buyerName[i];
+		         contents[1] = (String) buyerNum[i];
+		         contents[2] = (String) buyerStore[i];
+		         
+		         //행 추가
+		         model.addRow(contents);
+		         contents[0] = null;
+		         contents[1] = null;
+		         contents[2] = null;
+
+		      }
+		      /*
+		      if (model.getRowCount() == 0) {
+		         System.out.println("0");
+		         for (int i = 0; i < mc.getbuyerList().size(); i++) {
+		            String[] contents = new String[3];
+
+		            contents[0] = (String) buyerName[i];
+		            contents[1] = (String) buyerNum[i];
+		            contents[2] = (String) buyerStore[i];
+
+		            // 행 추가
+		            model.addRow(contents);
+		            contents[0] = null;
+		            contents[1] = null;
+		            contents[2] = null;
+		         }
+		      } else {
+		         for (int i = 0; i < model.getRowCount(); i++) {
+		            DefaultTableModel model1 = (DefaultTableModel) table.getModel();
+//		            model1.removeRow(i);
+		         }
+		         for (int j = 0; j < mc.getbuyerList().size(); j++) {
+		            String[] contents = new String[3];
+
+		            contents[0] = (String) buyerName[j];
+		            contents[1] = (String) buyerNum[j];
+		            contents[2] = (String) buyerStore[j];
+
+		            // 행 추가
+		            model.addRow(contents);
+		            contents[0] = null;
+		            contents[1] = null;
+		            contents[2] = null;
+		         }
+		      }*/   //초기화하려는데 안됨
+		      
+
+		      table.getTableHeader().setBackground(Color.white);
+		      table.setRowHeight(30);
+		      table.getTableHeader().setFont(new Font("맑은 고딕" , Font.PLAIN, 14 ));
+		      table.setPreferredScrollableViewportSize(new Dimension(525, 200)); // 테이블 크기
+
+		      // 제목 패널
+		      JPanel Panel1 = new JPanel();
+
+		      Panel1.setPreferredSize(new Dimension(525, 50)); // 패널 사이즈 설정으로 그 전화면과 사이즈 통일
+		      Panel1.setBackground(new Color(82, 204, 250));
+
+		      JLabel titleLabel = new JLabel("구매자 리스트");
+		      titleLabel.setBackground(Color.white);
+		      titleLabel.setForeground(Color.white);
+		      titleLabel.setHorizontalAlignment(JLabel.CENTER);
+		      titleLabel.setFont(storef1);
+
+		      Panel1.add(titleLabel);
+
+		      JScrollPane scrollpane = new JScrollPane(table);
+		      scrollpane.setBackground(Color.WHITE);
+
+		      // 가운데 정렬위한 객체 생성
+		      DefaultTableCellHeaderRenderer celAlignCenter = new DefaultTableCellHeaderRenderer();
+		      celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+
+		      TableColumnModel tcmSchedule = table.getColumnModel();
+
+		      // 반복문을 이용하여 테이블을 가운데 정렬로 지정
+		      for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+
+		         tcmSchedule.getColumn(i).setCellRenderer(celAlignCenter);
+
+		      }
+
+		      JPanel btnPanel = new JPanel();
+
+		      JButton btn = new JButton("이전으로");
+		      btn.addActionListener(new ActionListener() {
+		         
+		         @Override
+		         public void actionPerformed(ActionEvent e) {
+
+		            
+		            replace(adminMainViewPanel());
+		            mf.setVisible(true);
+		            mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		            
+		         }
+		      });
+
+		      btnPanel.add(btn);
+		      btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+		      ShowPersonPanel.add(Panel1, "North");
+		      ShowPersonPanel.add(scrollpane, BorderLayout.CENTER);
+		      ShowPersonPanel.add(btnPanel, "South");
+
+		      return ShowPersonPanel;
+
+		   }
 	
 	//처음 목록 보여주는 UI
 	public JPanel mainPanel() {
@@ -1752,7 +1899,7 @@ boolean 		check = mc.adminCheck(text1.getText(), text2.getText());
 		
 		panel3.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton button = new JButton("확인");
-button.addActionListener(new ActionListener() {
+		button.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
