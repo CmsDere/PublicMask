@@ -32,7 +32,7 @@ public class MainController {
 	private int select = 0;
 
 	public MainController() {
-		adminList.add(new AdminUserinfo("user1", "qwer123"));
+		adminList.add(new AdminUserinfo("admin", "123"));
 	}
 
 	// 약국 목록 추가(수동)
@@ -179,7 +179,6 @@ public class MainController {
 	}
 
 	public ArrayList viewPerson() {
-
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("logs/data.txt"));
 			String string;
@@ -214,19 +213,5 @@ public class MainController {
 
 	public void setbuyerList(ArrayList<BuyerList> buyerList) {
 		this.buyerList = buyerList;
-	}
-	
-	public void replaceStoreData() {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("logs/storeData.txt"));
-			String string;
-			while ((string = br.readLine()) != null) {
-				String[] strArr = string.split(", ");
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

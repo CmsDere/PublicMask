@@ -161,26 +161,36 @@ public class MainView {
 		JPanel loginPanel = new JPanel();
 		loginPanel.setLayout(new BorderLayout());
 
-		Image icon = new ImageIcon("image/약국이미지.PNG").getImage().getScaledInstance(400, 300, 0);
+		Image icon = new ImageIcon("image/1_top_01.PNG").getImage().getScaledInstance(500, 180, 0);
 		JPanel panel1 = new JPanel();
+		panel1.setBackground(new Color(252, 252, 243));
 		JLabel label1 = new JLabel(new ImageIcon(icon));
 		label1.setHorizontalAlignment(JLabel.CENTER);
 		panel1.add(label1);
 
-		JPanel panel2 = new JPanel(new GridLayout(4, 2));
+		JPanel panel2 = new JPanel(new GridLayout(4, 1));
+		panel2.setBackground(new Color(252, 252, 243));
 		JLabel label2 = new JLabel("  ");
-		JLabel label3 = new JLabel("            ID :");
+
+		JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panel4.setBackground(new Color(252, 252, 243));
+		JLabel label3 = new JLabel("          ID :");
 		label3.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		label3.setFont(label3.getFont().deriveFont(20.0f));
+		label3.setFont(label3.getFont().deriveFont(30.0f));
 		label3.setHorizontalAlignment(JLabel.CENTER);
-		JTextField text1 = new JTextField(10);
+		JTextField text1 = new JTextField(13);
+		text1.setFont(text1.getFont().deriveFont(20.0f));
+		panel4.add(label3);
+		panel4.add(text1);
 
-		JLabel label4 = new JLabel("  Password :");
+		JPanel panel5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panel5.setBackground(new Color(252, 252, 243));
+		JLabel label4 = new JLabel("Password :");
 		label4.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		label4.setFont(label3.getFont().deriveFont(20.0f));
+		label4.setFont(label4.getFont().deriveFont(30.0f));
 		label4.setHorizontalAlignment(JLabel.CENTER);
-		JPasswordField text2 = new JPasswordField(10);
-
+		JPasswordField text2 = new JPasswordField(13);
+		text2.setFont(text2.getFont().deriveFont(20.0f));
 		text2.addActionListener(new ActionListener() {
 
 			@Override
@@ -222,19 +232,20 @@ public class MainView {
 				}
 			}
 		});
+		panel5.add(label4);
+		panel5.add(text2);
 
 		panel2.add(new JLabel(" "));
-		panel2.add(new JLabel(" "));
-		panel2.add(label3);
-		panel2.add(text1);
-		panel2.add(label4);
-		panel2.add(text2);
-		panel2.add(new JLabel(" "));
+		panel2.add(panel4);
+		panel2.add(panel5);
 		panel2.add(new JLabel(" "));
 
-		JPanel panel3 = new JPanel(new FlowLayout());
-		JButton button1 = new JButton("이전으로");
-		JButton button2 = new JButton("로그인");
+		JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panel3.setBackground(new Color(252, 252, 243));
+		JButton button1 = new JButton(new ImageIcon("image/1_right_btn.png"));
+		button1.setPreferredSize(new Dimension(100, 100));
+		JButton button2 = new JButton(new ImageIcon("image/1_left_btn.png"));
+		button2.setPreferredSize(new Dimension(100, 100));
 		button1.addActionListener(new ActionListener() {
 
 			@Override
@@ -268,7 +279,7 @@ public class MainView {
 					warninglabel1.setFont(f3);
 					warninglabel1.setHorizontalAlignment(JLabel.CENTER);
 					JPanel panel1 = new JPanel(null);
-//						panel1.setLayout(new FlowLayout(FlowLayout.CENTER));
+//					panel1.setLayout(new FlowLayout(FlowLayout.CENTER));
 					JButton checkmemo = new JButton("확인");
 					checkmemo.setBounds(200, 25, 70, 35);
 					panel1.add(checkmemo);
@@ -289,7 +300,7 @@ public class MainView {
 		});
 
 		panel3.add(button1);
-		panel3.add(new Label("                "));
+		panel3.add(new Label("               "));
 		panel3.add(button2);
 
 		loginPanel.add(panel1, "North");
@@ -302,16 +313,27 @@ public class MainView {
 	public JPanel adminMainViewPanel() {
 
 		JPanel adminMainViewPanel = new JPanel();
-		adminMainViewPanel.setLayout(new GridLayout(4, 1));
+		adminMainViewPanel.setLayout(new BorderLayout());
 		adminMainViewPanel.setSize(500, 500);
 
 		JPanel panel1 = new JPanel();
+		panel1.setBackground(new Color(252, 252, 243));
 		panel1.setLayout(new BorderLayout());
-		JLabel label1 = new JLabel("***관리자 페이지에 오신걸 환영합니다.***");
+		Image icon = new ImageIcon("image/1_top_01.PNG").getImage().getScaledInstance(500, 180, 0);
+		JLabel topimage = new JLabel(new ImageIcon(icon));
+		JLabel label1 = new JLabel("*관리자 페이지에 오신걸 환영합니다.*");
+		label1.setFont(new Font("HY헤드라인", Font.BOLD, 13));
+		label1.setFont(label1.getFont().deriveFont(25.0f));
 		label1.setHorizontalAlignment(JLabel.CENTER);
+		panel1.add(topimage, "North");
 		panel1.add(label1, "Center");
 
-		JButton button1 = new JButton("약국수정");
+		JPanel panel3 = new JPanel(new GridLayout(2, 1));
+		panel3.setBackground(new Color(252, 252, 243));
+		JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panel2.setBackground(new Color(252, 252, 243));
+		JButton button1 = new JButton(new ImageIcon("image/2_storeinfo_btn.png"));
+		button1.setPreferredSize(new Dimension(100, 100));
 		button1.addActionListener(new ActionListener() {
 
 			@Override
@@ -321,7 +343,8 @@ public class MainView {
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
-		JButton button2 = new JButton("구매자 리스트");
+		JButton button2 = new JButton(new ImageIcon("image/2_consumerlist_btn.png"));
+		button2.setPreferredSize(new Dimension(100, 100));
 		button2.addActionListener(new ActionListener() {
 
 			@Override
@@ -329,11 +352,11 @@ public class MainView {
 				replace(BuyerListPanel());
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 			}
 		});
 
-		JButton button3 = new JButton("되돌아가기");
+		JButton button3 = new JButton(new ImageIcon("image/2_first_btn.png"));
+		button3.setPreferredSize(new Dimension(100, 100));
 		button3.addActionListener(new ActionListener() {
 
 			@Override
@@ -345,10 +368,17 @@ public class MainView {
 			}
 		});
 
-		adminMainViewPanel.add(panel1);
-		adminMainViewPanel.add(button1);
-		adminMainViewPanel.add(button2);
-		adminMainViewPanel.add(button3);
+		panel2.add(button2);
+		panel2.add(new JLabel("  "));
+		panel2.add(button1);
+		panel2.add(new JLabel("  "));
+		panel2.add(button3);
+
+		panel3.add(new JLabel("  "));
+		panel3.add(panel2);
+
+		adminMainViewPanel.add(panel1, "North");
+		adminMainViewPanel.add(panel3, "Center");
 
 		return adminMainViewPanel;
 	}
@@ -361,12 +391,15 @@ public class MainView {
 		adminStorelistViewPanel.setSize(500, 500);
 
 		JPanel panel1 = new JPanel();
-		JLabel label1 = new JLabel("수정할 약국 선택");
+		panel1.setBackground(new Color(252, 252, 243));
+		Image icon1 = new ImageIcon("image/4_top.png").getImage().getScaledInstance(500, 130, 0);
+		JLabel label1 = new JLabel(new ImageIcon(icon1));
 		label1.setFont(new Font("맑은 고딕", Font.PLAIN, 40));// 글씨체
 		label1.setFont(label1.getFont().deriveFont(55.0f));// 글씨크기60.0f
 		panel1.add(label1);
 
 		JPanel panel2 = new JPanel();
+		panel2.setBackground(new Color(252, 252, 243));
 		ArrayList pharmacy = storeview();
 		JList list = new JList(pharmacy.toArray());
 		list.setFont(list.getFont().deriveFont(20.0f));
@@ -380,22 +413,37 @@ public class MainView {
 		panel2.add(scroller);
 
 		JLabel label2 = new JLabel(" 선택한 약국: ");
-		label2.setFont(new Font("맑은 고딕", Font.BOLD, 17));
+		label2.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 
 		JTextField selected = new JTextField(9);
+//		selected.setPreferredSize(new Dimension());
 		selected.setEditable(false);
 
 		// 선택완료 버튼 South
 		JPanel panel3 = new JPanel();
-		JButton stbutton = new JButton("선택 완료");
-		stbutton.setPreferredSize(new Dimension(120, 30));
+		JButton stbutton = new JButton(new ImageIcon("image/4_choice_btn.png"));
+		stbutton.setPreferredSize(new Dimension(60, 40));
 		stbutton.setFont(stbutton.getFont().deriveFont(19.0f));
-		panel3.setBackground(Color.WHITE);
+		panel3.setBackground(new Color(252, 252, 243));
 		stbutton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				replace(adminChangeStoreinfo());
+				mf.setVisible(true);
+				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			}
+		});
+
+		JButton back = new JButton(new ImageIcon("image/3_back_btn.png"));
+		back.setPreferredSize(new Dimension(60, 40));
+		back.setFont(stbutton.getFont().deriveFont(19.0f));
+		back.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				replace(adminMainViewPanel());
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -408,7 +456,7 @@ public class MainView {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				selected.setText(list.getSelectedValue().toString().split(",")[0]);
-				selected.setPreferredSize(new Dimension(200, 160));
+				selected.setPreferredSize(new Dimension(200, 40));
 				selected.setFont(new Font("serif", Font.BOLD, 15));
 				indexnum = list.getSelectedIndex();
 			}
@@ -417,6 +465,7 @@ public class MainView {
 		panel3.add(label2);
 		panel3.add(selected);
 		panel3.add(stbutton);
+		panel3.add(back);
 
 		adminStorelistViewPanel.add(panel1, "North");
 		adminStorelistViewPanel.add(panel2, "Center");
@@ -433,16 +482,27 @@ public class MainView {
 		adminChangeStorinfoPanel.setSize(500, 500);
 
 		JPanel panel1 = new JPanel();
+		panel1.setBackground(new Color(252, 252, 243));
 		JLabel label1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString() + "의 프로필");
+		label1.setFont(new Font("맑은 고딕", Font.BOLD, 11));
+		label1.setFont(label1.getFont().deriveFont(35.0f));
 		panel1.add(label1);
 
 		JPanel panel5 = new JPanel(new GridLayout(2, 1));
+		panel5.setBackground(new Color(252, 252, 243));
 		JPanel panel2 = new JPanel(new GridLayout(0, 2));
+		panel2.setBackground(new Color(252, 252, 243));
 		JLabel label2 = new JLabel("1. 주소: ");
+		label2.setFont(new Font("견고딕", Font.BOLD, 13));
+		label2.setFont(label2.getFont().deriveFont(20.0f));
 		JTextField text1 = new JTextField(mc.getStoreList().get(indexnum).getAddress().toString());
 		JLabel label3 = new JLabel("2. 전화번호:");
+		label3.setFont(new Font("견고딕", Font.BOLD, 13));
+		label3.setFont(label2.getFont().deriveFont(20.0f));
 		JTextField text2 = new JTextField(mc.getStoreList().get(indexnum).getPhoneNumber().toString());
 		JLabel label4 = new JLabel("3. 마스크 현황");
+		label4.setFont(new Font("견고딕", Font.BOLD, 13));
+		label4.setFont(label2.getFont().deriveFont(20.0f));
 
 		panel2.add(label2);
 		panel2.add(text1);
@@ -451,14 +511,18 @@ public class MainView {
 		panel2.add(label4);
 
 		JPanel panel3 = new JPanel();
+		panel3.setBackground(new Color(252, 252, 243));
 		panel3.setLayout(new GridLayout(3, 2));
-		JLabel label5 = new JLabel(" KF94 : ");
+		JLabel label5 = new JLabel("    KF94 : ");
+		label5.setFont(label2.getFont().deriveFont(15.0f));
 		JTextField text3 = new JTextField(
 				((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum() + "");
-		JLabel label6 = new JLabel(" KF80 : ");
+		JLabel label6 = new JLabel("    KF80 : ");
+		label6.setFont(label2.getFont().deriveFont(15.0f));
 		JTextField text4 = new JTextField(
 				((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum() + "");
-		JLabel label7 = new JLabel(" 일반마스크 : ");
+		JLabel label7 = new JLabel("    일반마스크 : ");
+		label7.setFont(label2.getFont().deriveFont(15.0f));
 		JTextField text5 = new JTextField(
 				((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum() + "");
 
@@ -727,6 +791,7 @@ public class MainView {
 		panel5.add(panel3);
 
 		JPanel panel4 = new JPanel();
+		panel4.setBackground(new Color(252, 252, 243));
 		panel4.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton button1 = new JButton("수정");
 		button1.addActionListener(new ActionListener() {
@@ -738,34 +803,39 @@ public class MainView {
 				String phoneNumber;
 				int num1, num2, num3;
 
-				if (text1.getText().equals(null)
+				if (text1.getText().equals("")
 						|| text1.getText().equals(mc.getStoreList().get(indexnum).getAddress().toString())) {
 					address = mc.getStoreList().get(indexnum).getAddress().toString();
-				} else {
+				} 
+				else {
 					address = text1.getText();
 				}
-				if (text2.getText().equals(null)
+				if (text2.getText().equals("")
 						|| text2.getText().equals(mc.getStoreList().get(indexnum).getPhoneNumber().toString())) {
 					phoneNumber = mc.getStoreList().get(indexnum).getPhoneNumber().toString();
-				} else {
+				} 
+				else {
 					phoneNumber = text2.getText();
 				}
-				if (text3.getText().equals(null) || text3.getText().equals(
+				if (text3.getText().equals("") || text3.getText().equals(
 						(((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum() + ""))) {
 					num1 = ((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum();
-				} else {
+				} 
+				else {
 					num1 = Integer.parseInt(text3.getText());
 				}
-				if (text4.getText().equals(null) || text3.getText().equals(
+				if (text4.getText().equals("") || text3.getText().equals(
 						(((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum() + ""))) {
 					num2 = ((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum();
-				} else {
+				} 
+				else {
 					num2 = Integer.parseInt(text4.getText());
 				}
-				if (text5.getText().equals(null) || text3.getText().equals(
+				if (text5.getText().equals("") || text3.getText().equals(
 						(((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum() + ""))) {
 					num3 = ((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum();
-				} else {
+				} 
+				else {
 					num3 = Integer.parseInt(text5.getText());
 				}
 
@@ -836,14 +906,23 @@ public class MainView {
 
 						mc.getStoreList().get(indexnum).setAddress(address);
 						mc.getStoreList().get(indexnum).setPhoneNumber(phoneNumber);
+
 						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);
 						;
 						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);
 						;
 						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
 						;
-						
-						mc.storeDataSave(mc.getStoreList().get(indexnum).getStoreName(), address, phoneNumber, num1, num2, num3);
+
+						mc.storeDataSave(mc.getStoreList().get(indexnum).getStoreName(), address, phoneNumber, num1,
+								num2, num3);
+
+						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);
+						;
+						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);
+						;
+						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
+						;
 
 						JFrame modifymf = new JFrame();
 						Dialog modifyComplete = new Dialog(modifymf, "약국 정보 수정 완료");
@@ -961,25 +1040,7 @@ public class MainView {
 			contents[2] = null;
 
 		}
-		/*
-		 * if (model.getRowCount() == 0) { System.out.println("0"); for (int i = 0; i <
-		 * mc.getbuyerList().size(); i++) { String[] contents = new String[3];
-		 * 
-		 * contents[0] = (String) buyerName[i]; contents[1] = (String) buyerNum[i];
-		 * contents[2] = (String) buyerStore[i];
-		 * 
-		 * // 행 추가 model.addRow(contents); contents[0] = null; contents[1] = null;
-		 * contents[2] = null; } } else { for (int i = 0; i < model.getRowCount(); i++)
-		 * { DefaultTableModel model1 = (DefaultTableModel) table.getModel(); //
-		 * model1.removeRow(i); } for (int j = 0; j < mc.getbuyerList().size(); j++) {
-		 * String[] contents = new String[3];
-		 * 
-		 * contents[0] = (String) buyerName[j]; contents[1] = (String) buyerNum[j];
-		 * contents[2] = (String) buyerStore[j];
-		 * 
-		 * // 행 추가 model.addRow(contents); contents[0] = null; contents[1] = null;
-		 * contents[2] = null; } }
-		 */
+
 		// 초기화하려는데 안됨
 
 		table.getTableHeader().setBackground(Color.white);
@@ -1501,30 +1562,6 @@ public class MainView {
 
 	// 필드번수 => 각각의 마스크 수량을 가져온다.
 	private int num1, num2, num3;
-
-	public int getNum1() {
-		return num1;
-	}
-
-	public void setNum1(int num1) {
-		this.num1 = num1;
-	}
-
-	public int getNum2() {
-		return num2;
-	}
-
-	public void setNum2(int num2) {
-		this.num2 = num2;
-	}
-
-	public int getNum3() {
-		return num3;
-	}
-
-	public void setNum3(int num3) {
-		this.num3 = num3;
-	}
 
 	// 살 마스크 개수를 설정하는 UI
 	public JPanel Sell() {
