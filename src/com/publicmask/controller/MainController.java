@@ -33,7 +33,7 @@ public class MainController {
 	
 	
 	public MainController() {
-		adminList.add(new AdminUserinfo("user1", "qwer123"));
+		adminList.add(new AdminUserinfo("admin", "123"));
 	}
 	
 	
@@ -186,6 +186,7 @@ public class MainController {
 	
 	public ArrayList viewPerson() {
 
+		buyerList = new ArrayList<BuyerList>();
 	      try {
 	         BufferedReader in = new BufferedReader(new FileReader("logs/data.txt"));
 	         String string;
