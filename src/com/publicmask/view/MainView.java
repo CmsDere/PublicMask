@@ -393,7 +393,7 @@ public class MainView {
 
 	public JPanel adminStorelistViewPanel() {
 
-JPanel adminStorelistViewPanel = new JPanel();
+		JPanel adminStorelistViewPanel = new JPanel();
 		
 		adminStorelistViewPanel.setLayout(new BorderLayout());
 		adminStorelistViewPanel.setSize(500, 500);
@@ -449,7 +449,7 @@ JPanel adminStorelistViewPanel = new JPanel();
 		
 		JButton back = new JButton(new ImageIcon("image/3_back_btn.png"));
 		back.setPreferredSize(new Dimension(60,40));
-		back.setFont(stbutton.getFont().deriveFont(19.0f));
+		back.setFont(back.getFont().deriveFont(19.0f));
 		back.addActionListener(new ActionListener() {
 			
 			@Override
@@ -493,7 +493,7 @@ JPanel adminStorelistViewPanel = new JPanel();
 
 	public JPanel adminChangeStoreinfo() {
 
-JPanel adminChangeStorinfoPanel = new JPanel();
+		JPanel adminChangeStorinfoPanel = new JPanel();
 		
 		adminChangeStorinfoPanel.setLayout(new BorderLayout());
 		adminChangeStorinfoPanel.setSize(500, 500);
@@ -1001,6 +1001,7 @@ JPanel adminChangeStorinfoPanel = new JPanel();
 		viewPerson();
 
 		JPanel ShowPersonPanel = new JPanel();
+		ShowPersonPanel.setBackground(new Color(252,252,243));
 		ShowPersonPanel.setLayout(new BorderLayout());
 
 		Font storef1 = new Font("돋음", Font.BOLD, 30);
@@ -1051,19 +1052,17 @@ JPanel adminChangeStorinfoPanel = new JPanel();
 		// 제목 패널
 		JPanel Panel1 = new JPanel();
 
-		Panel1.setPreferredSize(new Dimension(525, 50)); // 패널 사이즈 설정으로 그 전화면과 사이즈 통일
-		Panel1.setBackground(new Color(82, 204, 250));
-
-		JLabel titleLabel = new JLabel("구매자 리스트");
-		titleLabel.setBackground(Color.white);
-		titleLabel.setForeground(Color.white);
+		Panel1.setPreferredSize(new Dimension(500, 130)); // 패널 사이즈 설정으로 그 전화면과 사이즈 통일
+		Panel1.setBackground(new Color(252,252,243));
+		Image icon1 = new ImageIcon("image/4_top.png").getImage().getScaledInstance(500, 130, 0);
+		JLabel titleLabel = new JLabel(new ImageIcon(icon1));
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setFont(storef1);
 
 		Panel1.add(titleLabel);
 
 		JScrollPane scrollpane = new JScrollPane(table);
-		scrollpane.setBackground(Color.WHITE);
+		scrollpane.setBackground(new Color(252,252,243));
 
 		// 가운데 정렬위한 객체 생성
 		DefaultTableCellHeaderRenderer celAlignCenter = new DefaultTableCellHeaderRenderer();
@@ -1079,8 +1078,11 @@ JPanel adminChangeStorinfoPanel = new JPanel();
 		}
 
 		JPanel btnPanel = new JPanel();
+		btnPanel.setBackground(new Color(252,252,243));
 
-		JButton btn = new JButton("이전으로");
+		JButton btn = new JButton(new ImageIcon("image/3_back_btn.png"));
+		btn.setPreferredSize(new Dimension(60,40));
+		btn.setFont(btn.getFont().deriveFont(19.0f));
 		btn.addActionListener(new ActionListener() {
 
 			@Override
