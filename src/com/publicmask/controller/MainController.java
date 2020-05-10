@@ -17,6 +17,7 @@ import com.publicmask.model.Maskinfo;
 import com.publicmask.model.Personinfo;
 import com.publicmask.view.MainView;
 
+import sun.swing.MenuItemCheckIconFactory;
 import sun.util.logging.resources.logging;
 
 public class MainController {
