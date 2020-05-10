@@ -72,7 +72,6 @@ public class MainView {
 		try {
 			mf.setIconImage(ImageIO.read(new File("image/mask2.PNG")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -916,10 +915,25 @@ public class MainView {
 
 						mc.getStoreList().get(indexnum).setAddress(address);
 						mc.getStoreList().get(indexnum).setPhoneNumber(phoneNumber);
-						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);;
-						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);;
-						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);;
+
+						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);
+						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);
+						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
+
+						mc.storeDataSave(mc.getStoreList().get(indexnum).getStoreName(), address, phoneNumber, num1,
+								num2, num3);
 						
+//						mc.replaceStoreData(mc.getStoreList().get(indexnum).getStoreName(), address, phoneNumber, num1,
+//								num2, num3);
+
+//						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);
+//						;
+//						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);
+//						;
+//						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
+//						;
+
+
 						JFrame modifymf = new JFrame();
 						Dialog modifyComplete = new Dialog(modifymf,"약국 정보 수정 완료");
 						modifyComplete.setLayout(new GridLayout(3,1));
