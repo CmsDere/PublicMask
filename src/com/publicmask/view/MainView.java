@@ -1001,7 +1001,6 @@ public class MainView {
 		viewPerson();
 
 		JPanel ShowPersonPanel = new JPanel();
-		ShowPersonPanel.setBackground(new Color(252,252,243));
 		ShowPersonPanel.setLayout(new BorderLayout());
 
 		Font storef1 = new Font("돋음", Font.BOLD, 30);
@@ -1052,17 +1051,19 @@ public class MainView {
 		// 제목 패널
 		JPanel Panel1 = new JPanel();
 
-		Panel1.setPreferredSize(new Dimension(500, 130)); // 패널 사이즈 설정으로 그 전화면과 사이즈 통일
-		Panel1.setBackground(new Color(252,252,243));
-		Image icon1 = new ImageIcon("image/4_top.png").getImage().getScaledInstance(500, 130, 0);
-		JLabel titleLabel = new JLabel(new ImageIcon(icon1));
+		Panel1.setPreferredSize(new Dimension(525, 50)); // 패널 사이즈 설정으로 그 전화면과 사이즈 통일
+		Panel1.setBackground(new Color(82, 204, 250));
+
+		JLabel titleLabel = new JLabel("구매자 리스트");
+		titleLabel.setBackground(Color.white);
+		titleLabel.setForeground(Color.white);
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setFont(storef1);
 
 		Panel1.add(titleLabel);
 
 		JScrollPane scrollpane = new JScrollPane(table);
-		scrollpane.setBackground(new Color(252,252,243));
+		scrollpane.setBackground(Color.WHITE);
 
 		// 가운데 정렬위한 객체 생성
 		DefaultTableCellHeaderRenderer celAlignCenter = new DefaultTableCellHeaderRenderer();
@@ -1078,11 +1079,8 @@ public class MainView {
 		}
 
 		JPanel btnPanel = new JPanel();
-		btnPanel.setBackground(new Color(252,252,243));
 
-		JButton btn = new JButton(new ImageIcon("image/3_back_btn.png"));
-		btn.setPreferredSize(new Dimension(60,40));
-		btn.setFont(btn.getFont().deriveFont(19.0f));
+		JButton btn = new JButton("이전으로");
 		btn.addActionListener(new ActionListener() {
 
 			@Override
