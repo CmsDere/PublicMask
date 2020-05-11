@@ -80,22 +80,49 @@ public class MainController {
 			String string;
 			while ((string = br.readLine()) != null) {
 				String[] strArr = string.split(", ");
+				int day = 0;
 				System.out.println(strArr[0] + ", " + strArr[1]);
 				if (strArr[0].equals(personList.get(usercount).getUserName())
 						&& strArr[1].equals(personList.get(usercount).getUserNumber())) {
 					check = 0;
 					usercount++;
 					return check;
-				} else {
-					if (Integer.parseInt((personList.get(usercount).getUserNumber().substring(1, 2))) == today) {
+				} 
+				else {
+					switch (Integer.parseInt((personList.get(usercount).getUserNumber().substring(1, 2)))) {
+						case 1:
+						case 6:
+							day = 1;
+							break;
+						case 2:
+						case 7:
+							day = 2;
+							break;
+						case 3:
+						case 8:
+							day = 3;
+							break;
+						case 4:
+						case 9:
+							day = 4;
+							break;
+						case 5:
+						case 0:
+							day = 5;
+					
+					}
+					if (day == today) {
 						check = 1;
 						System.out.println("유저의 생년월일:" + personList.get(usercount).getUserNumber().substring(1, 2));
-
-					} else {
+					}
+					else if (today == 6 || today == 7) {
+						check = 1;
+						System.out.println("유저의 생년월일:" + personList.get(usercount).getUserNumber().substring(1, 2));
+					}
+					else {
 						check = 2;
 						System.out.println("유저의 생년월일:" + personList.get(usercount).getUserNumber().substring(1, 2));
 						System.out.println("오늘은 구매 불가능합니다.");
-
 					}
 				}
 			}
