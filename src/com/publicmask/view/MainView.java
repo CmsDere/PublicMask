@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,6 +35,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -159,33 +162,35 @@ public class MainView {
 
 		JPanel loginPanel = new JPanel();
 		loginPanel.setLayout(new BorderLayout());
-
+		
+		
 		Image icon = new ImageIcon("image/1_top_01.PNG").getImage().getScaledInstance(500, 180, 0);
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(new Color(252, 252, 243));
+		panel1.setBackground(new Color(252,252,243));
 		JLabel label1 = new JLabel(new ImageIcon(icon));
 		label1.setHorizontalAlignment(JLabel.CENTER);
 		panel1.add(label1);
-
-		JPanel panel2 = new JPanel(new GridLayout(4, 1));
-		panel2.setBackground(new Color(252, 252, 243));
+	
+		
+		JPanel panel2 = new JPanel(new GridLayout(4,1));
+		panel2.setBackground(new Color(252,252,243));
 		JLabel label2 = new JLabel("  ");
-
+		
 		JPanel panel4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		panel4.setBackground(new Color(252, 252, 243));
+		panel4.setBackground(new Color(252,252,243));
 		JLabel label3 = new JLabel("          ID :");
-		label3.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		label3.setFont(new Font("맑은 고딕",Font.BOLD,13));
 		label3.setFont(label3.getFont().deriveFont(30.0f));
 		label3.setHorizontalAlignment(JLabel.CENTER);
 		JTextField text1 = new JTextField(13);
 		text1.setFont(text1.getFont().deriveFont(20.0f));
 		panel4.add(label3);
 		panel4.add(text1);
-
+		
 		JPanel panel5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		panel5.setBackground(new Color(252, 252, 243));
+		panel5.setBackground(new Color(252,252,243));
 		JLabel label4 = new JLabel("Password :");
-		label4.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		label4.setFont(new Font("맑은 고딕",Font.BOLD,13));
 		label4.setFont(label4.getFont().deriveFont(30.0f));
 		label4.setHorizontalAlignment(JLabel.CENTER);
 		JPasswordField text2 = new JPasswordField(13);
@@ -233,20 +238,20 @@ public class MainView {
 		});
 		panel5.add(label4);
 		panel5.add(text2);
-
+		
 		panel2.add(new JLabel(" "));
 		panel2.add(panel4);
-		panel2.add(panel5);
+		panel2.add(panel5);		
 		panel2.add(new JLabel(" "));
-
+		
 		JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		panel3.setBackground(new Color(252, 252, 243));
+		panel3.setBackground(new Color(252,252,243));		
 		JButton button1 = new JButton(new ImageIcon("image/1_right_btn.png"));
-		button1.setPreferredSize(new Dimension(100, 100));
+		button1.setPreferredSize(new Dimension(100,100));
 		JButton button2 = new JButton(new ImageIcon("image/1_left_btn.png"));
-		button2.setPreferredSize(new Dimension(100, 100));
+		button2.setPreferredSize(new Dimension(100,100));
 		button1.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				replace(ModeChoosePanel());
@@ -256,23 +261,22 @@ public class MainView {
 			}
 		});
 		button2.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				boolean check = mc.adminCheck(text1.getText(), text2.getText());
-
-				if (check == true) {
+				
+				if(check==true) {
 					replace(adminMainViewPanel());
 					mf.setSize(500, 500);
 					mf.setVisible(true);
 					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-				} else {
+					
+				}else {
 					JFrame warningf = new JFrame();
-					Dialog warning = new Dialog(warningf, "로그인 안내");
-					warning.setBounds(300, 200, 500, 200);
-					;
+					Dialog warning = new Dialog(warningf,"로그인 안내");
+					warning.setBounds(300, 200, 500, 200);;
 					warning.setLayout(new GridLayout(2, 1));
 					JLabel warninglabel1 = new JLabel("입력하신 ID, Password가 잘못되었습니다.");
 					warninglabel1.setFont(f3);
@@ -284,7 +288,7 @@ public class MainView {
 					panel1.add(checkmemo);
 					warning.setVisible(true);
 					checkmemo.addActionListener(new ActionListener() {
-
+						
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							text1.setText("");
@@ -297,15 +301,17 @@ public class MainView {
 				}
 			}
 		});
-
+		
 		panel3.add(button1);
 		panel3.add(new Label("               "));
 		panel3.add(button2);
-
-		loginPanel.add(panel1, "North");
-		loginPanel.add(panel2, "Center");
-		loginPanel.add(panel3, "South");
-
+		
+		
+		loginPanel.add(panel1,"North");
+		loginPanel.add(panel2,"Center");
+		loginPanel.add(panel3,"South");
+		
+		
 		return loginPanel;
 	}
 
@@ -314,9 +320,9 @@ public class MainView {
 		JPanel adminMainViewPanel = new JPanel();
 		adminMainViewPanel.setLayout(new BorderLayout());
 		adminMainViewPanel.setSize(500, 500);
-
+		
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(new Color(252, 252, 243));
+		panel1.setBackground(new Color(252,252,243));
 		panel1.setLayout(new BorderLayout());
 		Image icon = new ImageIcon("image/1_top_01.PNG").getImage().getScaledInstance(500, 180, 0);
 		JLabel topimage = new JLabel(new ImageIcon(icon));
@@ -324,28 +330,29 @@ public class MainView {
 		label1.setFont(new Font("HY헤드라인", Font.BOLD, 13));
 		label1.setFont(label1.getFont().deriveFont(25.0f));
 		label1.setHorizontalAlignment(JLabel.CENTER);
-		panel1.add(topimage, "North");
-		panel1.add(label1, "Center");
-
-		JPanel panel3 = new JPanel(new GridLayout(2, 1));
-		panel3.setBackground(new Color(252, 252, 243));
+		panel1.add(topimage,"North");
+		panel1.add(label1,"Center");
+		
+		
+		JPanel panel3 = new JPanel(new GridLayout(2,1));
+		panel3.setBackground(new Color(252,252,243));
 		JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		panel2.setBackground(new Color(252, 252, 243));
+		panel2.setBackground(new Color(252,252,243));
 		JButton button1 = new JButton(new ImageIcon("image/2_storeinfo_btn.png"));
-		button1.setPreferredSize(new Dimension(100, 100));
+		button1.setPreferredSize(new Dimension(100,100));
 		button1.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				replace(adminStorelistViewPanel());
 				mf.setVisible(true);
-				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				
 			}
 		});
 		JButton button2 = new JButton(new ImageIcon("image/2_consumerlist_btn.png"));
-		button2.setPreferredSize(new Dimension(100, 100));
+		button2.setPreferredSize(new Dimension(100,100));
 		button2.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				replace(BuyerListPanel());
@@ -353,11 +360,11 @@ public class MainView {
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
-
+		
 		JButton button3 = new JButton(new ImageIcon("image/2_first_btn.png"));
-		button3.setPreferredSize(new Dimension(100, 100));
+		button3.setPreferredSize(new Dimension(100,100));
 		button3.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				replace(LoginPanel());
@@ -366,18 +373,19 @@ public class MainView {
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
-
+		
 		panel2.add(button2);
 		panel2.add(new JLabel("  "));
 		panel2.add(button1);
 		panel2.add(new JLabel("  "));
 		panel2.add(button3);
-
+		
 		panel3.add(new JLabel("  "));
 		panel3.add(panel2);
-
-		adminMainViewPanel.add(panel1, "North");
-		adminMainViewPanel.add(panel3, "Center");
+		
+		adminMainViewPanel.add(panel1,"North");
+		adminMainViewPanel.add(panel3,"Center");
+		
 
 		return adminMainViewPanel;
 	}
@@ -385,493 +393,494 @@ public class MainView {
 	public JPanel adminStorelistViewPanel() {
 
 		JPanel adminStorelistViewPanel = new JPanel();
-
+		
 		adminStorelistViewPanel.setLayout(new BorderLayout());
 		adminStorelistViewPanel.setSize(500, 500);
-
+		
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(new Color(252, 252, 243));
+		panel1.setBackground(new Color(252,252,243));
 		Image icon1 = new ImageIcon("image/4_top.png").getImage().getScaledInstance(500, 130, 0);
 		JLabel label1 = new JLabel(new ImageIcon(icon1));
-		label1.setFont(new Font("맑은 고딕", Font.PLAIN, 40));// 글씨체
-		label1.setFont(label1.getFont().deriveFont(55.0f));// 글씨크기60.0f
+		label1.setFont(new Font("맑은 고딕" , Font.PLAIN, 40 ));//글씨체
+		label1.setFont(label1.getFont().deriveFont(55.0f));//글씨크기60.0f
 		panel1.add(label1);
-
+		
+		
 		JPanel panel2 = new JPanel();
-		panel2.setBackground(new Color(252, 252, 243));
+		panel2.setBackground(new Color(252,252,243));
 		ArrayList pharmacy = storeview();
 		JList list = new JList(pharmacy.toArray());
 		list.setFont(list.getFont().deriveFont(20.0f));
-		list.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-		list.setPreferredSize(new Dimension(100, 200));
+		list.setBorder(BorderFactory.createLineBorder(Color.black,2));
+		list.setPreferredSize(new Dimension(100,200));
 		list.setBackground(Color.WHITE);
 		panel2.add(list);
-
+		
+		
 		JScrollPane scroller = new JScrollPane(list);
-		scroller.setPreferredSize(new Dimension(300, 250));
+		scroller.setPreferredSize(new Dimension(300,250));		
 		panel2.add(scroller);
+		
 
 		JLabel label2 = new JLabel(" 선택한 약국: ");
-		label2.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-
+		label2.setFont(new Font("맑은 고딕" , Font.BOLD, 18 ));
+		
 		JTextField selected = new JTextField(9);
 //		selected.setPreferredSize(new Dimension());
 		selected.setEditable(false);
-
-		// 선택완료 버튼 South
+			
+		//선택완료 버튼 South
 		JPanel panel3 = new JPanel();
 		JButton stbutton = new JButton(new ImageIcon("image/4_choice_btn.png"));
-		stbutton.setPreferredSize(new Dimension(60, 40));
+		stbutton.setPreferredSize(new Dimension(60,40));
 		stbutton.setFont(stbutton.getFont().deriveFont(19.0f));
-		panel3.setBackground(new Color(252, 252, 243));
+		panel3.setBackground(new Color(252,252,243));
 		stbutton.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				replace(adminChangeStoreinfo());
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+				
 			}
 		});
-
+		
 		JButton back = new JButton(new ImageIcon("image/3_back_btn.png"));
-		back.setPreferredSize(new Dimension(60, 40));
-		back.setFont(stbutton.getFont().deriveFont(19.0f));
+		back.setPreferredSize(new Dimension(60,40));
+		back.setFont(back.getFont().deriveFont(19.0f));
 		back.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				replace(adminMainViewPanel());
 				mf.setVisible(true);
 				mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+				
 			}
 		});
-
-		// 약국 선택시 선택한 약국:에 표시
+		
+				
+		//약국 선택시 선택한 약국:에 표시 
 		list.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				selected.setText(list.getSelectedValue().toString().split(",")[0]);
-				selected.setPreferredSize(new Dimension(200, 40));
-				selected.setFont(new Font("serif", Font.BOLD, 15));
-				indexnum = list.getSelectedIndex();
+				selected.setPreferredSize(new Dimension(200,40));
+				selected.setFont(new Font("serif" , Font.BOLD, 15));
+				indexnum =list.getSelectedIndex();
 			}
 		});
-
+		
 		panel3.add(label2);
 		panel3.add(selected);
 		panel3.add(stbutton);
 		panel3.add(back);
-
-		adminStorelistViewPanel.add(panel1, "North");
-		adminStorelistViewPanel.add(panel2, "Center");
-		adminStorelistViewPanel.add(panel3, "South");
-
+		
+		
+		adminStorelistViewPanel.add(panel1,"North");
+		adminStorelistViewPanel.add(panel2,"Center");
+		adminStorelistViewPanel.add(panel3,"South");
+		
+		
+		
+		
+		
 		return adminStorelistViewPanel;
 	}
 
 	public JPanel adminChangeStoreinfo() {
 
 		JPanel adminChangeStorinfoPanel = new JPanel();
-
+		
 		adminChangeStorinfoPanel.setLayout(new BorderLayout());
 		adminChangeStorinfoPanel.setSize(500, 500);
-
+		
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(new Color(252, 252, 243));
-		JLabel label1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString() + "의 프로필");
-		label1.setFont(new Font("맑은 고딕", Font.BOLD, 11));
+		panel1.setBackground(new Color(252,252,243));
+		JLabel label1 = new JLabel(mc.getStoreList().get(indexnum).getStoreName().toString()+"의 프로필");
+		label1.setFont(new Font("맑은 고딕",Font.BOLD, 11));
 		label1.setFont(label1.getFont().deriveFont(35.0f));
 		panel1.add(label1);
-
-		JPanel panel5 = new JPanel(new GridLayout(2, 1));
-		panel5.setBackground(new Color(252, 252, 243));
-		JPanel panel2 = new JPanel(new GridLayout(0, 2));
-		panel2.setBackground(new Color(252, 252, 243));
+		
+		
+		
+		JPanel panel5 = new JPanel(new GridLayout(2,1));
+		panel5.setBackground(new Color(252,252,243));
+		JPanel panel2 = new JPanel(new GridLayout(0,2));
+		panel2.setBackground(new Color(252,252,243));
 		JLabel label2 = new JLabel("1. 주소: ");
-		label2.setFont(new Font("견고딕", Font.BOLD, 13));
+		label2.setFont(new Font("견고딕",Font.BOLD, 13));
 		label2.setFont(label2.getFont().deriveFont(20.0f));
 		JTextField text1 = new JTextField(mc.getStoreList().get(indexnum).getAddress().toString());
 		JLabel label3 = new JLabel("2. 전화번호:");
-		label3.setFont(new Font("견고딕", Font.BOLD, 13));
+		label3.setFont(new Font("견고딕",Font.BOLD, 13));
 		label3.setFont(label2.getFont().deriveFont(20.0f));
 		JTextField text2 = new JTextField(mc.getStoreList().get(indexnum).getPhoneNumber().toString());
 		JLabel label4 = new JLabel("3. 마스크 현황");
-		label4.setFont(new Font("견고딕", Font.BOLD, 13));
+		label4.setFont(new Font("견고딕",Font.BOLD, 13));
 		label4.setFont(label2.getFont().deriveFont(20.0f));
-
+		
 		panel2.add(label2);
 		panel2.add(text1);
 		panel2.add(label3);
 		panel2.add(text2);
 		panel2.add(label4);
-
+		
 		JPanel panel3 = new JPanel();
-		panel3.setBackground(new Color(252, 252, 243));
-		panel3.setLayout(new GridLayout(3, 2));
+		panel3.setBackground(new Color(252,252,243));
+		panel3.setLayout(new GridLayout(3,2));
 		JLabel label5 = new JLabel("    KF94 : ");
 		label5.setFont(label2.getFont().deriveFont(15.0f));
-		JTextField text3 = new JTextField(
-				((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum() + "");
+		JTextField text3 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+"");
 		JLabel label6 = new JLabel("    KF80 : ");
 		label6.setFont(label2.getFont().deriveFont(15.0f));
-		JTextField text4 = new JTextField(
-				((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum() + "");
+		JTextField text4 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+"");
 		JLabel label7 = new JLabel("    일반마스크 : ");
 		label7.setFont(label2.getFont().deriveFont(15.0f));
-		JTextField text5 = new JTextField(
-				((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum() + "");
-
+		JTextField text5 = new JTextField(((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+"");
+		
+		
 		text1.setFocusTraversalKeysEnabled(false);
 		text1.addKeyListener(new KeyListener() {
-
+			
 			@Override
 			public void keyTyped(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyReleased(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyPressed(java.awt.event.KeyEvent e) {
-				if (e.getKeyCode() == e.VK_TAB) {
+				if(e.getKeyCode()==e.VK_TAB) {
 					text2.requestFocus();
 					text2.setText("");
 				}
-
+				
 			}
 		});
 		text1.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				text1.setText("");
 			}
-
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				text1.setText("");
-
+				
 			}
 		});
-
+		
 		text2.setFocusTraversalKeysEnabled(false);
 		text2.addKeyListener(new KeyListener() {
-
+			
 			@Override
 			public void keyTyped(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyReleased(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyPressed(java.awt.event.KeyEvent e) {
-				if (e.getKeyCode() == e.VK_TAB) {
+				if(e.getKeyCode()==e.VK_TAB) {
 					text3.requestFocus();
 					text3.setText("");
 				}
-
+				
 			}
 		});
 		text2.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				text2.setText("");
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				text2.setText("");
-
+				
 			}
 		});
 		text3.setFocusTraversalKeysEnabled(false);
 		text3.addKeyListener(new KeyListener() {
-
+			
 			@Override
 			public void keyTyped(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyReleased(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyPressed(java.awt.event.KeyEvent e) {
-				if (e.getKeyCode() == e.VK_TAB) {
+				if(e.getKeyCode()==e.VK_TAB) {
 					text4.requestFocus();
 					text4.setText("");
 				}
-
+				
 			}
 		});
 		text3.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				text3.setText("");
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				text3.setText("");
-
+				
 			}
 		});
 		text4.setFocusTraversalKeysEnabled(false);
 		text4.addKeyListener(new KeyListener() {
-
+			
 			@Override
 			public void keyTyped(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyReleased(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void keyPressed(java.awt.event.KeyEvent e) {
-				if (e.getKeyCode() == e.VK_TAB) {
+				if(e.getKeyCode()==e.VK_TAB) {
 					text5.requestFocus();
 					text5.setText("");
 				}
-
+				
 			}
 		});
 		text4.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				text4.setText("");
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				text4.setText("");
-
+				
 			}
 		});
 		text5.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				text5.setText("");
-
+				
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-
+				
 			}
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				text5.setText("");
-
+				
 			}
 		});
-
+		
 		panel3.add(label5);
 		panel3.add(text3);
 		panel3.add(label6);
 		panel3.add(text4);
 		panel3.add(label7);
 		panel3.add(text5);
-
+		
 		panel5.add(panel2);
 		panel5.add(panel3);
-
+		
+		
+		
 		JPanel panel4 = new JPanel();
-		panel4.setBackground(new Color(252, 252, 243));
+		panel4.setBackground(new Color(252,252,243));
 		panel4.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton button1 = new JButton("수정");
 		button1.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				String address;
 				String phoneNumber;
-				int num1, num2, num3;
-
-				if (text1.getText().equals("")
-						|| text1.getText().equals(mc.getStoreList().get(indexnum).getAddress().toString())) {
+				int num1,num2,num3;
+				
+				if(text1.getText().equals("") || text1.getText().equals(mc.getStoreList().get(indexnum).getAddress().toString())) {
 					address = mc.getStoreList().get(indexnum).getAddress().toString();
-				} 
-				else {
+				}else {
 					address = text1.getText();
 				}
-				if (text2.getText().equals("")
-						|| text2.getText().equals(mc.getStoreList().get(indexnum).getPhoneNumber().toString())) {
-					phoneNumber = mc.getStoreList().get(indexnum).getPhoneNumber().toString();
-				} 
-				else {
+				if(text2.getText().equals("") || text2.getText().equals(mc.getStoreList().get(indexnum).getPhoneNumber().toString())) {
+					phoneNumber= mc.getStoreList().get(indexnum).getPhoneNumber().toString();
+				}else {
 					phoneNumber = text2.getText();
 				}
-				if (text3.getText().equals("") || text3.getText().equals(
-						(((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum() + ""))) {
-					num1 = ((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum();
-				} 
-				else {
+				if(text3.getText().equals("") || text3.getText().equals((((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum()+""))) {
+					num1=((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).getMaskNum();
+				}else {
 					num1 = Integer.parseInt(text3.getText());
 				}
-				if (text4.getText().equals("") || text3.getText().equals(
-						(((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum() + ""))) {
-					num2 = ((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum();
-				} 
-				else {
+				if(text4.getText().equals("") || text3.getText().equals((((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum()+""))) {
+					num2=((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).getMaskNum();
+				}else {
 					num2 = Integer.parseInt(text4.getText());
 				}
-				if (text5.getText().equals("") || text3.getText().equals(
-						(((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum() + ""))) {
-					num3 = ((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum();
-				} 
-				else {
+				if(text5.getText().equals("") || text3.getText().equals((((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum()+""))) {
+					num3=((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).getMaskNum();
+				}else {
 					num3 = Integer.parseInt(text5.getText());
 				}
-
+				
 				JFrame checkinfomf = new JFrame();
-				Dialog checkinfo = new Dialog(checkinfomf, "수정할 정보 확인");
+				Dialog checkinfo = new Dialog(checkinfomf,"수정할 정보 확인");
 				checkinfo.setBounds(700, 250, 700, 500);
-
+				
 				JPanel checkpanel1 = new JPanel();
 				JLabel checkLabel1 = new JLabel("입력하신 정보가 맞습니까?");
-				checkLabel1.setFont(new Font("맑은 고딕", Font.BOLD, 11));
+				checkLabel1.setFont(new Font("맑은 고딕",Font.BOLD, 11));
 				checkLabel1.setFont(checkLabel1.getFont().deriveFont(30.0f));
 				checkpanel1.setBackground(Color.white);
 				checkpanel1.add(checkLabel1);
-
-				Font f2 = new Font("굴림", Font.BOLD, 25);
-
-				JPanel checkpanel2 = new JPanel(new GridLayout(5, 2));
-
+				
+				Font f2 = new Font("굴림",Font.BOLD,25);
+				
+				JPanel checkpanel2 = new JPanel(new GridLayout(5,2));
+				
 				JLabel checkLabel2 = new JLabel("       주소: ");
 				checkLabel2.setHorizontalAlignment(JLabel.LEFT);
-				JLabel checkLabel3 = new JLabel(address + "     ");
+				JLabel checkLabel3 = new JLabel(address+"     ");
 				checkLabel3.setHorizontalAlignment(JLabel.RIGHT);
 				JLabel checkLabel4 = new JLabel("       전화번호: ");
 				checkLabel4.setHorizontalAlignment(JLabel.LEFT);
-				JLabel checkLabel5 = new JLabel(phoneNumber + "     ");
+				JLabel checkLabel5 = new JLabel(phoneNumber+"     ");
 				checkLabel5.setHorizontalAlignment(JLabel.RIGHT);
 				JLabel checkLabel6 = new JLabel("       KF94");
 				checkLabel6.setHorizontalAlignment(JLabel.LEFT);
-				JLabel checkLabel7 = new JLabel(num1 + "개          ");
+				JLabel checkLabel7 = new JLabel(num1+"개          ");
 				checkLabel7.setHorizontalAlignment(JLabel.RIGHT);
 				JLabel checkLabel8 = new JLabel("       KF80");
 				checkLabel8.setHorizontalAlignment(JLabel.LEFT);
-				JLabel checkLabel9 = new JLabel(num2 + "개          ");
+				JLabel checkLabel9 = new JLabel(num2+"개          ");
 				checkLabel9.setHorizontalAlignment(JLabel.RIGHT);
 				JLabel checkLabel10 = new JLabel("       일반마스크");
 				checkLabel10.setHorizontalAlignment(JLabel.LEFT);
-				JLabel checkLabel11 = new JLabel(num3 + "개          ");
+				JLabel checkLabel11 = new JLabel(num3+"개          ");
 				checkLabel11.setHorizontalAlignment(JLabel.RIGHT);
 				checkLabel2.setFont(f2);
 				checkLabel3.setFont(f2);
@@ -894,24 +903,22 @@ public class MainView {
 				checkpanel2.add(checkLabel10);
 				checkpanel2.add(checkLabel11);
 				checkpanel2.setBackground(Color.white);
-
+				
+				
 				JPanel checkpanel3 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 				JButton checkButton1 = new JButton("네");
 				JButton checkButton2 = new JButton("아니요");
 				checkButton1.addActionListener(new ActionListener() {
-
+					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 
 						mc.getStoreList().get(indexnum).setAddress(address);
 						mc.getStoreList().get(indexnum).setPhoneNumber(phoneNumber);
 
-						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);
-						;
-						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);
-						;
-						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
-						;
+						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(0)).setMaskNum(num1);
+						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(1)).setMaskNum(num2);
+						((Maskinfo)mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
 
 						mc.storeDataSave(mc.getStoreList().get(indexnum).getStoreName(), address, phoneNumber, num1,
 								num2, num3);
@@ -926,24 +933,25 @@ public class MainView {
 //						((Maskinfo) mc.getStoreList().get(indexnum).getMaskinfo().get(2)).setMaskNum(num3);
 //						;
 
+
 						JFrame modifymf = new JFrame();
-						Dialog modifyComplete = new Dialog(modifymf, "약국 정보 수정 완료");
-						modifyComplete.setLayout(new GridLayout(3, 1));
+						Dialog modifyComplete = new Dialog(modifymf,"약국 정보 수정 완료");
+						modifyComplete.setLayout(new GridLayout(3,1));
 						modifyComplete.setBounds(700, 250, 300, 300);
 						modifyComplete.add(new JPanel(null));
-
+						
 						JPanel panel1 = new JPanel();
 						JLabel label1 = new JLabel("수정이 완료되었습니다.");
-						label1.setFont(new Font("HY헤드라인", Font.BOLD, 14));
+						label1.setFont(new Font("HY헤드라인",Font.BOLD,14));
 						label1.setFont(label1.getFont().deriveFont(20.0f));
 						panel1.add(label1);
-
+						
 						JPanel panel2 = new JPanel();
 						JButton button1 = new JButton("확인");
 						panel2.add(button1);
-
+						
 						button1.addActionListener(new ActionListener() {
-
+							
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								replace(adminMainViewPanel());
@@ -954,16 +962,16 @@ public class MainView {
 								modifyComplete.dispose();
 							}
 						});
-
+						
 						modifyComplete.add(panel1);
 						modifyComplete.add(panel2);
-
+						
 						modifyComplete.setVisible(true);
-
+						
 					}
 				});
 				checkButton2.addActionListener(new ActionListener() {
-
+					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						replace(adminChangeStoreinfo());
@@ -973,25 +981,29 @@ public class MainView {
 						checkinfo.dispose();
 					}
 				});
-
+				
 				checkpanel3.add(checkButton1);
 				checkpanel3.add(checkButton2);
 				checkpanel3.setBackground(Color.white);
-
-				checkinfo.add(checkpanel1, "North");
-				checkinfo.add(checkpanel2, "Center");
-				checkinfo.add(checkpanel3, "South");
-
+				
+				checkinfo.add(checkpanel1,"North");
+				checkinfo.add(checkpanel2,"Center");
+				checkinfo.add(checkpanel3,"South");
+				
 				checkinfo.setVisible(true);
 
+				
 			}
 		});
 		panel4.add(button1);
-
-		adminChangeStorinfoPanel.add(panel1, "North");
-		adminChangeStorinfoPanel.add(panel5, "Center");
-		adminChangeStorinfoPanel.add(panel4, "South");
-
+		
+		
+		adminChangeStorinfoPanel.add(panel1,"North");
+		adminChangeStorinfoPanel.add(panel5,"Center");
+		adminChangeStorinfoPanel.add(panel4,"South");
+		
+		
+		
 		return adminChangeStorinfoPanel;
 	}
 
@@ -1003,6 +1015,7 @@ public class MainView {
 		viewPerson();
 
 		JPanel ShowPersonPanel = new JPanel();
+		ShowPersonPanel.setBackground(new Color(252,252,243));
 		ShowPersonPanel.setLayout(new BorderLayout());
 
 		Font storef1 = new Font("돋음", Font.BOLD, 30);
@@ -1053,19 +1066,17 @@ public class MainView {
 		// 제목 패널
 		JPanel Panel1 = new JPanel();
 
-		Panel1.setPreferredSize(new Dimension(525, 50)); // 패널 사이즈 설정으로 그 전화면과 사이즈 통일
-		Panel1.setBackground(new Color(82, 204, 250));
-
-		JLabel titleLabel = new JLabel("구매자 리스트");
-		titleLabel.setBackground(Color.white);
-		titleLabel.setForeground(Color.white);
+		Panel1.setPreferredSize(new Dimension(500, 130)); // 패널 사이즈 설정으로 그 전화면과 사이즈 통일
+		Panel1.setBackground(new Color(252,252,243));
+		Image icon1 = new ImageIcon("image/3_top.png").getImage().getScaledInstance(500, 130, 0);
+		JLabel titleLabel = new JLabel(new ImageIcon(icon1));
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setFont(storef1);
 
 		Panel1.add(titleLabel);
 
 		JScrollPane scrollpane = new JScrollPane(table);
-		scrollpane.setBackground(Color.WHITE);
+		scrollpane.setBackground(new Color(252,252,243));
 
 		// 가운데 정렬위한 객체 생성
 		DefaultTableCellHeaderRenderer celAlignCenter = new DefaultTableCellHeaderRenderer();
@@ -1081,8 +1092,11 @@ public class MainView {
 		}
 
 		JPanel btnPanel = new JPanel();
+		btnPanel.setBackground(new Color(252,252,243));
 
-		JButton btn = new JButton("이전으로");
+		JButton btn = new JButton(new ImageIcon("image/3_back_btn.png"));
+		btn.setPreferredSize(new Dimension(60,40));
+		btn.setFont(btn.getFont().deriveFont(19.0f));
 		btn.addActionListener(new ActionListener() {
 
 			@Override
